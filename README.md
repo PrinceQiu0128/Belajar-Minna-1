@@ -1,1 +1,0 @@
-# Belajar-Minna-1
