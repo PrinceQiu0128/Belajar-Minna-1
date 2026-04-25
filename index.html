@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Minna no Nihongo — Kosa Kata & Kanji N5</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
+  :root[data-theme="light"] {
     --ink: #1a1614;
     --ink-soft: #3d3530;
     --ink-muted: #7a6f68;
@@ -22,31 +22,92 @@
     --seal: #c0392b;
     --kanji-accent: #1a4a3a;
     --kanji-light: #e0f0ea;
+    --toggle-bg: #e8e0d4;
+    --toggle-fg: #3d3530;
+    --credit-bg: #1a1614;
+    --credit-fg: #f2ede4;
+    --header-bg-start: #f2ede4;
+    --header-bg-end: #faf7f2;
+    --controls-bg: rgba(250,247,242,0.97);
+    --row-hover: #f2ede4;
+    --shadow: rgba(0,0,0,0.08);
   }
+  :root[data-theme="dark"] {
+    --ink: #e8e0d4;
+    --ink-soft: #c8bfb5;
+    --ink-muted: #9a8f85;
+    --ink-faint: #5a5048;
+    --paper: #1a1614;
+    --paper-warm: #231f1c;
+    --paper-dark: #2e2925;
+    --red: #e05a4a;
+    --red-soft: #4a2020;
+    --gold: #c8a060;
+    --gold-light: #352a15;
+    --blue-ink: #7aaad0;
+    --seal: #e05a4a;
+    --kanji-accent: #5ab08a;
+    --kanji-light: #0e2a20;
+    --toggle-bg: #2e2925;
+    --toggle-fg: #e8e0d4;
+    --credit-bg: #0f0d0b;
+    --credit-fg: #c8bfb5;
+    --header-bg-start: #231f1c;
+    --header-bg-end: #1a1614;
+    --controls-bg: rgba(26,22,20,0.97);
+    --row-hover: #231f1c;
+    --shadow: rgba(0,0,0,0.3);
+  }
+
   * { margin:0; padding:0; box-sizing:border-box; }
+
   body {
     background: var(--paper);
     color: var(--ink);
-    font-family: 'Cormorant Garamond','Noto Serif JP',serif;
+    font-family: 'Lora','Noto Serif JP',serif;
     min-height: 100vh;
     overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
   }
   body::before {
     content:'';
     position:fixed; inset:0;
     background-image:
-      repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(160,140,120,0.06) 28px,rgba(160,140,120,0.06) 29px),
-      repeating-linear-gradient(90deg,transparent,transparent 28px,rgba(160,140,120,0.04) 28px,rgba(160,140,120,0.04) 29px);
+      repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(160,140,120,0.05) 28px,rgba(160,140,120,0.05) 29px),
+      repeating-linear-gradient(90deg,transparent,transparent 28px,rgba(160,140,120,0.03) 28px,rgba(160,140,120,0.03) 29px);
     pointer-events:none; z-index:0;
   }
 
-  /* HEADER */
+  .theme-toggle {
+    position: fixed;
+    top: 12px;
+    right: 14px;
+    z-index: 999;
+    background: var(--toggle-bg);
+    border: 1px solid var(--paper-dark);
+    border-radius: 20px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--toggle-fg);
+    letter-spacing: 0.08em;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .theme-toggle:hover { border-color: var(--gold); }
+  .theme-toggle .icon { font-size: 0.85rem; }
+
   header {
     position:relative; padding:3rem 2rem 2rem;
     text-align:center;
     border-bottom:1px solid var(--paper-dark);
-    background:linear-gradient(180deg,var(--paper-warm) 0%,var(--paper) 100%);
+    background:linear-gradient(180deg,var(--header-bg-start) 0%,var(--header-bg-end) 100%);
     overflow:hidden;
+    transition: background 0.3s;
   }
   header::before {
     content:'日本語';
@@ -58,7 +119,7 @@
   }
   .lesson-badge {
     display:inline-block;
-    font-family:'DM Mono',monospace; font-size:0.7rem;
+    font-family:'IBM Plex Mono',monospace; font-size:0.7rem;
     letter-spacing:0.2em; text-transform:uppercase;
     color:var(--ink-muted); border:1px solid var(--paper-dark);
     padding:5px 14px; border-radius:2px; margin-bottom:1rem; position:relative;
@@ -82,27 +143,29 @@
     font-family:'Noto Serif JP',serif; font-weight:700; font-size:1rem;
     color:#fff; letter-spacing:0.05em; position:relative;
     box-shadow:0 0 0 4px var(--red-soft),0 2px 12px rgba(192,57,43,0.2);
+    transition: background 0.3s;
   }
 
-  /* CREDIT */
   .credit-bar {
-    background:var(--ink); color:var(--paper-warm);
+    background:var(--credit-bg); color:var(--credit-fg);
     text-align:center; padding:0.5rem 1rem;
-    font-family:'DM Mono',monospace; font-size:0.68rem;
+    font-family:'IBM Plex Mono',monospace; font-size:0.68rem;
     letter-spacing:0.15em; display:flex; align-items:center;
     justify-content:center; gap:1.2rem; flex-wrap:wrap;
+    transition: background 0.3s;
   }
   .credit-bar a { color:var(--gold-light); text-decoration:none; }
+  [data-theme="dark"] .credit-bar a { color:var(--gold); }
   .credit-bar a:hover { text-decoration:underline; }
 
-  /* MODE TABS */
   .mode-tabs {
     background:var(--paper-warm); border-bottom:2px solid var(--paper-dark);
     display:flex; position:sticky; top:0; z-index:102;
+    transition: background 0.3s;
   }
   .mode-tab {
     flex:1; padding:0.9rem 1rem; border:none; background:transparent;
-    font-family:'DM Mono',monospace; font-size:0.75rem;
+    font-family:'IBM Plex Mono',monospace; font-size:0.75rem;
     letter-spacing:0.12em; text-transform:uppercase;
     color:var(--ink-muted); cursor:pointer; transition:all 0.2s;
     border-bottom:3px solid transparent;
@@ -111,21 +174,21 @@
   .mode-tab.active { color:var(--ink); border-bottom-color:var(--ink); background:var(--paper); font-weight:700; }
   .mode-tab.kanji-tab.active { color:var(--kanji-accent); border-bottom-color:var(--kanji-accent); }
 
-  /* BAB NAV */
   .bab-nav {
     background:var(--paper-warm); border-bottom:1px solid var(--paper-dark);
     padding:0.6rem 1.5rem; display:flex; align-items:center;
     gap:0.8rem; flex-wrap:wrap; position:sticky; top:47px; z-index:101;
+    transition: background 0.3s;
   }
   .bab-label {
-    font-family:'DM Mono',monospace; font-size:0.62rem;
+    font-family:'IBM Plex Mono',monospace; font-size:0.62rem;
     letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-muted); white-space:nowrap;
   }
   .bab-btns { display:flex; gap:4px; flex-wrap:wrap; }
   .bab-btn {
     width:32px; height:26px; border:1px solid var(--paper-dark);
     background:transparent; border-radius:2px;
-    font-family:'DM Mono',monospace; font-size:0.66rem;
+    font-family:'IBM Plex Mono',monospace; font-size:0.66rem;
     color:var(--ink-muted); cursor:pointer; transition:all 0.15s;
     display:flex; align-items:center; justify-content:center;
   }
@@ -134,19 +197,19 @@
   .bab-btn.empty { opacity:0.3; cursor:default; }
   .bab-btn.has-data { border-color:var(--ink-faint); color:var(--ink-soft); }
 
-  /* CONTROLS */
   .controls {
     position:sticky; top:89px; z-index:100;
-    background:rgba(250,247,242,0.96); backdrop-filter:blur(12px);
+    background:var(--controls-bg); backdrop-filter:blur(12px);
     border-bottom:1px solid var(--paper-dark);
     padding:0.8rem 1.5rem; display:flex; gap:0.6rem; flex-wrap:wrap; align-items:center;
+    transition: background 0.3s;
   }
   .search-wrap { position:relative; flex:1; min-width:160px; }
   .search-wrap svg { position:absolute; left:10px; top:50%; transform:translateY(-50%); width:14px; height:14px; color:var(--ink-muted); }
   #search {
     width:100%; padding:8px 10px 8px 32px;
     background:var(--paper-warm); border:1px solid var(--paper-dark);
-    border-radius:3px; font-family:'DM Mono',monospace; font-size:0.8rem;
+    border-radius:3px; font-family:'IBM Plex Mono',monospace; font-size:0.8rem;
     color:var(--ink); outline:none; transition:border-color 0.2s,box-shadow 0.2s;
   }
   #search::placeholder { color:var(--ink-faint); }
@@ -154,18 +217,16 @@
   .filter-btns { display:flex; gap:5px; flex-wrap:wrap; }
   .filter-btn {
     padding:6px 12px; border:1px solid var(--paper-dark); background:transparent;
-    border-radius:2px; font-family:'DM Mono',monospace; font-size:0.68rem;
+    border-radius:2px; font-family:'IBM Plex Mono',monospace; font-size:0.68rem;
     letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted);
     cursor:pointer; transition:all 0.18s; white-space:nowrap;
   }
   .filter-btn:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-light); }
   .filter-btn.active { background:var(--ink); color:var(--paper); border-color:var(--ink); }
-  .count-badge { font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--ink-muted); white-space:nowrap; padding:0 4px; }
+  .count-badge { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--ink-muted); white-space:nowrap; padding:0 4px; }
 
-  /* MAIN */
-  main { max-width:960px; margin:0 auto; padding:1.5rem 1.5rem 4rem; position:relative; z-index:1; }
+  main { max-width:1040px; margin:0 auto; padding:1.5rem 1.5rem 4rem; position:relative; z-index:1; }
 
-  /* PANEL TOGGLE */
   #vocabPanel, #kanjiPanel { display:none; }
   #vocabPanel.active, #kanjiPanel.active { display:block; }
 
@@ -184,35 +245,86 @@
     border-bottom:2px solid var(--ink);
   }
   .section-num {
-    font-family:'DM Mono',monospace; font-size:0.62rem;
+    font-family:'IBM Plex Mono',monospace; font-size:0.62rem;
     color:var(--paper); background:var(--ink-soft);
     padding:2px 7px; border-radius:2px; letter-spacing:0.1em;
+    flex-shrink: 0;
   }
   .section-title { font-size:1rem; font-weight:600; color:var(--ink); letter-spacing:0.04em; }
-  .section-jp { font-family:'Noto Serif JP',serif; font-size:0.9rem; color:var(--ink-muted); font-weight:300; margin-left:auto; }
+  .section-jp { font-family:'Noto Serif JP',serif; font-size:0.9rem; color:var(--ink-muted); font-weight:300; margin-left:auto; white-space:nowrap; }
 
-  /* VOCAB TABLE */
-  .vocab-table { width:100%; border-collapse:collapse; }
-  .vocab-table thead th {
-    font-family:'DM Mono',monospace; font-size:0.6rem;
-    letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-faint);
-    padding:5px 10px; text-align:left;
-    border-bottom:1px solid var(--paper-dark); background:var(--paper-warm);
+  /* ===== VOCAB TABLE FIX ===== */
+  .vocab-table {
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
   }
-  .vocab-row { transition:background 0.15s; border-bottom:1px solid var(--paper-dark); cursor:default; }
-  .vocab-row:last-child { border-bottom:none; }
-  .vocab-row:hover { background:var(--paper-warm); }
-  .vocab-row:hover .row-num { color:var(--red); }
-  .vocab-row td { padding:9px 10px; vertical-align:middle; }
-  .td-num { font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--ink-faint); width:26px; text-align:right; padding-right:6px!important; transition:color 0.15s; }
-  .td-jp { width:155px; }
-  .jp-main { font-family:'Noto Serif JP',serif; font-size:1.05rem; font-weight:500; color:var(--ink); line-height:1.3; }
-  .jp-romaji { font-family:'DM Mono',monospace; font-size:0.66rem; color:var(--blue-ink); margin-top:2px; font-style:italic; }
-  .jp-note { font-family:'Noto Serif JP',serif; font-size:0.63rem; color:var(--ink-muted); margin-top:1px; }
-  .td-kanji { width:88px; font-family:'Noto Serif JP',serif; font-size:1.2rem; font-weight:400; color:var(--red); letter-spacing:0.05em; }
-  .td-meaning { font-size:0.9rem; color:var(--ink-soft); line-height:1.5; }
+  /* col widths: no, kana+romaji, kanji, arti */
+  .vocab-table colgroup col:nth-child(1) { width:34px; }
+  .vocab-table colgroup col:nth-child(2) { width:26%; }
+  .vocab-table colgroup col:nth-child(3) { width:14%; }
+  .vocab-table colgroup col:nth-child(4) { width:auto; }
 
-  /* KANJI PANEL */
+  .vocab-table thead th {
+    font-family:'IBM Plex Mono',monospace; font-size:0.6rem;
+    letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-faint);
+    padding:5px 8px; text-align:left;
+    border-bottom:1px solid var(--paper-dark); background:var(--paper-warm);
+    white-space:nowrap;
+  }
+  .vocab-row {
+    transition:background 0.15s;
+    border-bottom:1px solid var(--paper-dark);
+    cursor:default;
+  }
+  .vocab-row:last-child { border-bottom:none; }
+  .vocab-row:hover { background:var(--row-hover); }
+  .vocab-row:hover .row-num { color:var(--red); }
+  .vocab-row td {
+    padding:9px 8px;
+    vertical-align:middle;  /* semua sel sejajar tengah */
+  }
+
+  .td-num {
+    font-family:'IBM Plex Mono',monospace; font-size:0.62rem;
+    color:var(--ink-faint); text-align:right; padding-right:6px!important;
+    transition:color 0.15s; vertical-align:middle;
+  }
+
+  /* Kolom kana: kana di baris 1, romaji di baris 2, note di baris 3 */
+  .td-jp { vertical-align:middle; }
+  .jp-main {
+    font-family:'Noto Serif JP',serif; font-size:1.05rem; font-weight:500;
+    color:var(--ink); line-height:1.4;
+    word-break:break-word; overflow-wrap:break-word;
+  }
+  .jp-romaji {
+    font-family:'IBM Plex Mono',monospace; font-size:0.67rem;
+    color:var(--blue-ink); margin-top:2px; font-style:italic;
+    word-break:break-word;
+  }
+  .jp-note {
+    font-family:'IBM Plex Mono',monospace; font-size:0.6rem;
+    color:var(--ink-muted); margin-top:2px;
+  }
+
+  /* Kolom kanji sejajar dengan kana di baris yang sama */
+  .td-kanji {
+    font-family:'Noto Serif JP',serif; font-size:1.15rem; font-weight:400;
+    color:var(--red); letter-spacing:0.05em;
+    word-break:break-all; overflow-wrap:break-word;
+    vertical-align:middle;
+  }
+
+  /* Kolom arti sejajar */
+  .td-meaning {
+    font-family:'Lora',serif; font-size:0.92rem;
+    color:var(--ink-soft); line-height:1.55;
+    word-break:break-word; overflow-wrap:break-word;
+    vertical-align:middle;
+  }
+  /* ===== END TABLE FIX ===== */
+
   .kanji-header-bar {
     display:flex; align-items:center; gap:0.8rem;
     margin-bottom:0.65rem; padding-bottom:0.5rem;
@@ -232,42 +344,18 @@
     transition:all 0.18s; cursor:default;
     animation:fadeUp 0.4s ease both;
   }
-  .kanji-card:hover { background:var(--kanji-light); border-color:var(--kanji-accent); transform:translateY(-2px); box-shadow:0 4px 12px rgba(26,74,58,0.1); }
-  .kanji-card .k-char {
-    font-family:'Noto Serif JP',serif; font-size:2.4rem;
-    font-weight:700; color:var(--kanji-accent); line-height:1;
-    margin-bottom:0.4rem; display:block; text-align:center;
-  }
-  .kanji-card .k-on {
-    font-family:'Noto Serif JP',serif; font-size:0.72rem;
-    color:var(--red); letter-spacing:0.05em; display:block;
-    text-align:center; margin-bottom:2px;
-  }
-  .kanji-card .k-kun {
-    font-family:'Noto Serif JP',serif; font-size:0.72rem;
-    color:var(--blue-ink); letter-spacing:0.05em; display:block;
-    text-align:center; margin-bottom:0.3rem;
-  }
-  .kanji-card .k-meaning {
-    font-size:0.78rem; color:var(--ink-muted);
-    text-align:center; line-height:1.4; font-style:italic;
-  }
-  .kanji-card .k-stroke {
-    font-family:'DM Mono',monospace; font-size:0.6rem;
-    color:var(--ink-faint); text-align:center; margin-top:0.3rem;
-    letter-spacing:0.08em;
-  }
-  .kanji-card .k-example {
-    font-family:'Noto Serif JP',serif; font-size:0.7rem;
-    color:var(--ink-soft); text-align:center; margin-top:0.3rem;
-    border-top:1px solid var(--paper-dark); padding-top:0.3rem;
-  }
+  .kanji-card:hover { background:var(--kanji-light); border-color:var(--kanji-accent); transform:translateY(-2px); box-shadow:0 4px 12px var(--shadow); }
+  .kanji-card .k-char { font-family:'Noto Serif JP',serif; font-size:2.4rem; font-weight:700; color:var(--kanji-accent); line-height:1; margin-bottom:0.4rem; display:block; text-align:center; }
+  .kanji-card .k-on { font-family:'Noto Serif JP',serif; font-size:0.72rem; color:var(--red); letter-spacing:0.05em; display:block; text-align:center; margin-bottom:2px; }
+  .kanji-card .k-kun { font-family:'Noto Serif JP',serif; font-size:0.72rem; color:var(--blue-ink); letter-spacing:0.05em; display:block; text-align:center; margin-bottom:0.3rem; }
+  .kanji-card .k-meaning { font-size:0.78rem; color:var(--ink-muted); text-align:center; line-height:1.4; font-style:italic; }
+  .kanji-card .k-stroke { font-family:'IBM Plex Mono',monospace; font-size:0.6rem; color:var(--ink-faint); text-align:center; margin-top:0.3rem; letter-spacing:0.08em; }
+  .kanji-card .k-example { font-family:'Noto Serif JP',serif; font-size:0.7rem; color:var(--ink-soft); text-align:center; margin-top:0.3rem; border-top:1px solid var(--paper-dark); padding-top:0.3rem; }
 
-  /* KANJI FILTER */
   .kanji-filter-row { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:1rem; }
   .k-filter-btn {
     padding:5px 12px; border:1px solid var(--paper-dark); background:transparent;
-    border-radius:2px; font-family:'DM Mono',monospace; font-size:0.65rem;
+    border-radius:2px; font-family:'IBM Plex Mono',monospace; font-size:0.65rem;
     letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted);
     cursor:pointer; transition:all 0.15s;
   }
@@ -281,7 +369,7 @@
 
   footer {
     text-align:center; padding:1.5rem 2rem;
-    font-family:'DM Mono',monospace; font-size:0.65rem;
+    font-family:'IBM Plex Mono',monospace; font-size:0.65rem;
     letter-spacing:0.1em; color:var(--ink-faint);
     border-top:1px solid var(--paper-dark); position:relative; z-index:1;
   }
@@ -290,19 +378,27 @@
     header { padding:2rem 1rem 1.5rem; }
     .bab-nav { padding:0.5rem 0.8rem; top:44px; }
     .controls { padding:0.6rem 0.8rem; top:86px; }
-    main { padding:1rem 0.8rem 3rem; }
+    main { padding:1rem 0.6rem 3rem; }
+    .vocab-table { table-layout:auto; }
+    .vocab-table colgroup col:nth-child(1) { width:0; display:none; }
     .td-num { display:none; }
-    .td-jp { width:120px; }
-    .td-kanji { width:65px; font-size:1rem; }
-    .jp-main { font-size:0.92rem; }
+    .vocab-table colgroup col:nth-child(2) { width:40%; }
+    .vocab-table colgroup col:nth-child(3) { width:18%; }
+    .jp-main { font-size:0.9rem; }
     .section-jp { display:none; }
     header::before { font-size:5rem; }
     .bab-btn { width:28px; height:24px; font-size:0.6rem; }
     .kanji-grid { grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); }
+    .theme-toggle { top:8px; right:8px; padding:4px 8px; font-size:0.6rem; }
   }
 </style>
 </head>
 <body>
+
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">
+  <span class="icon" id="themeIcon">🌙</span>
+  <span id="themeLabel">Dark</span>
+</button>
 
 <header>
   <div class="lesson-badge">Minna no Nihongo · Buku I</div>
@@ -314,7 +410,6 @@
   <div class="seal" id="sealEl">一</div>
 </header>
 
-<!-- CREDIT BAR -->
 <div class="credit-bar">
   <span>✦ By : <strong>PrinceQiu</strong></span>
   <span>|</span>
@@ -323,19 +418,16 @@
   <span>Minna no Nihongo — Kosa Kata &amp; Kanji N5</span>
 </div>
 
-<!-- MODE TABS -->
 <div class="mode-tabs">
   <button class="mode-tab active" id="tabVocab" onclick="switchMode('vocab')">📖 Kosa Kata (Bab 1–25)</button>
   <button class="mode-tab kanji-tab" id="tabKanji" onclick="switchMode('kanji')">漢 Kanji N5</button>
 </div>
 
-<!-- BAB NAV (vocab only) -->
 <div class="bab-nav" id="babNav">
   <span class="bab-label">Pelajaran:</span>
   <div class="bab-btns" id="babBtns"></div>
 </div>
 
-<!-- CONTROLS -->
 <div class="controls">
   <div class="search-wrap">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -353,11 +445,8 @@
   <span class="count-badge" id="count"></span>
 </div>
 
-<main>
-  <!-- VOCAB PANEL -->
+<main id="mainContent">
   <div id="vocabPanel" class="active"></div>
-
-  <!-- KANJI N5 PANEL -->
   <div id="kanjiPanel">
     <div style="margin-bottom:1.2rem;">
       <div class="kanji-header-bar">
@@ -382,7 +471,6 @@
     </div>
     <div class="kanji-grid" id="kanjiGrid"></div>
   </div>
-
   <div class="empty-state" id="emptyState" style="display:none;">
     <span class="big">見つからない</span>
     Kata tidak ditemukan. Coba kata lain.
@@ -394,12 +482,26 @@
 </footer>
 
 <script>
-// ═══════════════════════════════════════════════════════
-//  DATA KOSA KATA — urutan sesuai buku Minna no Nihongo
-// ═══════════════════════════════════════════════════════
-const allBabs = {
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('themeIcon').textContent = isDark ? '🌙' : '☀️';
+  document.getElementById('themeLabel').textContent = isDark ? 'Dark' : 'Light';
+  localStorage.setItem('mnTheme', isDark ? 'light' : 'dark');
+}
+(function(){
+  const saved = localStorage.getItem('mnTheme');
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+    if (saved === 'dark') {
+      document.getElementById('themeIcon').textContent = '☀️';
+      document.getElementById('themeLabel').textContent = 'Light';
+    }
+  }
+})();
 
-  // ══ BAB 1 ══ (foto: わたし → あなた → あのひと/かた → さん → ちゃん → じん → せんせい → きょうし → がくせい → かいしゃいん → しゃいん → ぎんこういん → いしゃ → けんきゅうしゃ → だいがく → びょういん → だれ/どなた → さい → はい/いいえ → はじめまして...)
+const allBabs = {
   1: [
     {
       id:"noun", num:"01", title:"Kata Benda & Sapaan", jp:"名詞・挨拶",
@@ -460,7 +562,6 @@ const allBabs = {
     }
   ],
 
-  // ══ BAB 2 ══ (foto: これ → それ → あれ → この〜 → その〜 → あの〜 → ほん → じしょ → ざっし → しんぶん → ノート → てちょう → めいし → カード → えんぴつ → ボールペン → シャープペンシル → かぎ → とけい → かさ → かばん → CD → テレビ → ラジオ → カメラ → コンピューター → くるま → つくえ → いす → チョコレート → コーヒー → [お]みやげ → えいご/にほんご/〜ご → なん → そう → あのう → えっ → どうぞ → ありがとう → そうですか → ちがいます → [〜を]みせてください → じゃ → [〜を]ください → ひゃく/せん/まん → いくら)
   2: [
     {
       id:"noun", num:"01", title:"Kata Tunjuk & Kata Benda", jp:"指示詞・名詞",
@@ -528,7 +629,6 @@ const allBabs = {
     }
   ],
 
-  // ══ BAB 3 ══ (foto: ここ → そこ → あそこ → どこ → こちら → そちら → あちら → どちら → きょうしつ → しょくどう → じむしょ → かいぎしつ → うけつけ → ロビー → へや → トイレ → かいだん → エレベーター → エスカレーター → じどうはんばいき → でんわ → [お]くに → かいしゃ → うち → くつ/ネクタイ/ワイン → うりば → ちか → かい → なんがい → えん/いくら → ひゃく/せん/まん → すみません/どうも → いらっしゃいませ → ...)
   3: [
     {
       id:"noun", num:"01", title:"Kata Tunjuk Tempat", jp:"場所の指示詞",
@@ -597,7 +697,6 @@ const allBabs = {
     }
   ],
 
-  // ══ BAB 4 ══ (foto: おきます → ねます → はたらきます → やすみます → べんきょうします → おわります → デパート → ぎんこう → ゆうびんきょく → としょかん → びじゅつかん → いま → じ → ふん/ぷん → はん → なんじ → なんぷん → ごぜん → ごご → あさ → ひる → ばん/よる → おととい → きのう → きょう → あした → あさって → けさ → こんばん → やすみ → ひるやすみ → しけん → かいぎ → えいが → まいあさ → まいばん → まいにち → ようび → なんようび → から → まで → と → たいへんですね → ばんごう → なんばん → そちら)
   4: [
     {
       id:"verb", num:"01", title:"Kata Kerja", jp:"動詞",
@@ -669,7 +768,6 @@ const allBabs = {
     }
   ],
 
-  // ══ BAB 5 ══ (foto: いきます → きます → かえります → がっこう → スーパー → えき → ひこうき → ふね → でんしゃ → ちかてつ → しんかんせん → バス → タクシー → じてんしゃ → あるいて → ひと → ともだち → かれ → かのじょ → かぞく → ひとりで → せんしゅう/こんしゅう/らいしゅう → せんげつ/こんげつ/らいげつ → きょねん/ことし/らいねん → ねん/なんねん → がつ/なんがつ → にち/なんにち → いつ → たんじょうび → ...)
   5: [
     {
       id:"verb", num:"01", title:"Kata Kerja", jp:"動詞",
@@ -754,7 +852,6 @@ const allBabs = {
     }
   ],
 
-  // ══ BAB 6 ══ (foto: たべます → のみます → すいます → みます → ききます → よみます → かきます → かいます → とります → します → あいます → ごはん → あさごはん → ひるごはん → ばんごはん → パン → たまご → にく → さかな → やさい → くだもの → みず → おちゃ → こうちゃ → ぎゅうにゅう → ジュース → ビール → [お]さけ → たばこ → てがみ → レポート → しゃしん → ビデオ → みせ → にわ → しゅくだい → テニス → サッカー → [お]はなみ → なに → いっしょに → ちょっと → いつも → ときどき → それから → ええ → いいですね → わかりました → 何ですか → じゃ、また)
   6: [
     {
       id:"verb", num:"01", title:"Kata Kerja", jp:"動詞",
@@ -829,7 +926,6 @@ const allBabs = {
     }
   ],
 
-  // ══ BAB 7 ══ (foto: きります → おくります → あげます → もらいます → かします → かります → おしえます → ならいます → かけます[でんわを〜] → て → はし → スプーン → ナイフ → フォーク → はさみ → パソコン → ケータイ → メール → ねんがじょう → パンチ → ホッチキス → セロテープ → けしゴム → かみ → はな → シャツ → プレゼント → にもつ → おかね → きっぷ → クリスマス → ちち/はは/おとうさん/おかあさん → もう/まだ/これから → [〜]すてきですね → いらっしゃい → どうぞおあがりください → しつれいします → [〜は]いかがですか → いただきます → ごちそうさま)
   7: [
     {
       id:"verb", num:"01", title:"Kata Kerja", jp:"動詞",
@@ -894,7 +990,6 @@ const allBabs = {
     }
   ],
 
-  // ══ BAB 8 ══ sesuai foto (ハンサム → きれい → しずか → にぎやか → ゆうめい → しんせつ → げんき → ひま → べんり → すてき → おおきい → ちいさい → あたらしい → ふるい → いい → わるい → あつい → さむい → つめたい → むずかしい → やさしい → たかい → やすい → ひくい → おもしろい → おいしい → いそがしい → たのしい → しろい/くろい/あかい/あおい → さくら/やま/まち/たべもの → ところ/りょう/レストラン → せいかつ/[お]しごと → どう/どんな〜 → とても/あまり → そして → 〜が、〜 → お元気ですか → そうですね → もういっぱいいかがですか → けっこうです → もう〜です → そろそろしつれいします → またいらっしゃってください)
   8: [
     {
       id:"adj", num:"01", title:"Kata Sifat な (na-adjektiva)", jp:"な形容詞",
@@ -967,7 +1062,6 @@ const allBabs = {
         { jp:"[いいえ、]けっこうです",           rom:"[iie,] kekkō desu",            note:"",kanji:"—", meaning:"[Tidak,] terima kasih, saya sudah cukup.",                       type:"expr" },
         { jp:"もう〜です[ね]",                  rom:"mō ~ desu [ne]",               note:"",kanji:"—", meaning:"Sudah 〜 [ya].",                                                  type:"expr" },
         { jp:"そろそろしつれいします",           rom:"sorosoro shitsurei shimasu",   note:"",kanji:"—", meaning:"Maaf, saya mau pamit dulu.",                                      type:"expr" },
-        { jp:"いいえ",                          rom:"iie",                          note:"",kanji:"—", meaning:"Sama-sama.",                                                      type:"expr" },
         { jp:"またいらっしゃってください",       rom:"mata irasshatte kudasai",      note:"",kanji:"—", meaning:"Silakan datang lagi.",                                            type:"expr" },
         { jp:"シャンハイ/きんかくじ/ならこうえん",rom:"Shanhai/Kinkakuji/Nara Kōen",note:"referensi",kanji:"上海/金剛寺/奈良公園",meaning:"Shanghai / kuil Kinkakuji / taman Nara",type:"expr"},
         { jp:"ふじさん",                        rom:"Fujisan",                      note:"referensi",kanji:"富士山",meaning:"gunung Fuji (gunung yang tertinggi di Jepang)",       type:"expr"},
@@ -975,7 +1069,6 @@ const allBabs = {
     }
   ],
 
-  // Pelajaran 9-25 diringkas agar tidak melebihi batas — data lengkap sudah ada di versi sebelumnya
   9: [
     {
       id:"verb", num:"01", title:"Kata Kerja", jp:"動詞",
@@ -1100,7 +1193,6 @@ const allBabs = {
     ]},
   ],
 
-  // Bab 11-25 menggunakan data ringkas tapi lengkap dari buku
   11: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       { jp:"います[こどもが〜]",  rom:"imasu",       note:"[子どもが〜]",kanji:"います",  meaning:"ada, mempunyai [anak]",   type:"verb" },
@@ -1648,14 +1740,9 @@ const allBabs = {
       {jp:"ベトナム",rom:"Betonamu",note:"referensi",kanji:"—",meaning:"Vietnam",type:"expr"},
     ]},
   ],
-
 };
 
-// ═══════════════════════════════════════════════════════
-//  DATA KANJI N5 — 80 Kanji JLPT N5
-// ═══════════════════════════════════════════════════════
 const kanjiN5 = [
-  // ANGKA
   {char:"一",on:"イチ、イツ",kun:"ひと-",meaning:"satu",strokes:"1",ex:"一つ（ひとつ）= satu",cat:"angka"},
   {char:"二",on:"ニ",kun:"ふた-",meaning:"dua",strokes:"2",ex:"二つ（ふたつ）= dua",cat:"angka"},
   {char:"三",on:"サン",kun:"み-",meaning:"tiga",strokes:"3",ex:"三つ（みっつ）= tiga",cat:"angka"},
@@ -1669,7 +1756,6 @@ const kanjiN5 = [
   {char:"百",on:"ヒャク",kun:"",meaning:"seratus",strokes:"6",ex:"百円（ひゃくえん）= 100 yen",cat:"angka"},
   {char:"千",on:"セン",kun:"ち",meaning:"seribu",strokes:"3",ex:"千円（せんえん）= 1000 yen",cat:"angka"},
   {char:"万",on:"マン、バン",kun:"",meaning:"sepuluh ribu",strokes:"3",ex:"一万円（いちまんえん）= 10000 yen",cat:"angka"},
-  // WAKTU
   {char:"年",on:"ネン",kun:"とし",meaning:"tahun",strokes:"6",ex:"今年（ことし）= tahun ini",cat:"waktu"},
   {char:"月",on:"ゲツ、ガツ",kun:"つき",meaning:"bulan, bulan",strokes:"4",ex:"今月（こんげつ）= bulan ini",cat:"waktu"},
   {char:"日",on:"ニチ、ジツ",kun:"ひ、か",meaning:"hari, matahari",strokes:"4",ex:"今日（きょう）= hari ini",cat:"waktu"},
@@ -1684,7 +1770,6 @@ const kanjiN5 = [
   {char:"夜",on:"ヤ",kun:"よる、よ",meaning:"malam",strokes:"8",ex:"夜（よる）= malam",cat:"waktu"},
   {char:"前",on:"ゼン",kun:"まえ",meaning:"depan, sebelum",strokes:"9",ex:"午前（ごぜん）= a.m.",cat:"waktu"},
   {char:"後",on:"ゴ、コウ",kun:"あと、うし-ろ",meaning:"setelah, belakang",strokes:"9",ex:"午後（ごご）= p.m.",cat:"waktu"},
-  // ALAM
   {char:"山",on:"サン",kun:"やま",meaning:"gunung",strokes:"3",ex:"富士山（ふじさん）= Gunung Fuji",cat:"alam"},
   {char:"川",on:"セン",kun:"かわ",meaning:"sungai",strokes:"3",ex:"川（かわ）= sungai",cat:"alam"},
   {char:"海",on:"カイ",kun:"うみ",meaning:"laut",strokes:"9",ex:"海（うみ）= laut",cat:"alam"},
@@ -1697,7 +1782,6 @@ const kanjiN5 = [
   {char:"水",on:"スイ",kun:"みず",meaning:"air",strokes:"4",ex:"水（みず）= air",cat:"alam"},
   {char:"金",on:"キン、コン",kun:"かね、かな",meaning:"emas, uang",strokes:"8",ex:"お金（おかね）= uang",cat:"alam"},
   {char:"土",on:"ド、ト",kun:"つち",meaning:"tanah",strokes:"3",ex:"土曜日（どようび）= Sabtu",cat:"alam"},
-  // ORANG & KELUARGA
   {char:"人",on:"ジン、ニン",kun:"ひと",meaning:"orang",strokes:"2",ex:"日本人（にほんじん）= orang Jepang",cat:"orang"},
   {char:"男",on:"ダン、ナン",kun:"おとこ",meaning:"laki-laki",strokes:"7",ex:"男の人（おとこのひと）= pria",cat:"orang"},
   {char:"女",on:"ジョ、ニョ",kun:"おんな",meaning:"perempuan",strokes:"3",ex:"女の人（おんなのひと）= wanita",cat:"orang"},
@@ -1707,7 +1791,6 @@ const kanjiN5 = [
   {char:"友",on:"ユウ",kun:"とも",meaning:"teman",strokes:"4",ex:"友達（ともだち）= teman",cat:"orang"},
   {char:"先",on:"セン",kun:"さき",meaning:"lebih dulu, guru",strokes:"6",ex:"先生（せんせい）= guru",cat:"orang"},
   {char:"生",on:"セイ、ショウ",kun:"い-きる、う-まれる",meaning:"hidup, lahir",strokes:"5",ex:"学生（がくせい）= mahasiswa",cat:"orang"},
-  // ARAH & POSISI
   {char:"上",on:"ジョウ、ショウ",kun:"うえ、のぼ-る",meaning:"atas",strokes:"3",ex:"上（うえ）= atas",cat:"arah"},
   {char:"下",on:"カ、ゲ",kun:"した、さが-る",meaning:"bawah",strokes:"3",ex:"下（した）= bawah",cat:"arah"},
   {char:"中",on:"チュウ",kun:"なか",meaning:"dalam, tengah",strokes:"4",ex:"中（なか）= dalam",cat:"arah"},
@@ -1718,7 +1801,6 @@ const kanjiN5 = [
   {char:"西",on:"セイ、サイ",kun:"にし",meaning:"barat",strokes:"6",ex:"西（にし）= barat",cat:"arah"},
   {char:"南",on:"ナン",kun:"みなみ",meaning:"selatan",strokes:"9",ex:"南（みなみ）= selatan",cat:"arah"},
   {char:"北",on:"ホク",kun:"きた",meaning:"utara",strokes:"5",ex:"北（きた）= utara",cat:"arah"},
-  // TEMPAT
   {char:"国",on:"コク、コッ",kun:"くに",meaning:"negara",strokes:"8",ex:"外国（がいこく）= luar negeri",cat:"tempat"},
   {char:"学",on:"ガク",kun:"まな-ぶ",meaning:"belajar",strokes:"8",ex:"大学（だいがく）= universitas",cat:"tempat"},
   {char:"校",on:"コウ",kun:"",meaning:"sekolah",strokes:"10",ex:"学校（がっこう）= sekolah",cat:"tempat"},
@@ -1728,7 +1810,6 @@ const kanjiN5 = [
   {char:"駅",on:"エキ",kun:"",meaning:"stasiun",strokes:"14",ex:"駅（えき）= stasiun",cat:"tempat"},
   {char:"銀",on:"ギン",kun:"",meaning:"perak",strokes:"14",ex:"銀行（ぎんこう）= bank",cat:"tempat"},
   {char:"行",on:"コウ、ギョウ",kun:"い-く、おこな-う",meaning:"pergi, baris",strokes:"6",ex:"銀行（ぎんこう）= bank",cat:"tempat"},
-  // BENDA
   {char:"本",on:"ホン",kun:"もと",meaning:"buku, asal",strokes:"5",ex:"本（ほん）= buku",cat:"benda"},
   {char:"車",on:"シャ",kun:"くるま",meaning:"mobil",strokes:"7",ex:"車（くるま）= mobil",cat:"benda"},
   {char:"電",on:"デン",kun:"",meaning:"listrik",strokes:"13",ex:"電車（でんしゃ）= kereta",cat:"benda"},
@@ -1739,7 +1820,6 @@ const kanjiN5 = [
   {char:"見",on:"ケン",kun:"み-る",meaning:"melihat",strokes:"7",ex:"見ます（みます）= melihat",cat:"benda"},
   {char:"聞",on:"ブン、モン",kun:"き-く",meaning:"mendengar",strokes:"14",ex:"聞きます（ききます）= mendengar",cat:"benda"},
   {char:"読",on:"ドク",kun:"よ-む",meaning:"membaca",strokes:"14",ex:"読みます（よみます）= membaca",cat:"benda"},
-  // LAINNYA
   {char:"大",on:"ダイ、タイ",kun:"おお-きい",meaning:"besar",strokes:"3",ex:"大きい（おおきい）= besar",cat:"lainnya"},
   {char:"小",on:"ショウ",kun:"ちい-さい、こ、お",meaning:"kecil",strokes:"3",ex:"小さい（ちいさい）= kecil",cat:"lainnya"},
   {char:"何",on:"カ",kun:"なに、なん",meaning:"apa",strokes:"7",ex:"何（なに）= apa",cat:"lainnya"},
@@ -1752,49 +1832,40 @@ const kanjiN5 = [
   {char:"古",on:"コ",kun:"ふる-い",meaning:"lama",strokes:"5",ex:"古い（ふるい）= lama",cat:"lainnya"},
 ];
 
-// ═══════════════════════════════════════════════════════
-//  JUDUL BAB
-// ═══════════════════════════════════════════════════════
 const babTitles = {
-  1:{title:"Pelajaran 1",jp:"第一課・語彙",seal:"一",kanji:"第一課"},
-  2:{title:"Pelajaran 2",jp:"第二課・語彙",seal:"二",kanji:"第二課"},
-  3:{title:"Pelajaran 3",jp:"第三課・語彙",seal:"三",kanji:"第三課"},
-  4:{title:"Pelajaran 4",jp:"第四課・語彙",seal:"四",kanji:"第四課"},
-  5:{title:"Pelajaran 5",jp:"第五課・語彙",seal:"五",kanji:"第五課"},
-  6:{title:"Pelajaran 6",jp:"第六課・語彙",seal:"六",kanji:"第六課"},
-  7:{title:"Pelajaran 7",jp:"第七課・語彙",seal:"七",kanji:"第七課"},
-  8:{title:"Pelajaran 8",jp:"第八課・語彙",seal:"八",kanji:"第八課"},
-  9:{title:"Pelajaran 9",jp:"第九課・語彙",seal:"九",kanji:"第九課"},
-  10:{title:"Pelajaran 10",jp:"第十課・語彙",seal:"十",kanji:"第十課"},
-  11:{title:"Pelajaran 11",jp:"第十一課・語彙",seal:"十一",kanji:"第十一課"},
-  12:{title:"Pelajaran 12",jp:"第十二課・語彙",seal:"十二",kanji:"第十二課"},
-  13:{title:"Pelajaran 13",jp:"第十三課・語彙",seal:"十三",kanji:"第十三課"},
-  14:{title:"Pelajaran 14",jp:"第十四課・語彙",seal:"十四",kanji:"第十四課"},
-  15:{title:"Pelajaran 15",jp:"第十五課・語彙",seal:"十五",kanji:"第十五課"},
-  16:{title:"Pelajaran 16",jp:"第十六課・語彙",seal:"十六",kanji:"第十六課"},
-  17:{title:"Pelajaran 17",jp:"第十七課・語彙",seal:"十七",kanji:"第十七課"},
-  18:{title:"Pelajaran 18",jp:"第十八課・語彙",seal:"十八",kanji:"第十八課"},
-  19:{title:"Pelajaran 19",jp:"第十九課・語彙",seal:"十九",kanji:"第十九課"},
-  20:{title:"Pelajaran 20",jp:"第二十課・語彙",seal:"二十",kanji:"第二十課"},
-  21:{title:"Pelajaran 21",jp:"第二十一課・語彙",seal:"廿一",kanji:"第二十一課"},
-  22:{title:"Pelajaran 22",jp:"第二十二課・語彙",seal:"廿二",kanji:"第二十二課"},
-  23:{title:"Pelajaran 23",jp:"第二十三課・語彙",seal:"廿三",kanji:"第二十三課"},
-  24:{title:"Pelajaran 24",jp:"第二十四課・語彙",seal:"廿四",kanji:"第二十四課"},
-  25:{title:"Pelajaran 25",jp:"第二十五課・語彙",seal:"廿五",kanji:"第二十五課"},
+  1:{title:"Pelajaran 1",jp:"第一課 · 語彙",seal:"一",kanji:"第一課"},
+  2:{title:"Pelajaran 2",jp:"第二課 · 語彙",seal:"二",kanji:"第二課"},
+  3:{title:"Pelajaran 3",jp:"第三課 · 語彙",seal:"三",kanji:"第三課"},
+  4:{title:"Pelajaran 4",jp:"第四課 · 語彙",seal:"四",kanji:"第四課"},
+  5:{title:"Pelajaran 5",jp:"第五課 · 語彙",seal:"五",kanji:"第五課"},
+  6:{title:"Pelajaran 6",jp:"第六課 · 語彙",seal:"六",kanji:"第六課"},
+  7:{title:"Pelajaran 7",jp:"第七課 · 語彙",seal:"七",kanji:"第七課"},
+  8:{title:"Pelajaran 8",jp:"第八課 · 語彙",seal:"八",kanji:"第八課"},
+  9:{title:"Pelajaran 9",jp:"第九課 · 語彙",seal:"九",kanji:"第九課"},
+  10:{title:"Pelajaran 10",jp:"第十課 · 語彙",seal:"十",kanji:"第十課"},
+  11:{title:"Pelajaran 11",jp:"第十一課 · 語彙",seal:"十一",kanji:"第十一課"},
+  12:{title:"Pelajaran 12",jp:"第十二課 · 語彙",seal:"十二",kanji:"第十二課"},
+  13:{title:"Pelajaran 13",jp:"第十三課 · 語彙",seal:"十三",kanji:"第十三課"},
+  14:{title:"Pelajaran 14",jp:"第十四課 · 語彙",seal:"十四",kanji:"第十四課"},
+  15:{title:"Pelajaran 15",jp:"第十五課 · 語彙",seal:"十五",kanji:"第十五課"},
+  16:{title:"Pelajaran 16",jp:"第十六課 · 語彙",seal:"十六",kanji:"第十六課"},
+  17:{title:"Pelajaran 17",jp:"第十七課 · 語彙",seal:"十七",kanji:"第十七課"},
+  18:{title:"Pelajaran 18",jp:"第十八課 · 語彙",seal:"十八",kanji:"第十八課"},
+  19:{title:"Pelajaran 19",jp:"第十九課 · 語彙",seal:"十九",kanji:"第十九課"},
+  20:{title:"Pelajaran 20",jp:"第二十課 · 語彙",seal:"二十",kanji:"第二十課"},
+  21:{title:"Pelajaran 21",jp:"第二十一課 · 語彙",seal:"廿一",kanji:"第二十一課"},
+  22:{title:"Pelajaran 22",jp:"第二十二課 · 語彙",seal:"廿二",kanji:"第二十二課"},
+  23:{title:"Pelajaran 23",jp:"第二十三課 · 語彙",seal:"廿三",kanji:"第二十三課"},
+  24:{title:"Pelajaran 24",jp:"第二十四課 · 語彙",seal:"廿四",kanji:"第二十四課"},
+  25:{title:"Pelajaran 25",jp:"第二十五課 · 語彙",seal:"廿五",kanji:"第二十五課"},
 };
 
-// ═══════════════════════════════════════════════════════
-//  STATE
-// ═══════════════════════════════════════════════════════
 let currentBab = 1;
 let activeFilter = "all";
 let searchQ = "";
 let currentMode = "vocab";
 let activeKCat = "all";
 
-// ═══════════════════════════════════════════════════════
-//  MODE SWITCH
-// ═══════════════════════════════════════════════════════
 function switchMode(mode) {
   currentMode = mode;
   document.getElementById('vocabPanel').classList.toggle('active', mode === 'vocab');
@@ -1810,9 +1881,19 @@ function switchMode(mode) {
   else render();
 }
 
-// ═══════════════════════════════════════════════════════
-//  BAB BUTTONS
-// ═══════════════════════════════════════════════════════
+function updateHeader(i) {
+  const t = babTitles[i];
+  const h1 = document.getElementById('headerTitle');
+  const span = document.getElementById('headerJp');
+  h1.innerHTML = '';
+  h1.appendChild(document.createTextNode(t.title + ' '));
+  span.textContent = t.jp;
+  h1.appendChild(span);
+  document.getElementById('sealEl').textContent = t.seal;
+  document.getElementById('footerEl').innerHTML =
+    t.kanji + ' &nbsp;·&nbsp; ' + t.title + ' &nbsp;·&nbsp; Kosa Kata Bahasa Jepang &nbsp;|&nbsp; By PrinceQiu · @Prince.Qiu';
+}
+
 const babContainer = document.getElementById('babBtns');
 for (let i = 1; i <= 25; i++) {
   const btn = document.createElement('button');
@@ -1821,31 +1902,24 @@ for (let i = 1; i <= 25; i++) {
   btn.textContent = i;
   btn.title = 'Pelajaran ' + i;
   if (hasData) {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', function() {
       if (currentBab === i) return;
       currentBab = i;
       document.querySelectorAll('.bab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      this.classList.add('active');
       activeFilter = 'all';
       searchQ = '';
       document.getElementById('search').value = '';
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       document.querySelector('[data-filter="all"]').classList.add('active');
-      const t = babTitles[i];
-      document.getElementById('headerTitle').childNodes[0].textContent = t.title + ' ';
-      document.getElementById('headerJp').textContent = t.jp;
-      document.getElementById('sealEl').textContent = t.seal;
-      document.getElementById('footerEl').innerHTML = t.kanji + ' &nbsp;·&nbsp; ' + t.title + ' &nbsp;·&nbsp; Kosa Kata Bahasa Jepang &nbsp;|&nbsp; By PrinceQiu · @Prince.Qiu';
-      document.getElementById('main').scrollIntoView({behavior:'smooth',block:'start'});
+      updateHeader(i);
+      document.getElementById('mainContent').scrollIntoView({behavior:'smooth', block:'start'});
       render();
     });
   }
   babContainer.appendChild(btn);
 }
 
-// ═══════════════════════════════════════════════════════
-//  FILTER BUTTONS
-// ═══════════════════════════════════════════════════════
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1864,22 +1938,16 @@ document.querySelectorAll('.k-filter-btn').forEach(btn => {
   });
 });
 
-// ═══════════════════════════════════════════════════════
-//  SEARCH
-// ═══════════════════════════════════════════════════════
 document.getElementById('search').addEventListener('input', e => {
   searchQ = e.target.value.trim();
   if (currentMode === 'vocab') render();
   else renderKanji();
 });
 
-// ═══════════════════════════════════════════════════════
-//  RENDER VOCAB
-// ═══════════════════════════════════════════════════════
 function hl(text) {
   if (!searchQ) return text;
   const re = new RegExp(`(${searchQ.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
-  return text.replace(re,'<mark>$1</mark>');
+  return String(text).replace(re,'<mark>$1</mark>');
 }
 function matchRow(r) {
   if (!searchQ) return true;
@@ -1920,7 +1988,15 @@ function render() {
           <span class="section-jp">${sec.jp}</span>
         </div>
         <table class="vocab-table">
-          <thead><tr><th style="width:26px"></th><th>Hiragana / Katakana</th><th>Kanji</th><th>Arti (Bahasa Indonesia)</th></tr></thead>
+          <colgroup>
+            <col><col><col><col>
+          </colgroup>
+          <thead><tr>
+            <th></th>
+            <th>Hiragana / Katakana</th>
+            <th>Kanji</th>
+            <th>Arti (Bahasa Indonesia)</th>
+          </tr></thead>
           <tbody>${rowsHtml}</tbody>
         </table>
       </div>`;
@@ -1930,9 +2006,6 @@ function render() {
   emptyEl.style.display = total===0 ? 'block' : 'none';
 }
 
-// ═══════════════════════════════════════════════════════
-//  RENDER KANJI
-// ═══════════════════════════════════════════════════════
 function renderKanji() {
   const grid = document.getElementById('kanjiGrid');
   const q = searchQ.toLowerCase();
@@ -1943,7 +2016,6 @@ function renderKanji() {
   });
 
   document.getElementById('count').textContent = filtered.length + ' kanji';
-
   grid.innerHTML = filtered.map((k,i) => `
     <div class="kanji-card" style="animation-delay:${i*0.02}s">
       <span class="k-char">${k.char}</span>
@@ -1957,7 +2029,6 @@ function renderKanji() {
   document.getElementById('emptyState').style.display = filtered.length===0?'block':'none';
 }
 
-// Initial render
 render();
 </script>
 </body>
