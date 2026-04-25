@@ -4,503 +4,477 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Minna no Nihongo — Kosa Kata & Kanji N5</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@300;400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-  :root[data-theme="light"] {
-    --ink: #1a1614;
-    --ink-soft: #3d3530;
-    --ink-muted: #7a6f68;
-    --ink-faint: #b5aca5;
-    --paper: #faf7f2;
-    --paper-warm: #f2ede4;
-    --paper-dark: #e8e0d4;
-    --red: #c0392b;
-    --red-soft: #e8c4bf;
-    --gold: #9a7a3a;
-    --gold-light: #f0e6c8;
-    --blue-ink: #2c4a6e;
-    --seal: #c0392b;
-    --kanji-accent: #1a4a3a;
-    --kanji-light: #e0f0ea;
-    --toggle-bg: #e8e0d4;
-    --toggle-fg: #3d3530;
-    --credit-bg: #1a1614;
-    --credit-fg: #f2ede4;
-    --header-bg-start: #f2ede4;
-    --header-bg-end: #faf7f2;
-    --controls-bg: rgba(250,247,242,0.97);
-    --row-hover: #f2ede4;
-    --shadow: rgba(0,0,0,0.08);
+  :root {
+    --bg: #f8f9fb;
+    --bg2: #ffffff;
+    --bg3: #f1f3f7;
+    --border: #e4e7ef;
+    --border2: #d0d5e3;
+    --text: #0f1523;
+    --text2: #3d4663;
+    --text3: #7b84a3;
+    --text4: #b0b8d0;
+    --accent: #4f62e8;
+    --accent-light: #eef0fd;
+    --accent2: #e8376e;
+    --accent2-light: #fdeef3;
+    --green: #22c55e;
+    --green-light: #dcfce7;
+    --amber: #f59e0b;
+    --amber-light: #fef3c7;
+    --purple: #8b5cf6;
+    --purple-light: #f5f3ff;
+    --red: #ef4444;
+    --red-light: #fee2e2;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    --shadow-lg: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --radius-xs: 6px;
   }
-  :root[data-theme="dark"] {
-    --ink: #e8e0d4;
-    --ink-soft: #c8bfb5;
-    --ink-muted: #9a8f85;
-    --ink-faint: #5a5048;
-    --paper: #1a1614;
-    --paper-warm: #231f1c;
-    --paper-dark: #2e2925;
-    --red: #e05a4a;
-    --red-soft: #4a2020;
-    --gold: #c8a060;
-    --gold-light: #352a15;
-    --blue-ink: #7aaad0;
-    --seal: #e05a4a;
-    --kanji-accent: #5ab08a;
-    --kanji-light: #0e2a20;
-    --toggle-bg: #2e2925;
-    --toggle-fg: #e8e0d4;
-    --credit-bg: #0f0d0b;
-    --credit-fg: #c8bfb5;
-    --header-bg-start: #231f1c;
-    --header-bg-end: #1a1614;
-    --controls-bg: rgba(26,22,20,0.97);
-    --row-hover: #231f1c;
-    --shadow: rgba(0,0,0,0.3);
+  [data-theme="dark"] {
+    --bg: #0d0f18;
+    --bg2: #151823;
+    --bg3: #1e2130;
+    --border: #252a3d;
+    --border2: #323750;
+    --text: #eef0f8;
+    --text2: #a8b0cc;
+    --text3: #6b749a;
+    --text4: #444c6a;
+    --accent-light: #1a1f40;
+    --accent2-light: #2a1220;
+    --green-light: #0a2216;
+    --amber-light: #231a08;
+    --purple-light: #1a1228;
+    --red-light: #200d0d;
+    --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+    --shadow-lg: 0 4px 24px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.2);
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
-
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Lora','Noto Serif JP',serif;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
     min-height: 100vh;
-    overflow-x: hidden;
     transition: background 0.3s, color 0.3s;
   }
-  body::before {
-    content:'';
-    position:fixed; inset:0;
-    background-image:
-      repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(160,140,120,0.05) 28px,rgba(160,140,120,0.05) 29px),
-      repeating-linear-gradient(90deg,transparent,transparent 28px,rgba(160,140,120,0.03) 28px,rgba(160,140,120,0.03) 29px);
-    pointer-events:none; z-index:0;
-  }
 
-  .theme-toggle {
-    position: fixed;
-    top: 12px;
-    right: 14px;
-    z-index: 999;
-    background: var(--toggle-bg);
-    border: 1px solid var(--paper-dark);
-    border-radius: 20px;
-    padding: 5px 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--toggle-fg);
-    letter-spacing: 0.08em;
+  /* ── TOP NAV ── */
+  .topnav {
+    position: sticky; top: 0; z-index: 200;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    display: flex; align-items: center;
+    padding: 0 1.5rem; height: 60px; gap: 1rem;
+    box-shadow: var(--shadow);
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-weight: 800; font-size: 0.95rem;
+    color: var(--text); white-space: nowrap; flex-shrink: 0;
+  }
+  .nav-brand .jp-badge {
+    background: var(--accent); color: #fff;
+    font-family: 'Noto Serif JP', serif; font-size: 0.85rem;
+    padding: 3px 8px; border-radius: 6px;
+  }
+  .nav-divider { width:1px; height:24px; background:var(--border); flex-shrink:0; }
+  .mode-pills {
+    display: flex; background: var(--bg3);
+    border-radius: 10px; padding: 3px; gap: 2px; flex-shrink: 0;
+  }
+  .mode-pill {
+    padding: 5px 14px; border: none; background: transparent;
+    border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.78rem; font-weight: 600; color: var(--text3);
+    cursor: pointer; transition: all 0.2s; white-space: nowrap;
+  }
+  .mode-pill.active {
+    background: var(--bg2); color: var(--accent);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .nav-search {
+    flex: 1; position: relative; min-width: 120px;
+  }
+  .nav-search svg {
+    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+    width: 15px; height: 15px; color: var(--text3); pointer-events: none;
+  }
+  .nav-search input {
+    width: 100%; height: 36px; padding: 0 12px 0 34px;
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.82rem; color: var(--text); outline: none;
     transition: all 0.2s;
-    box-shadow: 0 2px 8px var(--shadow);
   }
-  .theme-toggle:hover { border-color: var(--gold); }
-  .theme-toggle .icon { font-size: 0.85rem; }
-
-  header {
-    position:relative; padding:3rem 2rem 2rem;
-    text-align:center;
-    border-bottom:1px solid var(--paper-dark);
-    background:linear-gradient(180deg,var(--header-bg-start) 0%,var(--header-bg-end) 100%);
-    overflow:hidden;
-    transition: background 0.3s;
+  .nav-search input::placeholder { color: var(--text4); }
+  .nav-search input:focus { border-color: var(--accent); background: var(--bg2); box-shadow: 0 0 0 3px var(--accent-light); }
+  .theme-btn {
+    width: 36px; height: 36px; border: 1px solid var(--border);
+    background: var(--bg3); border-radius: 8px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; transition: all 0.2s; flex-shrink: 0;
   }
-  header::before {
-    content:'日本語';
-    position:absolute; top:50%; left:50%;
-    transform:translate(-50%,-50%);
-    font-size:10rem; font-family:'Noto Serif JP',serif; font-weight:700;
-    color:rgba(160,140,120,0.06); white-space:nowrap;
-    pointer-events:none; user-select:none; line-height:1;
-  }
-  .lesson-badge {
-    display:inline-block;
-    font-family:'IBM Plex Mono',monospace; font-size:0.7rem;
-    letter-spacing:0.2em; text-transform:uppercase;
-    color:var(--ink-muted); border:1px solid var(--paper-dark);
-    padding:5px 14px; border-radius:2px; margin-bottom:1rem; position:relative;
-  }
-  header h1 {
-    font-size:clamp(2rem,5vw,3.5rem); font-weight:600;
-    line-height:1.1; letter-spacing:-0.02em; color:var(--ink); position:relative;
-  }
-  header h1 span.jp {
-    font-family:'Noto Serif JP',serif; font-weight:700;
-    font-size:0.65em; color:var(--red); display:block; margin-top:0.3rem;
-  }
-  .header-sub {
-    margin-top:0.8rem; font-size:0.9rem; color:var(--ink-muted);
-    font-style:italic; letter-spacing:0.03em; position:relative;
-  }
-  .seal {
-    width:52px; height:52px; background:var(--seal); border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    margin:1.2rem auto 0;
-    font-family:'Noto Serif JP',serif; font-weight:700; font-size:1rem;
-    color:#fff; letter-spacing:0.05em; position:relative;
-    box-shadow:0 0 0 4px var(--red-soft),0 2px 12px rgba(192,57,43,0.2);
-    transition: background 0.3s;
+  .theme-btn:hover { background: var(--accent-light); border-color: var(--accent); }
+  .count-chip {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    color: var(--text3); white-space: nowrap; flex-shrink: 0;
+    background: var(--bg3); border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 20px;
   }
 
-  .credit-bar {
-    background:var(--credit-bg); color:var(--credit-fg);
-    text-align:center; padding:0.5rem 1rem;
-    font-family:'IBM Plex Mono',monospace; font-size:0.68rem;
-    letter-spacing:0.15em; display:flex; align-items:center;
-    justify-content:center; gap:1.2rem; flex-wrap:wrap;
-    transition: background 0.3s;
+  /* ── SUB BAR (bab + filter) ── */
+  .subbar {
+    position: sticky; top: 60px; z-index: 190;
+    background: var(--bg2); border-bottom: 1px solid var(--border);
   }
-  .credit-bar a { color:var(--gold-light); text-decoration:none; }
-  [data-theme="dark"] .credit-bar a { color:var(--gold); }
-  .credit-bar a:hover { text-decoration:underline; }
-
-  .mode-tabs {
-    background:var(--paper-warm); border-bottom:2px solid var(--paper-dark);
-    display:flex; position:sticky; top:0; z-index:102;
-    transition: background 0.3s;
+  .bab-row {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.5rem 1.5rem; overflow-x: auto;
+    scrollbar-width: none;
   }
-  .mode-tab {
-    flex:1; padding:0.9rem 1rem; border:none; background:transparent;
-    font-family:'IBM Plex Mono',monospace; font-size:0.75rem;
-    letter-spacing:0.12em; text-transform:uppercase;
-    color:var(--ink-muted); cursor:pointer; transition:all 0.2s;
-    border-bottom:3px solid transparent;
-  }
-  .mode-tab:hover { color:var(--ink); background:var(--paper-dark); }
-  .mode-tab.active { color:var(--ink); border-bottom-color:var(--ink); background:var(--paper); font-weight:700; }
-  .mode-tab.kanji-tab.active { color:var(--kanji-accent); border-bottom-color:var(--kanji-accent); }
-
-  .bab-nav {
-    background:var(--paper-warm); border-bottom:1px solid var(--paper-dark);
-    padding:0.6rem 1.5rem; display:flex; align-items:center;
-    gap:0.8rem; flex-wrap:wrap; position:sticky; top:47px; z-index:101;
-    transition: background 0.3s;
-  }
+  .bab-row::-webkit-scrollbar { display: none; }
   .bab-label {
-    font-family:'IBM Plex Mono',monospace; font-size:0.62rem;
-    letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-muted); white-space:nowrap;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--text4);
+    white-space: nowrap; flex-shrink: 0;
   }
-  .bab-btns { display:flex; gap:4px; flex-wrap:wrap; }
+  .bab-scroller { display: flex; gap: 4px; flex-shrink: 0; }
   .bab-btn {
-    width:32px; height:26px; border:1px solid var(--paper-dark);
-    background:transparent; border-radius:2px;
-    font-family:'IBM Plex Mono',monospace; font-size:0.66rem;
-    color:var(--ink-muted); cursor:pointer; transition:all 0.15s;
-    display:flex; align-items:center; justify-content:center;
+    width: 30px; height: 26px; border: 1px solid var(--border);
+    background: transparent; border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.67rem; font-weight: 500;
+    color: var(--text3); cursor: pointer; transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
   }
-  .bab-btn:hover:not(.empty) { border-color:var(--gold); color:var(--gold); background:var(--gold-light); }
-  .bab-btn.active { background:var(--ink)!important; color:var(--paper)!important; border-color:var(--ink)!important; }
-  .bab-btn.empty { opacity:0.3; cursor:default; }
-  .bab-btn.has-data { border-color:var(--ink-faint); color:var(--ink-soft); }
+  .bab-btn:hover:not(.empty) { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .bab-btn.active { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; }
+  .bab-btn.empty { opacity: 0.25; cursor: default; }
 
-  .controls {
-    position:sticky; top:89px; z-index:100;
-    background:var(--controls-bg); backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--paper-dark);
-    padding:0.8rem 1.5rem; display:flex; gap:0.6rem; flex-wrap:wrap; align-items:center;
-    transition: background 0.3s;
+  .filter-row {
+    display: flex; align-items: center; gap: 6px;
+    padding: 0.45rem 1.5rem; border-top: 1px solid var(--border);
+    overflow-x: auto; scrollbar-width: none;
   }
-  .search-wrap { position:relative; flex:1; min-width:160px; }
-  .search-wrap svg { position:absolute; left:10px; top:50%; transform:translateY(-50%); width:14px; height:14px; color:var(--ink-muted); }
-  #search {
-    width:100%; padding:8px 10px 8px 32px;
-    background:var(--paper-warm); border:1px solid var(--paper-dark);
-    border-radius:3px; font-family:'IBM Plex Mono',monospace; font-size:0.8rem;
-    color:var(--ink); outline:none; transition:border-color 0.2s,box-shadow 0.2s;
+  .filter-row::-webkit-scrollbar { display: none; }
+  .filter-pill {
+    display: flex; align-items: center; gap: 5px;
+    padding: 4px 12px; border: 1px solid var(--border);
+    background: transparent; border-radius: 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.73rem; font-weight: 600;
+    color: var(--text3); cursor: pointer; transition: all 0.15s; white-space: nowrap;
   }
-  #search::placeholder { color:var(--ink-faint); }
-  #search:focus { border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-light); }
-  .filter-btns { display:flex; gap:5px; flex-wrap:wrap; }
-  .filter-btn {
-    padding:6px 12px; border:1px solid var(--paper-dark); background:transparent;
-    border-radius:2px; font-family:'IBM Plex Mono',monospace; font-size:0.68rem;
-    letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted);
-    cursor:pointer; transition:all 0.18s; white-space:nowrap;
+  .filter-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .filter-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .filter-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .filter-pill.active .dot { background: rgba(255,255,255,0.8); }
+  .dot-verb { background: var(--accent2); }
+  .dot-adj { background: var(--purple); }
+  .dot-noun { background: var(--accent); }
+  .dot-expr { background: var(--green); }
+  .dot-place { background: var(--amber); }
+  .dot-body { background: var(--red); }
+
+  /* ── MAIN ── */
+  main { max-width: 1000px; margin: 0 auto; padding: 1.5rem 1.5rem 6rem; }
+
+  /* ── HEADER CARD ── */
+  .page-hero {
+    background: linear-gradient(135deg, var(--accent) 0%, #6b7ff0 50%, var(--accent2) 100%);
+    border-radius: 16px; padding: 1.8rem 2rem;
+    margin-bottom: 1.5rem; position: relative; overflow: hidden;
+    color: white;
   }
-  .filter-btn:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-light); }
-  .filter-btn.active { background:var(--ink); color:var(--paper); border-color:var(--ink); }
-  .count-badge { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--ink-muted); white-space:nowrap; padding:0 4px; }
-
-  main { max-width:1040px; margin:0 auto; padding:1.5rem 1.5rem 4rem; position:relative; z-index:1; }
-
-  #vocabPanel, #kanjiPanel { display:none; }
-  #vocabPanel.active, #kanjiPanel.active { display:block; }
-
-  .section { margin-bottom:2.2rem; animation:fadeUp 0.4s ease both; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
-  .section:nth-child(1){animation-delay:0.04s}
-  .section:nth-child(2){animation-delay:0.08s}
-  .section:nth-child(3){animation-delay:0.12s}
-  .section:nth-child(4){animation-delay:0.16s}
-  .section:nth-child(5){animation-delay:0.20s}
-  .section:nth-child(6){animation-delay:0.24s}
-
-  .section-header {
-    display:flex; align-items:center; gap:0.8rem;
-    margin-bottom:0.65rem; padding-bottom:0.5rem;
-    border-bottom:2px solid var(--ink);
+  .page-hero::before {
+    content: '日本語'; position: absolute; right: -20px; top: 50%;
+    transform: translateY(-50%); font-family: 'Noto Serif JP', serif;
+    font-size: 7rem; font-weight: 700; opacity: 0.08; line-height: 1;
+    pointer-events: none; user-select: none;
   }
-  .section-num {
-    font-family:'IBM Plex Mono',monospace; font-size:0.62rem;
-    color:var(--paper); background:var(--ink-soft);
-    padding:2px 7px; border-radius:2px; letter-spacing:0.1em;
-    flex-shrink: 0;
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.2); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 4px 12px; border-radius: 20px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+    margin-bottom: 0.7rem;
   }
-  .section-title { font-size:1rem; font-weight:600; color:var(--ink); letter-spacing:0.04em; }
-  .section-jp { font-family:'Noto Serif JP',serif; font-size:0.9rem; color:var(--ink-muted); font-weight:300; margin-left:auto; white-space:nowrap; }
-
-  /* ===== VOCAB TABLE FIX ===== */
-  .vocab-table {
-    width:100%;
-    border-collapse:collapse;
-    table-layout:fixed;
+  .hero-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.1;
   }
-  /* col widths: no, kana+romaji, kanji, arti */
-  .vocab-table colgroup col:nth-child(1) { width:34px; }
-  .vocab-table colgroup col:nth-child(2) { width:26%; }
-  .vocab-table colgroup col:nth-child(3) { width:14%; }
-  .vocab-table colgroup col:nth-child(4) { width:auto; }
+  .hero-title .jp { font-family: 'Noto Serif JP', serif; font-size: 0.6em; opacity: 0.85; display: block; margin-top: 2px; }
+  .hero-sub { font-size: 0.82rem; opacity: 0.75; margin-top: 0.5rem; }
+  .hero-credit {
+    display: flex; align-items: center; gap: 8px; margin-top: 1rem;
+    font-size: 0.75rem; opacity: 0.8;
+  }
+  .hero-credit a { color: rgba(255,255,255,0.9); }
 
+  /* ── KANJI PANEL HEADER ── */
+  .kanji-panel-hero {
+    background: linear-gradient(135deg, #1a4a3a 0%, #2d6a52 50%, #1a3a4a 100%);
+    border-radius: 16px; padding: 1.5rem 2rem;
+    margin-bottom: 1.5rem; color: white;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 1.5rem; animation: fadeUp 0.35s ease both; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  .section:nth-child(1){animation-delay:0.03s}
+  .section:nth-child(2){animation-delay:0.06s}
+  .section:nth-child(3){animation-delay:0.09s}
+  .section:nth-child(4){animation-delay:0.12s}
+  .section:nth-child(5){animation-delay:0.15s}
+
+  .section-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+  }
+  .section-head {
+    display: flex; align-items: center; gap: 0.7rem;
+    padding: 0.75rem 1rem; background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+  }
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 4px;
+    background: var(--accent); color: white; font-weight: 600;
+  }
+  .section-tag.verb { background: var(--accent2); }
+  .section-tag.adj { background: var(--purple); }
+  .section-tag.expr { background: var(--green); }
+  .section-tag.place { background: var(--amber); }
+  .section-tag.body { background: var(--red); }
+  .section-name { font-size: 0.85rem; font-weight: 700; color: var(--text); }
+  .section-jp-label { font-family: 'Noto Serif JP', serif; font-size: 0.78rem; color: var(--text3); margin-left: auto; }
+
+  /* ── TABLE ── */
+  .vocab-table { width: 100%; border-collapse: collapse; }
   .vocab-table thead th {
-    font-family:'IBM Plex Mono',monospace; font-size:0.6rem;
-    letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-faint);
-    padding:5px 8px; text-align:left;
-    border-bottom:1px solid var(--paper-dark); background:var(--paper-warm);
-    white-space:nowrap;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--text4);
+    padding: 7px 12px; text-align: left; border-bottom: 1px solid var(--border);
+    background: var(--bg3); position: sticky; top: 120px;
   }
   .vocab-row {
-    transition:background 0.15s;
-    border-bottom:1px solid var(--paper-dark);
-    cursor:default;
+    border-bottom: 1px solid var(--border); transition: background 0.12s;
   }
-  .vocab-row:last-child { border-bottom:none; }
-  .vocab-row:hover { background:var(--row-hover); }
-  .vocab-row:hover .row-num { color:var(--red); }
-  .vocab-row td {
-    padding:9px 8px;
-    vertical-align:middle;  /* semua sel sejajar tengah */
-  }
-
+  .vocab-row:last-child { border-bottom: none; }
+  .vocab-row:hover { background: var(--bg3); }
+  .vocab-row td { padding: 9px 12px; vertical-align: middle; }
   .td-num {
-    font-family:'IBM Plex Mono',monospace; font-size:0.62rem;
-    color:var(--ink-faint); text-align:right; padding-right:6px!important;
-    transition:color 0.15s; vertical-align:middle;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+    color: var(--text4); width: 28px; text-align: right; padding-right: 4px !important;
   }
-
-  /* Kolom kana: kana di baris 1, romaji di baris 2, note di baris 3 */
-  .td-jp { vertical-align:middle; }
-  .jp-main {
-    font-family:'Noto Serif JP',serif; font-size:1.05rem; font-weight:500;
-    color:var(--ink); line-height:1.4;
-    word-break:break-word; overflow-wrap:break-word;
+  .vocab-row:hover .td-num { color: var(--accent); }
+  .td-jp { width: 160px; }
+  .jp-word {
+    font-family: 'Noto Serif JP', serif; font-size: 1.05rem;
+    font-weight: 500; color: var(--text); line-height: 1.2;
   }
-  .jp-romaji {
-    font-family:'IBM Plex Mono',monospace; font-size:0.67rem;
-    color:var(--blue-ink); margin-top:2px; font-style:italic;
-    word-break:break-word;
+  .jp-rom {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+    color: var(--accent); margin-top: 2px; font-style: italic;
   }
-  .jp-note {
-    font-family:'IBM Plex Mono',monospace; font-size:0.6rem;
-    color:var(--ink-muted); margin-top:2px;
+  .jp-note-text {
+    font-size: 0.62rem; color: var(--text3); margin-top: 1px;
+    font-family: 'JetBrains Mono', monospace;
   }
-
-  /* Kolom kanji sejajar dengan kana di baris yang sama */
   .td-kanji {
-    font-family:'Noto Serif JP',serif; font-size:1.15rem; font-weight:400;
-    color:var(--red); letter-spacing:0.05em;
-    word-break:break-all; overflow-wrap:break-word;
-    vertical-align:middle;
+    width: 90px;
+    font-family: 'Noto Serif JP', serif; font-size: 1.1rem;
+    color: var(--accent2); font-weight: 400;
   }
-
-  /* Kolom arti sejajar */
-  .td-meaning {
-    font-family:'Lora',serif; font-size:0.92rem;
-    color:var(--ink-soft); line-height:1.55;
-    word-break:break-word; overflow-wrap:break-word;
-    vertical-align:middle;
+  .td-meaning { font-size: 0.85rem; color: var(--text2); line-height: 1.55; }
+  .td-type { width: 72px; }
+  .type-badge {
+    display: inline-block; font-size: 0.58rem; font-weight: 700;
+    font-family: 'JetBrains Mono', monospace; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 2px 7px; border-radius: 4px;
   }
-  /* ===== END TABLE FIX ===== */
+  .type-verb { background: var(--accent2-light); color: var(--accent2); }
+  .type-adj  { background: var(--purple-light); color: var(--purple); }
+  .type-noun { background: var(--accent-light); color: var(--accent); }
+  .type-expr { background: var(--green-light); color: #15803d; }
+  .type-place{ background: var(--amber-light); color: #b45309; }
+  .type-body { background: var(--red-light); color: var(--red); }
 
-  .kanji-header-bar {
-    display:flex; align-items:center; gap:0.8rem;
-    margin-bottom:0.65rem; padding-bottom:0.5rem;
-    border-bottom:2px solid var(--kanji-accent);
+  /* ── KANJI PANEL ── */
+  .kf-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.2rem; }
+  .kf-btn {
+    padding: 5px 14px; border: 1px solid var(--border);
+    background: var(--bg2); border-radius: 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; font-weight: 600;
+    color: var(--text3); cursor: pointer; transition: all 0.15s;
   }
-  .kanji-header-bar .section-num { background:var(--kanji-accent); }
-  .kanji-header-bar .section-title { color:var(--kanji-accent); }
-
+  .kf-btn:hover { border-color: #1a4a3a; color: #1a4a3a; background: #e0f0ea; }
+  .kf-btn.active { background: #1a4a3a; color: white; border-color: #1a4a3a; }
   .kanji-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-    gap:0.8rem;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 0.8rem;
   }
   .kanji-card {
-    border:1px solid var(--paper-dark); border-radius:4px;
-    padding:0.9rem 0.8rem; background:var(--paper);
-    transition:all 0.18s; cursor:default;
-    animation:fadeUp 0.4s ease both;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1rem 0.9rem;
+    transition: all 0.18s; cursor: default; text-align: center;
+    animation: fadeUp 0.3s ease both; box-shadow: var(--shadow);
   }
-  .kanji-card:hover { background:var(--kanji-light); border-color:var(--kanji-accent); transform:translateY(-2px); box-shadow:0 4px 12px var(--shadow); }
-  .kanji-card .k-char { font-family:'Noto Serif JP',serif; font-size:2.4rem; font-weight:700; color:var(--kanji-accent); line-height:1; margin-bottom:0.4rem; display:block; text-align:center; }
-  .kanji-card .k-on { font-family:'Noto Serif JP',serif; font-size:0.72rem; color:var(--red); letter-spacing:0.05em; display:block; text-align:center; margin-bottom:2px; }
-  .kanji-card .k-kun { font-family:'Noto Serif JP',serif; font-size:0.72rem; color:var(--blue-ink); letter-spacing:0.05em; display:block; text-align:center; margin-bottom:0.3rem; }
-  .kanji-card .k-meaning { font-size:0.78rem; color:var(--ink-muted); text-align:center; line-height:1.4; font-style:italic; }
-  .kanji-card .k-stroke { font-family:'IBM Plex Mono',monospace; font-size:0.6rem; color:var(--ink-faint); text-align:center; margin-top:0.3rem; letter-spacing:0.08em; }
-  .kanji-card .k-example { font-family:'Noto Serif JP',serif; font-size:0.7rem; color:var(--ink-soft); text-align:center; margin-top:0.3rem; border-top:1px solid var(--paper-dark); padding-top:0.3rem; }
-
-  .kanji-filter-row { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:1rem; }
-  .k-filter-btn {
-    padding:5px 12px; border:1px solid var(--paper-dark); background:transparent;
-    border-radius:2px; font-family:'IBM Plex Mono',monospace; font-size:0.65rem;
-    letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted);
-    cursor:pointer; transition:all 0.15s;
+  .kanji-card:hover {
+    border-color: #1a4a3a; transform: translateY(-3px);
+    box-shadow: var(--shadow-lg); background: #f0f9f4;
   }
-  .k-filter-btn:hover { border-color:var(--kanji-accent); color:var(--kanji-accent); background:var(--kanji-light); }
-  .k-filter-btn.active { background:var(--kanji-accent); color:#fff; border-color:var(--kanji-accent); }
+  [data-theme="dark"] .kanji-card:hover { background: #0f1f18; }
+  .k-char {
+    font-family: 'Noto Serif JP', serif; font-size: 2.6rem;
+    font-weight: 700; color: #1a4a3a; line-height: 1; display: block; margin-bottom: 0.5rem;
+  }
+  [data-theme="dark"] .k-char { color: #4ade80; }
+  .k-on { font-family: 'Noto Serif JP', serif; font-size: 0.7rem; color: var(--accent2); display: block; margin-bottom: 1px; }
+  .k-kun { font-family: 'Noto Serif JP', serif; font-size: 0.7rem; color: var(--accent); display: block; margin-bottom: 0.4rem; }
+  .k-meaning { font-size: 0.77rem; color: var(--text2); line-height: 1.4; font-style: italic; }
+  .k-stroke { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--text4); margin-top: 4px; }
+  .k-example { font-family: 'Noto Serif JP', serif; font-size: 0.68rem; color: var(--text2); margin-top: 0.5rem; border-top: 1px solid var(--border); padding-top: 0.4rem; }
 
-  mark { background:var(--gold-light); color:inherit; border-radius:2px; padding:0 2px; }
+  mark { background: rgba(245,158,11,0.3); color: inherit; border-radius: 2px; padding: 0 1px; }
 
-  .empty-state { text-align:center; padding:3rem 1rem; color:var(--ink-muted); font-size:1rem; font-style:italic; }
-  .empty-state .big { font-family:'Noto Serif JP',serif; font-size:2.5rem; display:block; margin-bottom:0.5rem; opacity:0.3; }
+  .empty-state {
+    text-align: center; padding: 3rem 1rem; color: var(--text3);
+    font-size: 1rem;
+  }
+  .empty-state .big { font-family: 'Noto Serif JP', serif; font-size: 3rem; display: block; opacity: 0.2; margin-bottom: 0.5rem; }
 
   footer {
-    text-align:center; padding:1.5rem 2rem;
-    font-family:'IBM Plex Mono',monospace; font-size:0.65rem;
-    letter-spacing:0.1em; color:var(--ink-faint);
-    border-top:1px solid var(--paper-dark); position:relative; z-index:1;
+    text-align: center; padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.08em; color: var(--text4);
+    border-top: 1px solid var(--border);
   }
 
-  @media(max-width:600px){
-    header { padding:2rem 1rem 1.5rem; }
-    .bab-nav { padding:0.5rem 0.8rem; top:44px; }
-    .controls { padding:0.6rem 0.8rem; top:86px; }
-    main { padding:1rem 0.6rem 3rem; }
-    .vocab-table { table-layout:auto; }
-    .vocab-table colgroup col:nth-child(1) { width:0; display:none; }
-    .td-num { display:none; }
-    .vocab-table colgroup col:nth-child(2) { width:40%; }
-    .vocab-table colgroup col:nth-child(3) { width:18%; }
-    .jp-main { font-size:0.9rem; }
-    .section-jp { display:none; }
-    header::before { font-size:5rem; }
-    .bab-btn { width:28px; height:24px; font-size:0.6rem; }
-    .kanji-grid { grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); }
-    .theme-toggle { top:8px; right:8px; padding:4px 8px; font-size:0.6rem; }
+  @media(max-width:640px){
+    .topnav { padding: 0 0.8rem; }
+    .nav-brand span:last-child { display: none; }
+    .bab-row, .filter-row { padding: 0.4rem 0.8rem; }
+    main { padding: 1rem 0.8rem 5rem; }
+    .page-hero { padding: 1.2rem 1.2rem; }
+    .page-hero::before { font-size: 4rem; }
+    .td-num { display: none; }
+    .td-jp { width: 120px; }
+    .td-type { display: none; }
+    .td-kanji { width: 65px; font-size: 0.95rem; }
+    .jp-word { font-size: 0.9rem; }
+    .section-jp-label { display: none; }
+    .vocab-table thead th:nth-child(4) { display: none; }
+    .hero-credit { display: none; }
+    .kanji-grid { grid-template-columns: repeat(auto-fill, minmax(130px,1fr)); }
   }
 </style>
 </head>
 <body>
 
-<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti tema">
-  <span class="icon" id="themeIcon">🌙</span>
-  <span id="themeLabel">Dark</span>
-</button>
-
-<header>
-  <div class="lesson-badge">Minna no Nihongo · Buku I</div>
-  <h1 id="headerTitle">
-    Pelajaran 1
-    <span class="jp" id="headerJp">第一課 · 語彙</span>
-  </h1>
-  <p class="header-sub">Kosa Kata Lengkap · Kanji N5 · Romaji</p>
-  <div class="seal" id="sealEl">一</div>
-</header>
-
-<div class="credit-bar">
-  <span>✦ By : <strong>PrinceQiu</strong></span>
-  <span>|</span>
-  <span>TikTok : <a href="https://www.tiktok.com/@Prince.Qiu" target="_blank">@Prince.Qiu</a></span>
-  <span>|</span>
-  <span>Minna no Nihongo — Kosa Kata &amp; Kanji N5</span>
-</div>
-
-<div class="mode-tabs">
-  <button class="mode-tab active" id="tabVocab" onclick="switchMode('vocab')">📖 Kosa Kata (Bab 1–25)</button>
-  <button class="mode-tab kanji-tab" id="tabKanji" onclick="switchMode('kanji')">漢 Kanji N5</button>
-</div>
-
-<div class="bab-nav" id="babNav">
-  <span class="bab-label">Pelajaran:</span>
-  <div class="bab-btns" id="babBtns"></div>
-</div>
-
-<div class="controls">
-  <div class="search-wrap">
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="nav-brand">
+    <span class="jp-badge">日本語</span>
+    <span>Minna no Nihongo</span>
+  </div>
+  <div class="nav-divider"></div>
+  <div class="mode-pills">
+    <button class="mode-pill active" id="tabVocab" onclick="switchMode('vocab')">📖 Kosa Kata</button>
+    <button class="mode-pill" id="tabKanji" onclick="switchMode('kanji')">漢 Kanji N5</button>
+  </div>
+  <div class="nav-search">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" id="search" placeholder="Cari kata Jepang, romaji, atau arti...">
+    <input type="text" id="search" placeholder="Cari kata, romaji, atau arti...">
   </div>
-  <div class="filter-btns" id="filterBtns">
-    <button class="filter-btn active" data-filter="all">Semua</button>
-    <button class="filter-btn" data-filter="verb">Kata Kerja</button>
-    <button class="filter-btn" data-filter="adj">Kata Sifat</button>
-    <button class="filter-btn" data-filter="body">Tubuh</button>
-    <button class="filter-btn" data-filter="noun">Kata Benda</button>
-    <button class="filter-btn" data-filter="expr">Ekspresi</button>
-    <button class="filter-btn" data-filter="place">Tempat</button>
+  <span class="count-chip" id="count">—</span>
+  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle dark/light mode">🌙</button>
+</nav>
+
+<!-- SUB BAR -->
+<div class="subbar" id="subbar">
+  <!-- BAB NAV -->
+  <div class="bab-row" id="babRow">
+    <span class="bab-label">Bab:</span>
+    <div class="bab-scroller" id="babBtns"></div>
   </div>
-  <span class="count-badge" id="count"></span>
+  <!-- FILTER -->
+  <div class="filter-row" id="filterRow">
+    <button class="filter-pill active" data-filter="all">Semua</button>
+    <button class="filter-pill" data-filter="verb"><span class="dot dot-verb"></span>Kata Kerja</button>
+    <button class="filter-pill" data-filter="adj"><span class="dot dot-adj"></span>Kata Sifat</button>
+    <button class="filter-pill" data-filter="noun"><span class="dot dot-noun"></span>Kata Benda</button>
+    <button class="filter-pill" data-filter="expr"><span class="dot dot-expr"></span>Ekspresi</button>
+    <button class="filter-pill" data-filter="place"><span class="dot dot-place"></span>Tempat</button>
+    <button class="filter-pill" data-filter="body"><span class="dot dot-body"></span>Tubuh</button>
+  </div>
 </div>
 
-<main id="mainContent">
-  <div id="vocabPanel" class="active"></div>
-  <div id="kanjiPanel">
-    <div style="margin-bottom:1.2rem;">
-      <div class="kanji-header-bar">
-        <span class="section-num" style="background:var(--kanji-accent)">N5</span>
-        <span class="section-title" style="color:var(--kanji-accent)">Kanji N5 — 80 Kanji Dasar</span>
-        <span class="section-jp" style="font-size:0.8rem;color:var(--kanji-accent)">JLPT N5 漢字</span>
+<main id="mainEl">
+  <!-- VOCAB PANEL -->
+  <div id="vocabPanel">
+    <!-- Hero -->
+    <div class="page-hero" id="heroCard">
+      <div class="hero-badge">✦ Minna no Nihongo · Buku I</div>
+      <div class="hero-title" id="heroTitle">
+        Pelajaran 1
+        <span class="jp" id="heroJp">第一課 · 語彙</span>
       </div>
-      <p style="font-size:0.85rem;color:var(--ink-muted);margin-bottom:0.8rem;font-style:italic;">
-        80 kanji wajib untuk JLPT N5, disusun berdasarkan kelompok makna. Klik untuk melihat detail.
-      </p>
-      <div class="kanji-filter-row" id="kanjiFilerRow">
-        <button class="k-filter-btn active" data-kcat="all">Semua (80)</button>
-        <button class="k-filter-btn" data-kcat="angka">Angka</button>
-        <button class="k-filter-btn" data-kcat="waktu">Waktu</button>
-        <button class="k-filter-btn" data-kcat="alam">Alam</button>
-        <button class="k-filter-btn" data-kcat="orang">Orang &amp; Keluarga</button>
-        <button class="k-filter-btn" data-kcat="arah">Arah &amp; Posisi</button>
-        <button class="k-filter-btn" data-kcat="tempat">Tempat</button>
-        <button class="k-filter-btn" data-kcat="benda">Benda</button>
-        <button class="k-filter-btn" data-kcat="lainnya">Lainnya</button>
+      <div class="hero-sub">Kosa Kata Lengkap · Romaji · Bahasa Indonesia</div>
+      <div class="hero-credit">
+        <span>By <strong>PrinceQiu</strong></span>
+        <span>·</span>
+        <a href="https://www.tiktok.com/@Prince.Qiu" target="_blank">@Prince.Qiu</a>
       </div>
     </div>
-    <div class="kanji-grid" id="kanjiGrid"></div>
+    <!-- Sections -->
+    <div id="vocabSections"></div>
+    <div class="empty-state" id="emptyVocab" style="display:none">
+      <span class="big">見つからない</span>Kata tidak ditemukan. Coba kata lain.
+    </div>
   </div>
-  <div class="empty-state" id="emptyState" style="display:none;">
-    <span class="big">見つからない</span>
-    Kata tidak ditemukan. Coba kata lain.
+
+  <!-- KANJI PANEL -->
+  <div id="kanjiPanel" style="display:none">
+    <div class="kanji-panel-hero">
+      <div class="hero-badge" style="background:rgba(255,255,255,0.15)">✦ JLPT N5 · 80 Kanji Dasar</div>
+      <div class="hero-title">漢字 N5 <span class="jp">Kanji Wajib JLPT N5</span></div>
+      <div class="hero-sub">Disusun berdasarkan kelompok makna · Klik kartu untuk detail</div>
+    </div>
+    <div class="kf-row" id="kfRow">
+      <button class="kf-btn active" data-kcat="all">Semua (80)</button>
+      <button class="kf-btn" data-kcat="angka">Angka</button>
+      <button class="kf-btn" data-kcat="waktu">Waktu</button>
+      <button class="kf-btn" data-kcat="alam">Alam</button>
+      <button class="kf-btn" data-kcat="orang">Orang & Keluarga</button>
+      <button class="kf-btn" data-kcat="arah">Arah & Posisi</button>
+      <button class="kf-btn" data-kcat="tempat">Tempat</button>
+      <button class="kf-btn" data-kcat="benda">Benda</button>
+      <button class="kf-btn" data-kcat="lainnya">Lainnya</button>
+    </div>
+    <div class="kanji-grid" id="kanjiGrid"></div>
+    <div class="empty-state" id="emptyKanji" style="display:none">
+      <span class="big">見つからない</span>Kanji tidak ditemukan.
+    </div>
   </div>
 </main>
 
-<footer id="footerEl">
-  第一課 · Pelajaran 1 · Kosa Kata Bahasa Jepang &nbsp;|&nbsp; By PrinceQiu · @Prince.Qiu
-</footer>
+<footer>Minna no Nihongo — Kosa Kata &amp; Kanji N5 &nbsp;|&nbsp; By PrinceQiu · @Prince.Qiu</footer>
 
 <script>
+// ═══════════════ DARK MODE ═══════════════
+let isDark = false;
 function toggleTheme() {
-  const html = document.documentElement;
-  const isDark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  document.getElementById('themeIcon').textContent = isDark ? '🌙' : '☀️';
-  document.getElementById('themeLabel').textContent = isDark ? 'Dark' : 'Light';
-  localStorage.setItem('mnTheme', isDark ? 'light' : 'dark');
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  document.getElementById('themeBtn').textContent = isDark ? '☀️' : '🌙';
 }
-(function(){
-  const saved = localStorage.getItem('mnTheme');
-  if (saved) {
-    document.documentElement.setAttribute('data-theme', saved);
-    if (saved === 'dark') {
-      document.getElementById('themeIcon').textContent = '☀️';
-      document.getElementById('themeLabel').textContent = 'Light';
-    }
-  }
-})();
 
+// ═══════════════ DATA KOSA KATA ═══════════════
 const allBabs = {
   1: [
     {
@@ -510,14 +484,14 @@ const allBabs = {
         { jp:"あなた",           rom:"anata",            note:"",        kanji:"あなた",   meaning:"kamu, Anda",                                              type:"noun" },
         { jp:"あのひと（あのかた）",rom:"ano hito (ano kata)",note:"あのかた=sopan",kanji:"あの人（あの方）",meaning:"orang itu (あのかた adalah bentuk sopan dari あのひと)", type:"noun" },
         { jp:"〜さん",           rom:"-san",             note:"",        kanji:"〜さん",   meaning:"Sdr. 〜, Bapak 〜, Ibu 〜 (akhiran kesopanan di belakang nama)", type:"noun" },
-        { jp:"〜ちゃん",         rom:"-chan",            note:"",        kanji:"—",         meaning:"akhiran akrab untuk anak laki-laki/perempuan (pengganti さん)", type:"noun" },
+        { jp:"〜ちゃん",         rom:"-chan",            note:"",        kanji:"—",         meaning:"akhiran akrab untuk anak laki-laki/perempuan",             type:"noun" },
         { jp:"〜くん",           rom:"-kun",             note:"",        kanji:"—",         meaning:"akhiran akrab untuk laki-laki",                           type:"noun" },
-        { jp:"〜じん",           rom:"-jin",             note:"",        kanji:"〜人",      meaning:"orang 〜 (akhiran menyatakan warga negara. Contoh: アメリカじん)", type:"noun" },
-        { jp:"せんせい",         rom:"sensei",           note:"",        kanji:"先生",      meaning:"guru, dosen (tidak dipakai jika menyebutkan pekerjaan sendiri)", type:"noun" },
+        { jp:"〜じん",           rom:"-jin",             note:"",        kanji:"〜人",      meaning:"orang 〜 (akhiran menyatakan warga negara)",               type:"noun" },
+        { jp:"せんせい",         rom:"sensei",           note:"",        kanji:"先生",      meaning:"guru, dosen",                                             type:"noun" },
         { jp:"きょうし",         rom:"kyōshi",           note:"",        kanji:"教師",      meaning:"guru, dosen",                                             type:"noun" },
         { jp:"がくせい",         rom:"gakusei",          note:"",        kanji:"学生",      meaning:"mahasiswa",                                               type:"noun" },
         { jp:"かいしゃいん",     rom:"kaishain",         note:"",        kanji:"会社員",    meaning:"karyawan perusahaan",                                     type:"noun" },
-        { jp:"しゃいん",         rom:"shain",            note:"",        kanji:"社員",      meaning:"karyawan perusahaan (dipakai bersama nama perusahaan, contoh: IMC のしゃいん)", type:"noun" },
+        { jp:"しゃいん",         rom:"shain",            note:"",        kanji:"社員",      meaning:"karyawan perusahaan",                                     type:"noun" },
         { jp:"ぎんこういん",     rom:"ginkōin",          note:"",        kanji:"銀行員",    meaning:"pegawai bank",                                            type:"noun" },
         { jp:"いしゃ",           rom:"isha",             note:"",        kanji:"医者",      meaning:"dokter",                                                  type:"noun" },
         { jp:"けんきゅうしゃ",   rom:"kenkyūsha",        note:"",        kanji:"研究者",    meaning:"peneliti",                                                type:"noun" },
@@ -525,7 +499,7 @@ const allBabs = {
         { jp:"びょういん",       rom:"byōin",            note:"",        kanji:"病院",      meaning:"rumah sakit",                                             type:"noun" },
         { jp:"だれ（どなた）",   rom:"dare (donata)",    note:"どなた=sopan",kanji:"誰",   meaning:"siapa (どなた adalah bentuk sopan dari だれ)",               type:"noun" },
         { jp:"〜さい",           rom:"-sai",             note:"",        kanji:"〜歳",      meaning:"〜 tahun (umur)",                                          type:"noun" },
-        { jp:"なんさい（おいくつ）",rom:"nansai (o-ikutsu)",note:"おいくつ=sopan",kanji:"何歳",meaning:"berapa umur (おいくつ adalah bentuk sopan dari なんさい)", type:"noun" },
+        { jp:"なんさい（おいくつ）",rom:"nansai (o-ikutsu)",note:"おいくつ=sopan",kanji:"何歳",meaning:"berapa umur", type:"noun" },
       ]
     },
     {
@@ -533,16 +507,16 @@ const allBabs = {
       rows:[
         { jp:"はい",                      rom:"hai",                      note:"", kanji:"—",              meaning:"ya",                                                                 type:"expr" },
         { jp:"いいえ",                    rom:"iie",                      note:"", kanji:"—",              meaning:"tidak, bukan",                                                        type:"expr" },
-        { jp:"はじめまして",              rom:"hajimemashite",            note:"", kanji:"—",              meaning:"Perkenalkan. (ucapan salam waktu pertama kali berkenalan)",           type:"expr" },
+        { jp:"はじめまして",              rom:"hajimemashite",            note:"", kanji:"—",              meaning:"Perkenalkan. (salam waktu pertama kali berkenalan)",                  type:"expr" },
         { jp:"〜からきました",            rom:"~ kara kimashita",         note:"", kanji:"—",              meaning:"datang dari 〜, berasal dari 〜",                                     type:"expr" },
-        { jp:"[どうぞ]よろしく[おねがいします]",rom:"[dōzo] yoroshiku [onegai shimasu]",note:"",kanji:"—",meaning:"Salam kenal. (ucapan terakhir untuk perkenalkan diri)",               type:"expr" },
-        { jp:"しつれいですが",            rom:"shitsurei desu ga",        note:"", kanji:"失礼ですが",     meaning:"permisi, maaf (digunakan ketika bertanya hal pribadi seperti nama, alamat dll)", type:"expr" },
+        { jp:"[どうぞ]よろしく[おねがいします]",rom:"[dōzo] yoroshiku [onegai shimasu]",note:"",kanji:"—",meaning:"Salam kenal.",                                                      type:"expr" },
+        { jp:"しつれいですが",            rom:"shitsurei desu ga",        note:"", kanji:"失礼ですが",     meaning:"permisi, maaf (digunakan ketika bertanya hal pribadi)",               type:"expr" },
         { jp:"おなまえは？",              rom:"o-namae wa?",              note:"", kanji:"お名前は？",     meaning:"Siapa namanya?",                                                      type:"expr" },
         { jp:"こちらは〜さんです",        rom:"kochira wa ~ san desu",    note:"", kanji:"—",              meaning:"Ini Bapak 〜 / Ini Ibu, Sdr 〜.",                                     type:"expr" },
       ]
     },
     {
-      id:"place", num:"03", title:"Nama Negara & Organisasi (Referensi)", jp:"国名・組織",
+      id:"place", num:"03", title:"Nama Negara & Organisasi", jp:"国名・組織",
       rows:[
         { jp:"アメリカ",       rom:"Amerika",       note:"",kanji:"—",      meaning:"Amerika Serikat",  type:"place" },
         { jp:"イギリス",       rom:"Igirisu",       note:"",kanji:"—",      meaning:"Inggris",          type:"place" },
@@ -554,10 +528,6 @@ const allBabs = {
         { jp:"ドイツ",         rom:"Doitsu",        note:"",kanji:"—",      meaning:"Jerman",           type:"place" },
         { jp:"にほん",         rom:"Nihon",         note:"",kanji:"日本",   meaning:"Jepang",           type:"place" },
         { jp:"ブラジル",       rom:"Burajiru",      note:"",kanji:"—",      meaning:"Brasil",           type:"place" },
-        { jp:"IMC／パワー電気／ブラジルエアー",rom:"IMC/Pawā Denki/Burajiru Eā",note:"",kanji:"—",meaning:"perusahaan fiksi", type:"place" },
-        { jp:"AKC",            rom:"ēkēshī",        note:"",kanji:"—",      meaning:"organisasi fiksi", type:"place" },
-        { jp:"こうべびょういん",rom:"Kōbe Byōin",   note:"",kanji:"神戸病院",meaning:"rumah sakit fiksi",type:"place" },
-        { jp:"さくらだいがく／ふじだいがく",rom:"Sakura Daigaku/Fuji Daigaku",note:"",kanji:"さくら大学／富士大学",meaning:"universitas fiksi", type:"place" },
       ]
     }
   ],
@@ -566,65 +536,62 @@ const allBabs = {
     {
       id:"noun", num:"01", title:"Kata Tunjuk & Kata Benda", jp:"指示詞・名詞",
       rows:[
-        { jp:"これ",               rom:"kore",             note:"",  kanji:"—",       meaning:"ini (benda yang ada di dekat si pembicara)",              type:"noun" },
-        { jp:"それ",               rom:"sore",             note:"",  kanji:"—",       meaning:"itu (benda yang ada di dekat lawan bicara)",              type:"noun" },
-        { jp:"あれ",               rom:"are",              note:"",  kanji:"—",       meaning:"itu (benda yang ada jauh dari si pembicara dan lawan bicara)", type:"noun" },
-        { jp:"この〜",             rom:"kono ~",           note:"",  kanji:"—",       meaning:"〜 ini (menerangkan benda atau orang yang ada di dekat si pembicara)", type:"noun" },
-        { jp:"その〜",             rom:"sono ~",           note:"*", kanji:"—",       meaning:"〜 itu (menerangkan benda atau orang yang ada di dekat lawan bicara)", type:"noun" },
-        { jp:"あの〜",             rom:"ano ~",            note:"*", kanji:"—",       meaning:"〜 itu (menerangkan benda atau orang yang ada jauh dari si pembicara dan lawan bicara)", type:"noun" },
-        { jp:"ほん",               rom:"hon",              note:"",  kanji:"本",      meaning:"buku",                                                   type:"noun" },
-        { jp:"じしょ",             rom:"jisho",            note:"",  kanji:"辞書",    meaning:"kamus",                                                  type:"noun" },
-        { jp:"ざっし",             rom:"zasshi",           note:"",  kanji:"雑誌",    meaning:"majalah",                                                type:"noun" },
-        { jp:"しんぶん",           rom:"shinbun",          note:"",  kanji:"新聞",    meaning:"koran, surat kabar",                                     type:"noun" },
-        { jp:"ノート",             rom:"nōto",             note:"",  kanji:"—",       meaning:"buku tulis, buku catatan",                               type:"noun" },
-        { jp:"てちょう",           rom:"techō",            note:"",  kanji:"手帳",    meaning:"buku agenda",                                            type:"noun" },
-        { jp:"めいし",             rom:"meishi",           note:"",  kanji:"名刺",    meaning:"kartu nama",                                             type:"noun" },
-        { jp:"カード",             rom:"kādo",             note:"",  kanji:"—",       meaning:"kartu",                                                  type:"noun" },
-        { jp:"えんぴつ",           rom:"enpitsu",          note:"",  kanji:"鉛筆",    meaning:"pensil",                                                 type:"noun" },
-        { jp:"ボールペン",         rom:"bōrupen",          note:"",  kanji:"—",       meaning:"bolpoin",                                                type:"noun" },
-        { jp:"シャープペンシル",   rom:"shāpu penshiru",   note:"",  kanji:"—",       meaning:"pensil mekanik, pensil isi ulang",                       type:"noun" },
-        { jp:"かぎ",               rom:"kagi",             note:"",  kanji:"—",       meaning:"kunci",                                                  type:"noun" },
-        { jp:"とけい",             rom:"tokei",            note:"",  kanji:"時計",    meaning:"jam, arloji",                                            type:"noun" },
-        { jp:"かさ",               rom:"kasa",             note:"",  kanji:"傘",      meaning:"payung",                                                 type:"noun" },
-        { jp:"かばん",             rom:"kaban",            note:"",  kanji:"—",       meaning:"tas",                                                    type:"noun" },
-        { jp:"CD",                 rom:"shī dī",           note:"",  kanji:"—",       meaning:"CD",                                                     type:"noun" },
-        { jp:"テレビ",             rom:"terebi",           note:"",  kanji:"—",       meaning:"televisi",                                               type:"noun" },
-        { jp:"ラジオ",             rom:"rajio",            note:"",  kanji:"—",       meaning:"radio",                                                  type:"noun" },
-        { jp:"カメラ",             rom:"kamera",           note:"",  kanji:"—",       meaning:"kamera",                                                 type:"noun" },
-        { jp:"コンピューター",     rom:"konpyūtā",         note:"",  kanji:"—",       meaning:"komputer, PC",                                           type:"noun" },
-        { jp:"くるま",             rom:"kuruma",           note:"",  kanji:"車",      meaning:"mobil",                                                  type:"noun" },
-        { jp:"つくえ",             rom:"tsukue",           note:"",  kanji:"机",      meaning:"meja, meja tulis",                                       type:"noun" },
-        { jp:"いす",               rom:"isu",              note:"",  kanji:"椅子",    meaning:"kursi",                                                  type:"noun" },
-        { jp:"チョコレート",       rom:"chokoreeto",       note:"",  kanji:"—",       meaning:"coklat",                                                 type:"noun" },
-        { jp:"コーヒー",           rom:"kōhī",             note:"",  kanji:"—",       meaning:"kopi",                                                   type:"noun" },
-        { jp:"[お]みやげ",         rom:"[o]miyage",        note:"",  kanji:"[お]土産",meaning:"oleh-oleh",                                              type:"noun" },
-        { jp:"えいご",             rom:"eigo",             note:"",  kanji:"英語",    meaning:"bahasa Inggris",                                         type:"noun" },
-        { jp:"にほんご",           rom:"nihongo",          note:"",  kanji:"日本語",  meaning:"bahasa Jepang",                                          type:"noun" },
-        { jp:"〜ご",               rom:"-go",              note:"",  kanji:"〜語",    meaning:"bahasa 〜",                                               type:"noun" },
-        { jp:"なん",               rom:"nan",              note:"",  kanji:"何",      meaning:"apa",                                                    type:"noun" },
-        { jp:"そう",               rom:"sō",               note:"",  kanji:"—",       meaning:"begitu",                                                 type:"noun" },
-        { jp:"ひゃく",             rom:"hyaku",            note:"",  kanji:"百",      meaning:"ratus",                                                  type:"noun" },
-        { jp:"せん",               rom:"sen",              note:"",  kanji:"千",      meaning:"ribu",                                                   type:"noun" },
-        { jp:"まん",               rom:"man",              note:"",  kanji:"万",      meaning:"puluh ribu",                                             type:"noun" },
-        { jp:"〜えん",             rom:"~ en",             note:"",  kanji:"〜円",    meaning:"〜 yen",                                                  type:"noun" },
-        { jp:"いくら",             rom:"ikura",            note:"",  kanji:"—",       meaning:"berapa (harga)",                                         type:"noun" },
+        { jp:"これ",               rom:"kore",             note:"",  kanji:"—",       meaning:"ini (benda di dekat pembicara)",                           type:"noun" },
+        { jp:"それ",               rom:"sore",             note:"",  kanji:"—",       meaning:"itu (benda di dekat lawan bicara)",                        type:"noun" },
+        { jp:"あれ",               rom:"are",              note:"",  kanji:"—",       meaning:"itu (benda jauh dari pembicara dan lawan bicara)",          type:"noun" },
+        { jp:"この〜",             rom:"kono ~",           note:"",  kanji:"—",       meaning:"〜 ini (menerangkan benda di dekat pembicara)",             type:"noun" },
+        { jp:"その〜",             rom:"sono ~",           note:"",  kanji:"—",       meaning:"〜 itu (menerangkan benda di dekat lawan bicara)",          type:"noun" },
+        { jp:"あの〜",             rom:"ano ~",            note:"",  kanji:"—",       meaning:"〜 itu (menerangkan benda jauh dari keduanya)",             type:"noun" },
+        { jp:"ほん",               rom:"hon",              note:"",  kanji:"本",      meaning:"buku",                                                    type:"noun" },
+        { jp:"じしょ",             rom:"jisho",            note:"",  kanji:"辞書",    meaning:"kamus",                                                   type:"noun" },
+        { jp:"ざっし",             rom:"zasshi",           note:"",  kanji:"雑誌",    meaning:"majalah",                                                 type:"noun" },
+        { jp:"しんぶん",           rom:"shinbun",          note:"",  kanji:"新聞",    meaning:"koran, surat kabar",                                      type:"noun" },
+        { jp:"ノート",             rom:"nōto",             note:"",  kanji:"—",       meaning:"buku tulis, buku catatan",                                type:"noun" },
+        { jp:"てちょう",           rom:"techō",            note:"",  kanji:"手帳",    meaning:"buku agenda",                                             type:"noun" },
+        { jp:"めいし",             rom:"meishi",           note:"",  kanji:"名刺",    meaning:"kartu nama",                                              type:"noun" },
+        { jp:"カード",             rom:"kādo",             note:"",  kanji:"—",       meaning:"kartu",                                                   type:"noun" },
+        { jp:"えんぴつ",           rom:"enpitsu",          note:"",  kanji:"鉛筆",    meaning:"pensil",                                                  type:"noun" },
+        { jp:"ボールペン",         rom:"bōrupen",          note:"",  kanji:"—",       meaning:"bolpoin",                                                 type:"noun" },
+        { jp:"シャープペンシル",   rom:"shāpu penshiru",   note:"",  kanji:"—",       meaning:"pensil mekanik",                                          type:"noun" },
+        { jp:"かぎ",               rom:"kagi",             note:"",  kanji:"—",       meaning:"kunci",                                                   type:"noun" },
+        { jp:"とけい",             rom:"tokei",            note:"",  kanji:"時計",    meaning:"jam, arloji",                                             type:"noun" },
+        { jp:"かさ",               rom:"kasa",             note:"",  kanji:"傘",      meaning:"payung",                                                  type:"noun" },
+        { jp:"かばん",             rom:"kaban",            note:"",  kanji:"—",       meaning:"tas",                                                     type:"noun" },
+        { jp:"CD",                 rom:"shī dī",           note:"",  kanji:"—",       meaning:"CD",                                                      type:"noun" },
+        { jp:"テレビ",             rom:"terebi",           note:"",  kanji:"—",       meaning:"televisi",                                                type:"noun" },
+        { jp:"ラジオ",             rom:"rajio",            note:"",  kanji:"—",       meaning:"radio",                                                   type:"noun" },
+        { jp:"カメラ",             rom:"kamera",           note:"",  kanji:"—",       meaning:"kamera",                                                  type:"noun" },
+        { jp:"コンピューター",     rom:"konpyūtā",         note:"",  kanji:"—",       meaning:"komputer, PC",                                            type:"noun" },
+        { jp:"くるま",             rom:"kuruma",           note:"",  kanji:"車",      meaning:"mobil",                                                   type:"noun" },
+        { jp:"つくえ",             rom:"tsukue",           note:"",  kanji:"机",      meaning:"meja, meja tulis",                                        type:"noun" },
+        { jp:"いす",               rom:"isu",              note:"",  kanji:"椅子",    meaning:"kursi",                                                   type:"noun" },
+        { jp:"チョコレート",       rom:"chokoreeto",       note:"",  kanji:"—",       meaning:"coklat",                                                  type:"noun" },
+        { jp:"コーヒー",           rom:"kōhī",             note:"",  kanji:"—",       meaning:"kopi",                                                    type:"noun" },
+        { jp:"[お]みやげ",         rom:"[o]miyage",        note:"",  kanji:"[お]土産",meaning:"oleh-oleh",                                               type:"noun" },
+        { jp:"えいご",             rom:"eigo",             note:"",  kanji:"英語",    meaning:"bahasa Inggris",                                          type:"noun" },
+        { jp:"にほんご",           rom:"nihongo",          note:"",  kanji:"日本語",  meaning:"bahasa Jepang",                                           type:"noun" },
+        { jp:"〜ご",               rom:"-go",              note:"",  kanji:"〜語",    meaning:"bahasa 〜",                                                type:"noun" },
+        { jp:"なん",               rom:"nan",              note:"",  kanji:"何",      meaning:"apa",                                                     type:"noun" },
+        { jp:"そう",               rom:"sō",               note:"",  kanji:"—",       meaning:"begitu",                                                  type:"noun" },
+        { jp:"ひゃく",             rom:"hyaku",            note:"",  kanji:"百",      meaning:"ratus",                                                   type:"noun" },
+        { jp:"せん",               rom:"sen",              note:"",  kanji:"千",      meaning:"ribu",                                                    type:"noun" },
+        { jp:"まん",               rom:"man",              note:"",  kanji:"万",      meaning:"puluh ribu",                                              type:"noun" },
+        { jp:"〜えん",             rom:"~ en",             note:"",  kanji:"〜円",    meaning:"〜 yen",                                                   type:"noun" },
+        { jp:"いくら",             rom:"ikura",            note:"",  kanji:"—",       meaning:"berapa (harga)",                                          type:"noun" },
       ]
     },
     {
       id:"expr", num:"02", title:"Ekspresi", jp:"表現",
       rows:[
-        { jp:"あのう",                     rom:"anō",                        note:"", kanji:"—", meaning:"Eee… (ungkapan yang digunakan kepada lawan bicara dalam perasaan ragu-ragu)", type:"expr" },
-        { jp:"えっ",                       rom:"e",                          note:"", kanji:"—", meaning:"Eh (dipakai ketika mendengar sesuatu yang di luar dugaan)",                  type:"expr" },
-        { jp:"どうぞ",                     rom:"dōzo",                       note:"", kanji:"—", meaning:"Silakan. (digunakan ketika menawarkan sesuatu (barang))",                   type:"expr" },
-        { jp:"[どうも]ありがとう[ございます]",rom:"[dōmo] arigatō [gozaimasu]",note:"",kanji:"—", meaning:"Terima kasih (banyak).",                                                  type:"expr" },
-        { jp:"そうですか",                 rom:"sō desu ka",                 note:"", kanji:"—", meaning:"O, begitu./O, ya.",                                                         type:"expr" },
-        { jp:"ちがいます",                 rom:"chigaimasu",                 note:"", kanji:"違います", meaning:"Bukan./Tidak./Salah.",                                                type:"expr" },
-        { jp:"あ",                         rom:"a",                          note:"", kanji:"—", meaning:"O, Eh, (dipakai ketika sadar)",                                             type:"expr" },
-        { jp:"[〜を]みせてください",        rom:"[~ o] misete kudasai",       note:"", kanji:"—", meaning:"Tolong perlihatkan [〜].",                                                 type:"expr" },
-        { jp:"じゃ",                       rom:"ja",                         note:"", kanji:"—", meaning:"Baiklah, kalau begitu.",                                                    type:"expr" },
-        { jp:"[〜を]ください",             rom:"[~ o] kudasai",              note:"", kanji:"—", meaning:"Minta [〜]./Tolong berikan [〜].",                                          type:"expr" },
-        { jp:"これからおせわになります",   rom:"kore kara o-sewa ni narimasu",note:"",kanji:"—", meaning:"Mulai sekarang, saya akan meminta bantuannya.",                             type:"expr" },
-        { jp:"こちらこそ[どうぞ]よろしく[おねがいします]",rom:"kochira koso [dōzo] yoroshiku",note:"",kanji:"—",meaning:"Ya, sama-sama. (jawaban terhadap どうぞよろしく)",           type:"expr" },
+        { jp:"あのう",                     rom:"anō",                        note:"", kanji:"—", meaning:"Eee… (ungkapan dalam perasaan ragu-ragu)",                   type:"expr" },
+        { jp:"えっ",                       rom:"e",                          note:"", kanji:"—", meaning:"Eh (ketika mendengar sesuatu di luar dugaan)",               type:"expr" },
+        { jp:"どうぞ",                     rom:"dōzo",                       note:"", kanji:"—", meaning:"Silakan. (saat menawarkan sesuatu)",                        type:"expr" },
+        { jp:"[どうも]ありがとう[ございます]",rom:"[dōmo] arigatō [gozaimasu]",note:"",kanji:"—", meaning:"Terima kasih (banyak).",                                   type:"expr" },
+        { jp:"そうですか",                 rom:"sō desu ka",                 note:"", kanji:"—", meaning:"O, begitu. / O, ya.",                                       type:"expr" },
+        { jp:"ちがいます",                 rom:"chigaimasu",                 note:"", kanji:"違います", meaning:"Bukan. / Tidak. / Salah.",                           type:"expr" },
+        { jp:"[〜を]みせてください",        rom:"[~ o] misete kudasai",       note:"", kanji:"—", meaning:"Tolong perlihatkan [〜].",                                 type:"expr" },
+        { jp:"じゃ",                       rom:"ja",                         note:"", kanji:"—", meaning:"Baiklah, kalau begitu.",                                    type:"expr" },
+        { jp:"[〜を]ください",             rom:"[~ o] kudasai",              note:"", kanji:"—", meaning:"Minta [〜]. / Tolong berikan [〜].",                        type:"expr" },
       ]
     }
   ],
@@ -647,16 +614,16 @@ const allBabs = {
       id:"place", num:"02", title:"Bangunan & Fasilitas", jp:"建物・施設",
       rows:[
         { jp:"きょうしつ",      rom:"kyōshitsu",   note:"", kanji:"教室",    meaning:"ruang kelas",                        type:"place" },
-        { jp:"しょくどう",      rom:"shokudō",     note:"", kanji:"食堂",    meaning:"ruang makan, rumah makan, kantin",   type:"place" },
+        { jp:"しょくどう",      rom:"shokudō",     note:"", kanji:"食堂",    meaning:"ruang makan, kantin",                type:"place" },
         { jp:"じむしょ",        rom:"jimusho",     note:"", kanji:"事務所",  meaning:"kantor",                             type:"place" },
         { jp:"かいぎしつ",      rom:"kaigishitsu", note:"", kanji:"会議室",  meaning:"ruang rapat",                        type:"place" },
         { jp:"うけつけ",        rom:"uketsuke",    note:"", kanji:"受付",    meaning:"meja informasi",                     type:"place" },
         { jp:"ロビー",          rom:"robī",        note:"", kanji:"—",       meaning:"ruang tunggu, lobi",                 type:"place" },
         { jp:"へや",            rom:"heya",        note:"", kanji:"部屋",    meaning:"kamar",                              type:"place" },
-        { jp:"トイレ（おてあらい）",rom:"toire (otearai)",note:"",kanji:"(お手洗い)",meaning:"kamar kecil, toilet, W.C.", type:"place" },
+        { jp:"トイレ（おてあらい）",rom:"toire (otearai)",note:"",kanji:"(お手洗い)",meaning:"kamar kecil, toilet", type:"place" },
         { jp:"かいだん",        rom:"kaidan",      note:"", kanji:"階段",    meaning:"tangga",                             type:"place" },
         { jp:"エレベーター",    rom:"erebētā",     note:"", kanji:"—",       meaning:"lift",                               type:"place" },
-        { jp:"エスカレーター",  rom:"esukarētā",   note:"", kanji:"—",       meaning:"tangga berjalan, eskalator",         type:"place" },
+        { jp:"エスカレーター",  rom:"esukarētā",   note:"", kanji:"—",       meaning:"eskalator",                          type:"place" },
         { jp:"じどうはんばいき",rom:"jidōhanbaiki",note:"", kanji:"自動販売機",meaning:"mesin jual otomatis",             type:"place" },
         { jp:"でんわ",          rom:"denwa",       note:"", kanji:"電話",    meaning:"telepon",                            type:"place" },
         { jp:"[お]くに",        rom:"[o]kuni",     note:"", kanji:"[お]国",  meaning:"negara, negeri",                     type:"place" },
@@ -665,7 +632,7 @@ const allBabs = {
       ]
     },
     {
-      id:"noun", num:"03", title:"Kata Benda Lain di Toko", jp:"名詞・買い物",
+      id:"noun", num:"03", title:"Kata Benda Toko", jp:"名詞・買い物",
       rows:[
         { jp:"くつ",        rom:"kutsu",    note:"", kanji:"靴",     meaning:"sepatu",                              type:"noun" },
         { jp:"ネクタイ",    rom:"nekutai",  note:"", kanji:"—",      meaning:"dasi",                                type:"noun" },
@@ -673,26 +640,17 @@ const allBabs = {
         { jp:"うりば",      rom:"uriba",    note:"", kanji:"売り場",  meaning:"tempat penjualan",                    type:"noun" },
         { jp:"ちか",        rom:"chika",    note:"", kanji:"地下",    meaning:"bawah tanah, basement",              type:"noun" },
         { jp:"〜かい（〜がい）",rom:"-kai (-gai)",note:"",kanji:"〜階",meaning:"lantai 〜, tingkat 〜",              type:"noun" },
-        { jp:"なんがい",    rom:"nan gai",  note:"*",kanji:"何階",    meaning:"lantai berapa, tingkat berapa",      type:"noun" },
+        { jp:"なんがい",    rom:"nan gai",  note:"",kanji:"何階",    meaning:"lantai berapa",                        type:"noun" },
         { jp:"〜えん",      rom:"~ en",     note:"", kanji:"〜円",    meaning:"〜 yen",                              type:"noun" },
         { jp:"いくら",      rom:"ikura",    note:"", kanji:"—",       meaning:"berapa",                             type:"noun" },
-        { jp:"ひゃく",      rom:"hyaku",    note:"", kanji:"百",      meaning:"ratus",                              type:"noun" },
-        { jp:"せん",        rom:"sen",      note:"", kanji:"千",      meaning:"ribu",                               type:"noun" },
-        { jp:"まん",        rom:"man",      note:"", kanji:"万",      meaning:"puluh ribu",                         type:"noun" },
       ]
     },
     {
       id:"expr", num:"04", title:"Ekspresi", jp:"表現",
       rows:[
-        { jp:"すみません",            rom:"sumimasen",          note:"", kanji:"—",  meaning:"Maaf./Permisi.",                                             type:"expr" },
+        { jp:"すみません",            rom:"sumimasen",          note:"", kanji:"—",  meaning:"Maaf. / Permisi.",                                           type:"expr" },
         { jp:"どうも",                rom:"dōmo",               note:"", kanji:"—",  meaning:"Terima kasih.",                                              type:"expr" },
-        { jp:"いらっしゃいませ",      rom:"irasshaimase",       note:"", kanji:"—",  meaning:"Selamat datang./Bisa saya bantu? (ungkapan kepada tamu yang masuk ke toko)", type:"expr" },
-        { jp:"[〜を]みせてください",  rom:"[~ o] misete kudasai",note:"",kanji:"—",  meaning:"Tolong perlihatkan [〜].",                                   type:"expr" },
-        { jp:"じゃ",                  rom:"ja",                 note:"", kanji:"—",  meaning:"Baiklah, kalau begitu.",                                     type:"expr" },
-        { jp:"[〜を]ください",        rom:"[~ o] kudasai",      note:"", kanji:"—",  meaning:"Minta [〜]./Tolong berikan [〜].",                            type:"expr" },
-        { jp:"イタリア/スイス/フランス",rom:"Itaria/Suisu/Furansu",note:"referensi",kanji:"—",meaning:"Italia / Swiss / Perancis",                         type:"expr" },
-        { jp:"ジャカルタ/バンコク/ベルリン",rom:"Jakaruta/Bankoku/Berurin",note:"referensi",kanji:"—",meaning:"Jakarta / Bangkok / Berlin",                 type:"expr" },
-        { jp:"しんおおさか",          rom:"Shin Ōsaka",         note:"referensi",kanji:"新大阪",meaning:"nama stasiun yang ada di Osaka",                  type:"expr" },
+        { jp:"いらっしゃいませ",      rom:"irasshaimase",       note:"", kanji:"—",  meaning:"Selamat datang. (ungkapan kepada tamu yang masuk toko)",     type:"expr" },
       ]
     }
   ],
@@ -727,7 +685,6 @@ const allBabs = {
         { jp:"〜ふん（〜ぷん）",  rom:"-fun (-pun)",    note:"",  kanji:"〜分",    meaning:"〜 menit",                        type:"noun" },
         { jp:"はん",             rom:"han",            note:"",  kanji:"半",      meaning:"setengah",                        type:"noun" },
         { jp:"なんじ",           rom:"nanji",          note:"",  kanji:"何時",    meaning:"jam berapa, pukul berapa",        type:"noun" },
-        { jp:"なんぷん",         rom:"nanpun",         note:"*", kanji:"何分",    meaning:"berapa menit",                    type:"noun" },
         { jp:"ごぜん",           rom:"gozen",          note:"",  kanji:"午前",    meaning:"a.m. (waktu sebelum jam 12 siang)",type:"noun" },
         { jp:"ごご",             rom:"gogo",           note:"",  kanji:"午後",    meaning:"p.m. (waktu setelah jam 12 siang)",type:"noun" },
         { jp:"あさ",             rom:"asa",            note:"",  kanji:"朝",      meaning:"pagi",                            type:"noun" },
@@ -743,7 +700,7 @@ const allBabs = {
         { jp:"やすみ",           rom:"yasumi",         note:"",  kanji:"休み",    meaning:"istirahat, cuti, libur",          type:"noun" },
         { jp:"ひるやすみ",       rom:"hiruyasumi",     note:"",  kanji:"昼休み",  meaning:"istirahat siang",                 type:"noun" },
         { jp:"しけん",           rom:"shiken",         note:"",  kanji:"試験",    meaning:"ujian",                           type:"noun" },
-        { jp:"かいぎ",           rom:"kaigi",          note:"",  kanji:"会議",    meaning:"rapat (〜をします: mengadakan rapat)", type:"noun" },
+        { jp:"かいぎ",           rom:"kaigi",          note:"",  kanji:"会議",    meaning:"rapat",                           type:"noun" },
         { jp:"えいが",           rom:"eiga",           note:"",  kanji:"映画",    meaning:"film",                            type:"noun" },
         { jp:"まいあさ",         rom:"maiasa",         note:"",  kanji:"毎朝",    meaning:"setiap pagi",                     type:"noun" },
         { jp:"まいばん",         rom:"maiban",         note:"",  kanji:"毎晩",    meaning:"setiap malam",                    type:"noun" },
@@ -752,18 +709,15 @@ const allBabs = {
         { jp:"なんようび",       rom:"nan yōbi",       note:"",  kanji:"何曜日",  meaning:"hari apa",                        type:"noun" },
         { jp:"〜から",           rom:"~ kara",         note:"",  kanji:"—",       meaning:"dari 〜",                         type:"noun" },
         { jp:"〜まで",           rom:"~ made",         note:"",  kanji:"—",       meaning:"sampai 〜",                       type:"noun" },
-        { jp:"〜と〜",           rom:"~ to ~",         note:"",  kanji:"—",       meaning:"〜 dan 〜 (digunakan jika menyambung kata benda)", type:"noun" },
+        { jp:"〜と〜",           rom:"~ to ~",         note:"",  kanji:"—",       meaning:"〜 dan 〜",                        type:"noun" },
       ]
     },
     {
       id:"expr", num:"04", title:"Ekspresi", jp:"表現",
       rows:[
-        { jp:"たいへんですね",   rom:"taihen desu ne",  note:"",kanji:"大変ですね",meaning:"O, berat ya. (ungkapan untuk menyatakan rasa simpati)",   type:"expr" },
-        { jp:"ばんごう",         rom:"bangō",           note:"",kanji:"番号",      meaning:"nomor",                                                   type:"expr" },
-        { jp:"なんばん",         rom:"nanban",          note:"",kanji:"何番",       meaning:"nomor berapa",                                            type:"expr" },
-        { jp:"そちら",           rom:"sochira",         note:"",kanji:"—",          meaning:"di situ",                                                 type:"expr" },
-        { jp:"ニューヨーク/ペキン",rom:"Nyū Yōku/Pekin",note:"referensi",kanji:"—", meaning:"New York / Beijing (北京)",                               type:"expr" },
-        { jp:"ロサンゼルス/ロンドン",rom:"Rosanzerusu/Rondon",note:"referensi",kanji:"—",meaning:"Los Angeles / London",                              type:"expr" },
+        { jp:"たいへんですね",   rom:"taihen desu ne",  note:"",kanji:"大変ですね",meaning:"O, berat ya. (rasa simpati)",      type:"expr" },
+        { jp:"ばんごう",         rom:"bangō",           note:"",kanji:"番号",      meaning:"nomor",                           type:"expr" },
+        { jp:"なんばん",         rom:"nanban",          note:"",kanji:"何番",       meaning:"nomor berapa",                    type:"expr" },
       ]
     }
   ],
@@ -799,57 +753,23 @@ const allBabs = {
         { jp:"あるいて",     rom:"aruite",    note:"",kanji:"歩いて",meaning:"dengan berjalan kaki",     type:"noun" },
         { jp:"ひと",         rom:"hito",      note:"",kanji:"人",    meaning:"orang",                   type:"noun" },
         { jp:"ともだち",     rom:"tomodachi", note:"",kanji:"友達",  meaning:"teman",                   type:"noun" },
-        { jp:"かれ",         rom:"kare",      note:"*",kanji:"彼",   meaning:"dia, ia (laki-laki)",     type:"noun" },
+        { jp:"かれ",         rom:"kare",      note:"",kanji:"彼",    meaning:"dia, ia (laki-laki)",     type:"noun" },
         { jp:"かのじょ",     rom:"kanojo",    note:"",kanji:"彼女",  meaning:"dia, ia (perempuan)",     type:"noun" },
         { jp:"かぞく",       rom:"kazoku",    note:"",kanji:"家族",  meaning:"keluarga",                type:"noun" },
-        { jp:"ひとりで",     rom:"hitori de", note:"",kanji:"一人で",meaning:"sendirian, dengan sendiri",type:"noun" },
+        { jp:"ひとりで",     rom:"hitori de", note:"",kanji:"一人で",meaning:"sendirian",               type:"noun" },
         { jp:"せんしゅう",   rom:"senshū",    note:"",kanji:"先週",  meaning:"minggu lalu",             type:"noun" },
-        { jp:"こんしゅう",   rom:"konshū",    note:"*",kanji:"今週", meaning:"minggu ini",              type:"noun" },
+        { jp:"こんしゅう",   rom:"konshū",    note:"",kanji:"今週",  meaning:"minggu ini",              type:"noun" },
         { jp:"らいしゅう",   rom:"raishū",    note:"",kanji:"来週",  meaning:"minggu depan",            type:"noun" },
         { jp:"せんげつ",     rom:"sengetsu",  note:"",kanji:"先月",  meaning:"bulan lalu",              type:"noun" },
-        { jp:"こんげつ",     rom:"kongetsu",  note:"*",kanji:"今月", meaning:"bulan ini",               type:"noun" },
+        { jp:"こんげつ",     rom:"kongetsu",  note:"",kanji:"今月",  meaning:"bulan ini",               type:"noun" },
         { jp:"らいげつ",     rom:"raigetsu",  note:"",kanji:"来月",  meaning:"bulan depan",             type:"noun" },
         { jp:"きょねん",     rom:"kyonen",    note:"",kanji:"去年",  meaning:"tahun lalu",              type:"noun" },
-        { jp:"ことし",       rom:"kotoshi",   note:"*",kanji:"—",    meaning:"tahun ini",               type:"noun" },
+        { jp:"ことし",       rom:"kotoshi",   note:"",kanji:"—",     meaning:"tahun ini",               type:"noun" },
         { jp:"らいねん",     rom:"rainen",    note:"",kanji:"来年",  meaning:"tahun depan",             type:"noun" },
-        { jp:"〜ねん",       rom:"-nen",      note:"*",kanji:"〜年", meaning:"tahun 〜",                type:"noun" },
-        { jp:"なんねん",     rom:"nan nen",   note:"*",kanji:"何年", meaning:"tahun berapa",            type:"noun" },
-        { jp:"〜がつ",       rom:"-gatsu",    note:"",kanji:"〜月",  meaning:"bulan 〜 (nama bulan)",   type:"noun" },
-        { jp:"なんがつ",     rom:"nan gatsu", note:"*",kanji:"何月", meaning:"bulan apa",               type:"noun" },
-        { jp:"ついたち",     rom:"tsuitachi", note:"",kanji:"1日",   meaning:"tanggal satu",            type:"noun" },
-        { jp:"ふつか",       rom:"futsuka",   note:"*",kanji:"2日",  meaning:"tanggal dua, dua hari",   type:"noun" },
-        { jp:"みっか",       rom:"mikka",     note:"",kanji:"3日",   meaning:"tanggal tiga, tiga hari", type:"noun" },
-        { jp:"よっか",       rom:"yokka",     note:"*",kanji:"4日",  meaning:"tanggal empat, empat hari",type:"noun" },
-        { jp:"いつか",       rom:"itsuka",    note:"",kanji:"5日",   meaning:"tanggal lima, lima hari", type:"noun" },
-        { jp:"むいか",       rom:"muika",     note:"",kanji:"6日",   meaning:"tanggal enam, enam hari", type:"noun" },
-        { jp:"なのか",       rom:"nanoka",    note:"*",kanji:"7日",  meaning:"tanggal tujuh, tujuh hari",type:"noun" },
-        { jp:"ようか",       rom:"yōka",      note:"*",kanji:"8日",  meaning:"tanggal delapan, delapan hari",type:"noun" },
-        { jp:"ここのか",     rom:"kokonoka",  note:"",kanji:"9日",   meaning:"tanggal sembilan, sembilan hari",type:"noun" },
-        { jp:"とおか",       rom:"tōka",      note:"",kanji:"10日",  meaning:"tanggal sepuluh, sepuluh hari",type:"noun" },
-        { jp:"じゅうよっか", rom:"jūyokka",   note:"",kanji:"14日",  meaning:"tanggal empat belas",     type:"noun" },
-        { jp:"はつか",       rom:"hatsuka",   note:"*",kanji:"20日", meaning:"tanggal dua puluh",       type:"noun" },
-        { jp:"にじゅうよっか",rom:"nijūyokka",note:"*",kanji:"24日", meaning:"tanggal dua puluh empat", type:"noun" },
-        { jp:"〜にち",       rom:"-nichi",    note:"",kanji:"〜日",  meaning:"tanggal 〜, 〜 hari",     type:"noun" },
-        { jp:"なんにち",     rom:"nan nichi", note:"*",kanji:"何日", meaning:"tanggal berapa, berapa hari",type:"noun" },
         { jp:"いつ",         rom:"itsu",      note:"",kanji:"—",     meaning:"kapan",                   type:"noun" },
         { jp:"たんじょうび", rom:"tanjōbi",   note:"",kanji:"誕生日",meaning:"hari ulang tahun",        type:"noun" },
       ]
     },
-    {
-      id:"expr", num:"04", title:"Ekspresi", jp:"表現",
-      rows:[
-        { jp:"そうですね",              rom:"sō desu ne",              note:"",kanji:"—",      meaning:"Ya, betul./Ya, begitulah.",                               type:"expr" },
-        { jp:"[どうも]ありがとうございました",rom:"[dōmo] arigatō gozaimashita",note:"",kanji:"—",meaning:"Terima kasih [banyak].",                          type:"expr" },
-        { jp:"どういたしまして",        rom:"dō itashimashite",        note:"",kanji:"—",      meaning:"Sama-sama.",                                              type:"expr" },
-        { jp:"〜ばんせん",              rom:"-ban sen",                note:"",kanji:"〜番線",  meaning:"peron nomor 〜",                                         type:"expr" },
-        { jp:"つぎの",                  rom:"tsugi no",                note:"",kanji:"次の",   meaning:"yang berikutnya",                                         type:"expr" },
-        { jp:"ふつう",                  rom:"futsū",                   note:"",kanji:"普通",   meaning:"biasa",                                                   type:"expr" },
-        { jp:"きゅうこう",              rom:"kyūkō",                   note:"*",kanji:"急行",  meaning:"ekspres",                                                 type:"expr" },
-        { jp:"とっきゅう",              rom:"tokkyū",                  note:"*",kanji:"特急",  meaning:"super ekspres",                                           type:"expr" },
-        { jp:"こうしえん",              rom:"Kōshien",                 note:"referensi",kanji:"甲子園",meaning:"nama kota yang terletak di dekat Osaka",          type:"expr" },
-        { jp:"おおさかじょう",          rom:"Ōsaka Jō",                note:"referensi",kanji:"大阪城",meaning:"nama benteng kuno terkenal di Osaka",             type:"expr" },
-      ]
-    }
   ],
 
   6: [
@@ -873,9 +793,9 @@ const allBabs = {
       id:"noun", num:"02", title:"Makanan & Minuman", jp:"食べ物・飲み物",
       rows:[
         { jp:"ごはん",       rom:"gohan",     note:"",  kanji:"ご飯",   meaning:"nasi",                   type:"noun" },
-        { jp:"あさごはん",   rom:"asagohan",  note:"*", kanji:"朝ご飯", meaning:"sarapan",                type:"noun" },
+        { jp:"あさごはん",   rom:"asagohan",  note:"",  kanji:"朝ご飯", meaning:"sarapan",                type:"noun" },
         { jp:"ひるごはん",   rom:"hirugohan", note:"",  kanji:"昼ご飯", meaning:"makan siang",            type:"noun" },
-        { jp:"ばんごはん",   rom:"bangohan",  note:"*", kanji:"晩ご飯", meaning:"makan malam",            type:"noun" },
+        { jp:"ばんごはん",   rom:"bangohan",  note:"",  kanji:"晩ご飯", meaning:"makan malam",            type:"noun" },
         { jp:"パン",         rom:"pan",       note:"",  kanji:"—",      meaning:"roti",                   type:"noun" },
         { jp:"たまご",       rom:"tamago",    note:"",  kanji:"卵",     meaning:"telur",                  type:"noun" },
         { jp:"にく",         rom:"niku",      note:"",  kanji:"肉",     meaning:"daging",                 type:"noun" },
@@ -883,7 +803,7 @@ const allBabs = {
         { jp:"やさい",       rom:"yasai",     note:"",  kanji:"野菜",   meaning:"sayur",                  type:"noun" },
         { jp:"くだもの",     rom:"kudamono",  note:"",  kanji:"果物",   meaning:"buah-buahan",            type:"noun" },
         { jp:"みず",         rom:"mizu",      note:"",  kanji:"水",     meaning:"air",                    type:"noun" },
-        { jp:"おちゃ",       rom:"ocha",      note:"",  kanji:"お茶",   meaning:"teh, teh Jepang (teh hijau)", type:"noun" },
+        { jp:"おちゃ",       rom:"ocha",      note:"",  kanji:"お茶",   meaning:"teh hijau Jepang",       type:"noun" },
         { jp:"こうちゃ",     rom:"kōcha",     note:"",  kanji:"紅茶",   meaning:"teh",                    type:"noun" },
         { jp:"ぎゅうにゅう（ミルク）",rom:"gyūnyū (miruku)",note:"",kanji:"牛乳",meaning:"susu",         type:"noun" },
         { jp:"ジュース",     rom:"jūsu",      note:"",  kanji:"—",      meaning:"jus, sari buah",         type:"noun" },
@@ -892,38 +812,6 @@ const allBabs = {
         { jp:"たばこ",       rom:"tabako",    note:"",  kanji:"—",      meaning:"rokok",                  type:"noun" },
       ]
     },
-    {
-      id:"noun", num:"03", title:"Kata Benda Lain", jp:"名詞",
-      rows:[
-        { jp:"てがみ",       rom:"tegami",    note:"",  kanji:"手紙",   meaning:"surat",                  type:"noun" },
-        { jp:"レポート",     rom:"repōto",    note:"",  kanji:"—",      meaning:"laporan",                type:"noun" },
-        { jp:"しゃしん",     rom:"shashin",   note:"",  kanji:"写真",   meaning:"foto",                   type:"noun" },
-        { jp:"ビデオ",       rom:"bideo",     note:"",  kanji:"—",      meaning:"kaset video, VHS",       type:"noun" },
-        { jp:"みせ",         rom:"mise",      note:"",  kanji:"店",     meaning:"toko",                   type:"noun" },
-        { jp:"にわ",         rom:"niwa",      note:"",  kanji:"庭",     meaning:"halaman",                type:"noun" },
-        { jp:"しゅくだい",   rom:"shukudai",  note:"",  kanji:"宿題",   meaning:"pekerjaan rumah, PR (〜をします: mengerjakan PR)", type:"noun" },
-        { jp:"テニス",       rom:"tenisu",    note:"",  kanji:"—",      meaning:"tenis (〜をします: bermain tenis)", type:"noun" },
-        { jp:"サッカー",     rom:"sakkā",     note:"",  kanji:"—",      meaning:"sepak bola (〜をします: bermain sepak bola)", type:"noun" },
-        { jp:"[お]はなみ",   rom:"[o]hanami", note:"",  kanji:"[お]花見",meaning:"O) Hanami, menikmati bunga Sakura (〜をします: melihat dan menikmati bunga Sakura)", type:"noun" },
-        { jp:"なに",         rom:"nani",      note:"",  kanji:"何",     meaning:"apa",                    type:"noun" },
-        { jp:"いっしょに",   rom:"issho ni",  note:"",  kanji:"一緒に", meaning:"bersama-sama",           type:"noun" },
-        { jp:"ちょっと",     rom:"chotto",    note:"",  kanji:"—",      meaning:"sebentar, sedikit",      type:"noun" },
-        { jp:"いつも",       rom:"itsumo",    note:"",  kanji:"—",      meaning:"selalu",                 type:"noun" },
-        { jp:"ときどき",     rom:"tokidoki",  note:"",  kanji:"時々",   meaning:"kadang-kadang",          type:"noun" },
-        { jp:"それから",     rom:"sorekara",  note:"",  kanji:"—",      meaning:"setelah itu, kemudian",  type:"noun" },
-        { jp:"ええ",         rom:"ee",        note:"",  kanji:"—",      meaning:"ya",                     type:"noun" },
-      ]
-    },
-    {
-      id:"expr", num:"04", title:"Ekspresi", jp:"表現",
-      rows:[
-        { jp:"いいですね",        rom:"ii desu ne",     note:"",kanji:"—",          meaning:"Bagus ya./Baik ya.",         type:"expr" },
-        { jp:"わかりました",      rom:"wakarimashita",  note:"",kanji:"—",          meaning:"Mengerti./Baik.",            type:"expr" },
-        { jp:"何ですか",          rom:"nan desu ka",    note:"",kanji:"何ですか",   meaning:"Apa?",                       type:"expr" },
-        { jp:"じゃ、また[あした]",rom:"ja, mata [ashita]",note:"",kanji:"—",       meaning:"Ok, sampai jumpa [besok].",  type:"expr" },
-        { jp:"メキシコ",          rom:"Mekishiko",      note:"referensi",kanji:"—", meaning:"Meksiko",                   type:"expr" },
-      ]
-    }
   ],
 
   7: [
@@ -932,7 +820,7 @@ const allBabs = {
       rows:[
         { jp:"きります",   rom:"kirimasu",   note:"",             kanji:"切ります",  meaning:"memotong, menggunting",             type:"verb" },
         { jp:"おくります", rom:"okurimasu",  note:"",             kanji:"送ります",  meaning:"mengirim",                          type:"verb" },
-        { jp:"あげます",   rom:"agemasu",    note:"",             kanji:"あげます",  meaning:"memberikan, mendapatkan, menerima", type:"verb" },
+        { jp:"あげます",   rom:"agemasu",    note:"",             kanji:"あげます",  meaning:"memberikan",                        type:"verb" },
         { jp:"もらいます", rom:"moraimasu",  note:"",             kanji:"もらいます",meaning:"mendapatkan, menerima",             type:"verb" },
         { jp:"かします",   rom:"kashimasu",  note:"",             kanji:"貸します",  meaning:"meminjamkan, menyewakan",           type:"verb" },
         { jp:"かります",   rom:"karimasu",   note:"",             kanji:"借ります",  meaning:"meminjam, menyewa",                 type:"verb" },
@@ -954,13 +842,11 @@ const allBabs = {
         { jp:"ケータイ",    rom:"kētai",      note:"",kanji:"—",        meaning:"HP",              type:"noun" },
         { jp:"メール",      rom:"mēru",       note:"",kanji:"—",        meaning:"e-mail",          type:"noun" },
         { jp:"ねんがじょう",rom:"nengajō",    note:"",kanji:"年賀状",   meaning:"kartu tahun baru",type:"noun" },
-        { jp:"パンチ",      rom:"panchi",     note:"",kanji:"—",        meaning:"pelubang kertas", type:"noun" },
         { jp:"ホッチキス",  rom:"hotchikisu", note:"",kanji:"—",        meaning:"staplar",         type:"noun" },
         { jp:"セロテープ",  rom:"serotēpu",   note:"",kanji:"—",        meaning:"selotip",         type:"noun" },
         { jp:"けしゴム",    rom:"keshigomu",  note:"",kanji:"消しゴム", meaning:"penghapus karet", type:"noun" },
         { jp:"かみ",        rom:"kami",       note:"",kanji:"紙",        meaning:"kertas",         type:"noun" },
         { jp:"はな",        rom:"hana",       note:"",kanji:"花",        meaning:"bunga",          type:"noun" },
-        { jp:"シャツ",      rom:"shatsu",     note:"",kanji:"—",         meaning:"kemeja",         type:"noun" },
         { jp:"プレゼント",  rom:"purezento",  note:"",kanji:"—",         meaning:"kado, hadiah",   type:"noun" },
         { jp:"にもつ",      rom:"nimotsu",    note:"",kanji:"荷物",      meaning:"barang",         type:"noun" },
         { jp:"おかね",      rom:"okane",      note:"",kanji:"お金",      meaning:"uang",           type:"noun" },
@@ -968,179 +854,111 @@ const allBabs = {
         { jp:"クリスマス",  rom:"kurisumasu", note:"",kanji:"—",         meaning:"Natal",          type:"noun" },
         { jp:"ちち",        rom:"chichi",     note:"",kanji:"父",         meaning:"bapak, ayah",   type:"noun" },
         { jp:"はは",        rom:"haha",       note:"",kanji:"母",         meaning:"ibu",           type:"noun" },
-        { jp:"おとうさん",  rom:"otōsan",     note:"",kanji:"お父さん",   meaning:"bapak, ayah (ayah orang lain, dan digunakan untuk bapak kandung sendiri juga ketika memanggilnya)", type:"noun" },
-        { jp:"おかあさん",  rom:"okāsan",     note:"",kanji:"お母さん",   meaning:"ibu (ibu orang lain, dan digunakan untuk ibu kandung sendiri juga ketika memanggilnya)", type:"noun" },
+        { jp:"おとうさん",  rom:"otōsan",     note:"",kanji:"お父さん",   meaning:"bapak, ayah (orang lain / saat memanggil)", type:"noun" },
+        { jp:"おかあさん",  rom:"okāsan",     note:"",kanji:"お母さん",   meaning:"ibu (orang lain / saat memanggil)", type:"noun" },
         { jp:"もう",        rom:"mō",         note:"",kanji:"—",          meaning:"sudah",         type:"noun" },
         { jp:"まだ",        rom:"mada",       note:"",kanji:"—",          meaning:"belum",         type:"noun" },
-        { jp:"これから",    rom:"kore kara",  note:"",kanji:"—",          meaning:"mulai dari sekarang", type:"noun" },
       ]
     },
-    {
-      id:"expr", num:"03", title:"Ekspresi", jp:"表現",
-      rows:[
-        { jp:"[〜]すてきですね",        rom:"[~] suteki desu ne",        note:"",kanji:"—",               meaning:"[〜] bagus ya./[〜] indah ya.",                                  type:"expr" },
-        { jp:"いらっしゃい",            rom:"irasshai",                  note:"",kanji:"—",               meaning:"Selamat datang.",                                               type:"expr" },
-        { jp:"どうぞおあがりください",  rom:"dōzo o-agari kudasai",     note:"",kanji:"—",               meaning:"Silakan masuk.",                                                type:"expr" },
-        { jp:"しつれいします",           rom:"shitsurei shimasu",         note:"",kanji:"失礼します",      meaning:"Permisi.",                                                      type:"expr" },
-        { jp:"[〜は]いかがですか",       rom:"[~ wa] ikaga desu ka",     note:"",kanji:"—",               meaning:"Bagaimana [〜]? (digunakan saat menawarkan sesuatu kepada orang)",type:"expr" },
-        { jp:"いただきます",             rom:"itadakimasu",               note:"",kanji:"いただきます",    meaning:"Selamat makan! (diucapkan sebelum minum dan makan makanan)",     type:"expr" },
-        { jp:"ごちそうさま[でした]",     rom:"gochisōsama [deshita]",    note:"",kanji:"—",               meaning:"Terima kasih atas hidangannya. (diucapkan setelah minum dan makan makanan)", type:"expr" },
-        { jp:"スペイン",                 rom:"Supein",                   note:"referensi",kanji:"—",       meaning:"Spanyol",                                                       type:"expr" },
-      ]
-    }
   ],
 
   8: [
     {
       id:"adj", num:"01", title:"Kata Sifat な (na-adjektiva)", jp:"な形容詞",
       rows:[
-        { jp:"ハンサム[な]",  rom:"hansamu [na]",   note:"",kanji:"—",       meaning:"tampan, gagah, ganteng",                               type:"adj" },
-        { jp:"きれい[な]",    rom:"kirei [na]",     note:"",kanji:"—",       meaning:"cantik, bersih",                                       type:"adj" },
-        { jp:"しずか[な]",    rom:"shizuka [na]",   note:"",kanji:"静か[な]", meaning:"sunyi, tenang",                                       type:"adj" },
-        { jp:"にぎやか[な]",  rom:"nigiyaka [na]",  note:"",kanji:"—",       meaning:"ramai",                                               type:"adj" },
-        { jp:"ゆうめい[な]",  rom:"yūmei [na]",     note:"",kanji:"有名[な]", meaning:"terkenal",                                            type:"adj" },
-        { jp:"しんせつ[な]",  rom:"shinsetsu [na]", note:"",kanji:"親切[な]", meaning:"baik hati (tidak digunakan untuk keluarga sendiri)",   type:"adj" },
-        { jp:"げんき[な]",    rom:"genki [na]",     note:"",kanji:"元気[な]", meaning:"sehat walafiat",                                      type:"adj" },
-        { jp:"ひま[な]",      rom:"hima [na]",      note:"",kanji:"暇[な]",   meaning:"senggang",                                            type:"adj" },
-        { jp:"べんり[な]",    rom:"benri [na]",     note:"",kanji:"便利[な]", meaning:"praktis",                                             type:"adj" },
-        { jp:"すてき[な]",    rom:"suteki [na]",    note:"",kanji:"—",        meaning:"bagus",                                               type:"adj" },
+        { jp:"ハンサム[な]",  rom:"hansamu [na]",   note:"",kanji:"—",       meaning:"tampan, gagah, ganteng",    type:"adj" },
+        { jp:"きれい[な]",    rom:"kirei [na]",     note:"",kanji:"—",       meaning:"cantik, bersih",            type:"adj" },
+        { jp:"しずか[な]",    rom:"shizuka [na]",   note:"",kanji:"静か[な]", meaning:"sunyi, tenang",            type:"adj" },
+        { jp:"にぎやか[な]",  rom:"nigiyaka [na]",  note:"",kanji:"—",       meaning:"ramai",                    type:"adj" },
+        { jp:"ゆうめい[な]",  rom:"yūmei [na]",     note:"",kanji:"有名[な]", meaning:"terkenal",                 type:"adj" },
+        { jp:"しんせつ[な]",  rom:"shinsetsu [na]", note:"",kanji:"親切[な]", meaning:"baik hati",                type:"adj" },
+        { jp:"げんき[な]",    rom:"genki [na]",     note:"",kanji:"元気[な]", meaning:"sehat walafiat",           type:"adj" },
+        { jp:"ひま[な]",      rom:"hima [na]",      note:"",kanji:"暇[な]",   meaning:"senggang",                 type:"adj" },
+        { jp:"べんり[な]",    rom:"benri [na]",     note:"",kanji:"便利[な]", meaning:"praktis",                  type:"adj" },
+        { jp:"すてき[な]",    rom:"suteki [na]",    note:"",kanji:"—",        meaning:"bagus",                    type:"adj" },
       ]
     },
     {
       id:"adj", num:"02", title:"Kata Sifat い (i-adjektiva)", jp:"い形容詞",
       rows:[
-        { jp:"おおきい",      rom:"ōkii",       note:"",  kanji:"大きい",    meaning:"besar",                                              type:"adj" },
-        { jp:"ちいさい",      rom:"chiisai",    note:"*", kanji:"小さい",    meaning:"kecil",                                              type:"adj" },
-        { jp:"あたらしい",    rom:"atarashii",  note:"",  kanji:"新しい",    meaning:"baru",                                               type:"adj" },
-        { jp:"ふるい",        rom:"furui",      note:"",  kanji:"古い",      meaning:"lama, tua",                                          type:"adj" },
-        { jp:"いい（よい）",  rom:"ii (yoi)",   note:"",  kanji:"良い",      meaning:"baik, bagus",                                        type:"adj" },
-        { jp:"わるい",        rom:"warui",      note:"*", kanji:"悪い",      meaning:"buruk, jelek",                                       type:"adj" },
-        { jp:"あつい",        rom:"atsui",      note:"",  kanji:"暑い、熱い",meaning:"panas",                                              type:"adj" },
-        { jp:"さむい",        rom:"samui",      note:"",  kanji:"寒い",      meaning:"dingin (mengungkapkan tentang suhu udara)",          type:"adj" },
-        { jp:"つめたい",      rom:"tsumetai",   note:"",  kanji:"冷たい",    meaning:"dingin (mengungkapkan tentang rasa benda)",          type:"adj" },
-        { jp:"むずかしい",    rom:"muzukashii", note:"",  kanji:"難しい",    meaning:"sulit, susah",                                       type:"adj" },
-        { jp:"やさしい",      rom:"yasashii",   note:"",  kanji:"易しい",    meaning:"mudah, gampang",                                     type:"adj" },
-        { jp:"たかい",        rom:"takai",      note:"",  kanji:"高い",      meaning:"mahal, tinggi",                                      type:"adj" },
-        { jp:"やすい",        rom:"yasui",      note:"",  kanji:"安い",      meaning:"murah",                                              type:"adj" },
-        { jp:"ひくい",        rom:"hikui",      note:"*", kanji:"低い",      meaning:"rendah",                                             type:"adj" },
-        { jp:"おもしろい",    rom:"omoshiroi",  note:"",  kanji:"面白い",    meaning:"menarik",                                            type:"adj" },
-        { jp:"おいしい",      rom:"oishii",     note:"",  kanji:"—",         meaning:"enak",                                               type:"adj" },
-        { jp:"いそがしい",    rom:"isogashii",  note:"",  kanji:"忙しい",    meaning:"sibuk",                                              type:"adj" },
-        { jp:"たのしい",      rom:"tanoshii",   note:"",  kanji:"楽しい",    meaning:"senang",                                             type:"adj" },
-        { jp:"しろい",        rom:"shiroi",     note:"",  kanji:"白い",      meaning:"putih",                                              type:"adj" },
-        { jp:"くろい",        rom:"kuroi",      note:"",  kanji:"黒い",      meaning:"hitam",                                              type:"adj" },
-        { jp:"あかい",        rom:"akai",       note:"",  kanji:"赤い",      meaning:"merah",                                              type:"adj" },
-        { jp:"あおい",        rom:"aoi",        note:"",  kanji:"青い",      meaning:"biru",                                               type:"adj" },
+        { jp:"おおきい",      rom:"ōkii",       note:"",  kanji:"大きい",    meaning:"besar",       type:"adj" },
+        { jp:"ちいさい",      rom:"chiisai",    note:"",  kanji:"小さい",    meaning:"kecil",       type:"adj" },
+        { jp:"あたらしい",    rom:"atarashii",  note:"",  kanji:"新しい",    meaning:"baru",        type:"adj" },
+        { jp:"ふるい",        rom:"furui",      note:"",  kanji:"古い",      meaning:"lama, tua",   type:"adj" },
+        { jp:"いい（よい）",  rom:"ii (yoi)",   note:"",  kanji:"良い",      meaning:"baik, bagus", type:"adj" },
+        { jp:"わるい",        rom:"warui",      note:"",  kanji:"悪い",      meaning:"buruk, jelek",type:"adj" },
+        { jp:"あつい",        rom:"atsui",      note:"",  kanji:"暑い、熱い",meaning:"panas",       type:"adj" },
+        { jp:"さむい",        rom:"samui",      note:"",  kanji:"寒い",      meaning:"dingin (suhu udara)",   type:"adj" },
+        { jp:"つめたい",      rom:"tsumetai",   note:"",  kanji:"冷たい",    meaning:"dingin (rasa benda)", type:"adj" },
+        { jp:"むずかしい",    rom:"muzukashii", note:"",  kanji:"難しい",    meaning:"sulit, susah",type:"adj" },
+        { jp:"やさしい",      rom:"yasashii",   note:"",  kanji:"易しい",    meaning:"mudah, gampang",type:"adj" },
+        { jp:"たかい",        rom:"takai",      note:"",  kanji:"高い",      meaning:"mahal, tinggi",type:"adj" },
+        { jp:"やすい",        rom:"yasui",      note:"",  kanji:"安い",      meaning:"murah",       type:"adj" },
+        { jp:"ひくい",        rom:"hikui",      note:"",  kanji:"低い",      meaning:"rendah",      type:"adj" },
+        { jp:"おもしろい",    rom:"omoshiroi",  note:"",  kanji:"面白い",    meaning:"menarik",     type:"adj" },
+        { jp:"おいしい",      rom:"oishii",     note:"",  kanji:"—",         meaning:"enak",        type:"adj" },
+        { jp:"いそがしい",    rom:"isogashii",  note:"",  kanji:"忙しい",    meaning:"sibuk",       type:"adj" },
+        { jp:"たのしい",      rom:"tanoshii",   note:"",  kanji:"楽しい",    meaning:"senang",      type:"adj" },
+        { jp:"しろい",        rom:"shiroi",     note:"",  kanji:"白い",      meaning:"putih",       type:"adj" },
+        { jp:"くろい",        rom:"kuroi",      note:"",  kanji:"黒い",      meaning:"hitam",       type:"adj" },
+        { jp:"あかい",        rom:"akai",       note:"",  kanji:"赤い",      meaning:"merah",       type:"adj" },
+        { jp:"あおい",        rom:"aoi",        note:"",  kanji:"青い",      meaning:"biru",        type:"adj" },
       ]
     },
     {
       id:"noun", num:"03", title:"Kata Benda", jp:"名詞",
       rows:[
-        { jp:"さくら",    rom:"sakura",   note:"",kanji:"桜",    meaning:"Sakura",        type:"noun" },
-        { jp:"やま",      rom:"yama",     note:"",kanji:"山",    meaning:"gunung",        type:"noun" },
-        { jp:"まち",      rom:"machi",    note:"",kanji:"町",    meaning:"kota",          type:"noun" },
-        { jp:"たべもの",  rom:"tabemono", note:"",kanji:"食べ物",meaning:"makanan",       type:"noun" },
-        { jp:"ところ",    rom:"tokoro",   note:"",kanji:"所",    meaning:"tempat",        type:"noun" },
-        { jp:"りょう",    rom:"ryō",      note:"",kanji:"寮",    meaning:"asrama",        type:"noun" },
-        { jp:"レストラン",rom:"resutoran",note:"",kanji:"—",     meaning:"restoran",      type:"noun" },
-        { jp:"せいかつ",  rom:"seikatsu", note:"",kanji:"生活",  meaning:"kehidupan",     type:"noun" },
-        { jp:"[お]しごと",rom:"[o]shigoto",note:"",kanji:"[お]仕事",meaning:"pekerjaan (〜をします: bekerja)", type:"noun" },
-        { jp:"どう",      rom:"dō",       note:"",kanji:"—",     meaning:"bagaimana",     type:"noun" },
-        { jp:"どんな〜",  rom:"donna ~",  note:"",kanji:"—",     meaning:"yang bagaimana 〜", type:"noun" },
-        { jp:"とても",    rom:"totemo",   note:"",kanji:"—",     meaning:"sangat, 〜 sekali", type:"noun" },
-        { jp:"あまり",    rom:"amari",    note:"",kanji:"—",     meaning:"kurang begitu 〜, tidak begitu 〜 (diikuti dengan kalimat negatif)", type:"noun" },
-        { jp:"そして",    rom:"soshite",  note:"",kanji:"—",     meaning:"kemudian, dan (digunakan untuk menyambung kalimat)", type:"noun" },
-        { jp:"〜が、〜",  rom:"~ ga, ~",  note:"",kanji:"—",     meaning:"〜, tetapi 〜", type:"noun" },
+        { jp:"さくら",    rom:"sakura",   note:"",kanji:"桜",    meaning:"Sakura",     type:"noun" },
+        { jp:"やま",      rom:"yama",     note:"",kanji:"山",    meaning:"gunung",     type:"noun" },
+        { jp:"まち",      rom:"machi",    note:"",kanji:"町",    meaning:"kota",       type:"noun" },
+        { jp:"たべもの",  rom:"tabemono", note:"",kanji:"食べ物",meaning:"makanan",    type:"noun" },
+        { jp:"ところ",    rom:"tokoro",   note:"",kanji:"所",    meaning:"tempat",     type:"noun" },
+        { jp:"りょう",    rom:"ryō",      note:"",kanji:"寮",    meaning:"asrama",     type:"noun" },
+        { jp:"レストラン",rom:"resutoran",note:"",kanji:"—",     meaning:"restoran",   type:"noun" },
+        { jp:"せいかつ",  rom:"seikatsu", note:"",kanji:"生活",  meaning:"kehidupan",  type:"noun" },
+        { jp:"[お]しごと",rom:"[o]shigoto",note:"",kanji:"[お]仕事",meaning:"pekerjaan",type:"noun" },
+        { jp:"どう",      rom:"dō",       note:"",kanji:"—",     meaning:"bagaimana",  type:"noun" },
+        { jp:"どんな〜",  rom:"donna ~",  note:"",kanji:"—",     meaning:"yang bagaimana 〜",type:"noun" },
+        { jp:"とても",    rom:"totemo",   note:"",kanji:"—",     meaning:"sangat",     type:"noun" },
+        { jp:"あまり",    rom:"amari",    note:"",kanji:"—",     meaning:"kurang begitu (+ negatif)",type:"noun" },
+        { jp:"そして",    rom:"soshite",  note:"",kanji:"—",     meaning:"kemudian, dan",type:"noun" },
       ]
     },
-    {
-      id:"expr", num:"04", title:"Ekspresi", jp:"表現",
-      rows:[
-        { jp:"お元気ですか",                    rom:"o-genki desu ka",              note:"",kanji:"—", meaning:"Apa kabar?",                                                      type:"expr" },
-        { jp:"そうですね",                      rom:"sō desu ne",                   note:"",kanji:"—", meaning:"Bagaimana ya?",                                                   type:"expr" },
-        { jp:"[〜、]もういっぱいいかがですか",   rom:"[~,] mō ippai ikaga desu ka", note:"",kanji:"—", meaning:"Mau tambah [〜] secangkir lagi?",                                type:"expr" },
-        { jp:"[いいえ、]けっこうです",           rom:"[iie,] kekkō desu",            note:"",kanji:"—", meaning:"[Tidak,] terima kasih, saya sudah cukup.",                       type:"expr" },
-        { jp:"もう〜です[ね]",                  rom:"mō ~ desu [ne]",               note:"",kanji:"—", meaning:"Sudah 〜 [ya].",                                                  type:"expr" },
-        { jp:"そろそろしつれいします",           rom:"sorosoro shitsurei shimasu",   note:"",kanji:"—", meaning:"Maaf, saya mau pamit dulu.",                                      type:"expr" },
-        { jp:"またいらっしゃってください",       rom:"mata irasshatte kudasai",      note:"",kanji:"—", meaning:"Silakan datang lagi.",                                            type:"expr" },
-        { jp:"シャンハイ/きんかくじ/ならこうえん",rom:"Shanhai/Kinkakuji/Nara Kōen",note:"referensi",kanji:"上海/金剛寺/奈良公園",meaning:"Shanghai / kuil Kinkakuji / taman Nara",type:"expr"},
-        { jp:"ふじさん",                        rom:"Fujisan",                      note:"referensi",kanji:"富士山",meaning:"gunung Fuji (gunung yang tertinggi di Jepang)",       type:"expr"},
-      ]
-    }
   ],
 
   9: [
-    {
-      id:"verb", num:"01", title:"Kata Kerja", jp:"動詞",
-      rows:[
-        { jp:"わかります", rom:"wakarimasu", note:"", kanji:"—",      meaning:"mengerti",       type:"verb" },
-        { jp:"あります",   rom:"arimasu",    note:"", kanji:"あります",meaning:"ada, mempunyai",  type:"verb" },
-      ]
-    },
-    {
-      id:"adj", num:"02", title:"Kata Sifat な", jp:"な形容詞",
-      rows:[
-        { jp:"すき[な]",    rom:"suki [na]",    note:"", kanji:"好き[な]", meaning:"suka, gemar",              type:"adj" },
-        { jp:"きらい[な]",  rom:"kirai [na]",   note:"", kanji:"嫌い[な]", meaning:"tidak suka",               type:"adj" },
-        { jp:"じょうず[な]",rom:"jōzu [na]",    note:"", kanji:"上手[な]", meaning:"pandai, pintar",           type:"adj" },
-        { jp:"へた[な]",    rom:"heta [na]",    note:"", kanji:"下手[な]", meaning:"tidak pandai, tidak pintar",type:"adj" },
-      ]
-    },
-    {
-      id:"noun", num:"03", title:"Kata Benda — Hobi & Keluarga", jp:"名詞・趣味・家族",
-      rows:[
-        { jp:"のみもの",     rom:"nomimono",   note:"",kanji:"飲み物", meaning:"minuman",                           type:"noun" },
-        { jp:"りょうり",     rom:"ryōri",      note:"",kanji:"料理",   meaning:"masakan (〜をします: memasak)",     type:"noun" },
-        { jp:"スポーツ",     rom:"supōtsu",    note:"",kanji:"—",      meaning:"olahraga",                          type:"noun" },
-        { jp:"やきゅう",     rom:"yakyū",      note:"",kanji:"野球",   meaning:"baseball",                          type:"noun" },
-        { jp:"ダンス",       rom:"dansu",      note:"",kanji:"—",      meaning:"dansa",                             type:"noun" },
-        { jp:"りょこう",     rom:"ryokō",      note:"",kanji:"旅行",   meaning:"tamasya",                           type:"noun" },
-        { jp:"おんがく",     rom:"ongaku",     note:"",kanji:"音楽",   meaning:"musik",                             type:"noun" },
-        { jp:"うた",         rom:"uta",        note:"",kanji:"歌",     meaning:"lagu",                              type:"noun" },
-        { jp:"クラシック",   rom:"kurashikku", note:"",kanji:"—",      meaning:"klasik",                            type:"noun" },
-        { jp:"ジャズ",       rom:"jazu",       note:"",kanji:"—",      meaning:"jaz",                               type:"noun" },
-        { jp:"コンサート",   rom:"konsāto",    note:"",kanji:"—",      meaning:"konser",                            type:"noun" },
-        { jp:"カラオケ",     rom:"karaoke",    note:"",kanji:"—",      meaning:"karaoke",                           type:"noun" },
-        { jp:"かぶき",       rom:"kabuki",     note:"",kanji:"歌舞伎", meaning:"Kabuki (drama tradisional Jepang)", type:"noun" },
-        { jp:"え",           rom:"e",          note:"",kanji:"絵",     meaning:"gambar",                            type:"noun" },
-        { jp:"じ",           rom:"ji",         note:"",kanji:"字",     meaning:"huruf",                             type:"noun" },
-        { jp:"かんじ",       rom:"kanji",      note:"",kanji:"漢字",   meaning:"Kanji",                             type:"noun" },
-        { jp:"ひらがな",     rom:"hiragana",   note:"",kanji:"—",      meaning:"Hiragana",                          type:"noun" },
-        { jp:"かたかな",     rom:"katakana",   note:"",kanji:"—",      meaning:"Katakana",                          type:"noun" },
-        { jp:"ローマじ",     rom:"rōmaji",     note:"",kanji:"ローマ字",meaning:"huruf latin",                     type:"noun" },
-        { jp:"こまかいおかね",rom:"komakai okane",note:"",kanji:"細かいお金",meaning:"uang kecil, receh",         type:"noun" },
-        { jp:"チケット",     rom:"chiketto",   note:"",kanji:"—",      meaning:"tiket",                             type:"noun" },
-        { jp:"じかん",       rom:"jikan",      note:"",kanji:"時間",   meaning:"jam, waktu",                        type:"noun" },
-        { jp:"ようじ",       rom:"yōji",       note:"",kanji:"用事",   meaning:"urusan",                            type:"noun" },
-        { jp:"やくそく",     rom:"yakusoku",   note:"",kanji:"約束",   meaning:"janji",                             type:"noun" },
-        { jp:"アルバイト",   rom:"arubaito",   note:"",kanji:"—",      meaning:"kerja paruh waktu",                 type:"noun" },
-        { jp:"ごしゅじん",   rom:"go-shujin",  note:"",kanji:"ご主人",  meaning:"suami (untuk menyebutkan suami orang lain)",type:"noun" },
-        { jp:"おっと／しゅじん",rom:"otto/shujin",note:"",kanji:"夫／主人",meaning:"suami",                      type:"noun" },
-        { jp:"おくさん",     rom:"okusan",     note:"",kanji:"奥さん",  meaning:"istri (untuk menyebutkan istri orang lain)",type:"noun" },
-        { jp:"つま／かない", rom:"tsuma/kanai",note:"",kanji:"妻／家内",meaning:"istri",                           type:"noun" },
-        { jp:"こども",       rom:"kodomo",     note:"",kanji:"子ども", meaning:"anak",                              type:"noun" },
-        { jp:"よく",         rom:"yoku",       note:"",kanji:"—",      meaning:"dengan baik",                       type:"noun" },
-        { jp:"だいたい",     rom:"daitai",     note:"",kanji:"—",      meaning:"kira-kira",                         type:"noun" },
-        { jp:"たくさん",     rom:"takusan",    note:"",kanji:"—",      meaning:"banyak",                            type:"noun" },
-        { jp:"すこし",       rom:"sukoshi",    note:"",kanji:"少し",   meaning:"sedikit",                           type:"noun" },
-        { jp:"ぜんぜん",     rom:"zenzen",     note:"",kanji:"全然",   meaning:"sama sekali (+ negatif)",            type:"noun" },
-        { jp:"はやく",       rom:"hayaku",     note:"",kanji:"早く、速く",meaning:"dengan cepat",                  type:"noun" },
-        { jp:"〜から",       rom:"~ kara",     note:"",kanji:"—",      meaning:"karena 〜, sebab 〜",               type:"noun" },
-        { jp:"どうして",     rom:"dōshite",    note:"",kanji:"—",      meaning:"kenapa",                            type:"noun" },
-      ]
-    },
-    {
-      id:"expr", num:"04", title:"Ekspresi", jp:"表現",
-      rows:[
-        { jp:"かしてください",          rom:"kashite kudasai",        note:"",kanji:"—",       meaning:"Tolong pinjamkan.",                                       type:"expr" },
-        { jp:"いいですよ",              rom:"ii desu yo",             note:"",kanji:"—",       meaning:"Boleh.",                                                  type:"expr" },
-        { jp:"ざんねんです[が]",        rom:"zannen desu [ga]",       note:"",kanji:"残念です", meaning:"sayang sekali",                                          type:"expr" },
-        { jp:"いっしょにいかがですか",  rom:"issho ni ikaga desu ka", note:"",kanji:"—",       meaning:"Bagaimana kalau bersama-sama?",                           type:"expr" },
-        { jp:"[〜は]ちょっと……",       rom:"[~ wa] chotto ...",      note:"",kanji:"—",       meaning:"Maaf ya, saya tidak bisa [〜]. (menolak ajakan secara tidak langsung)", type:"expr" },
-        { jp:"だめですか",              rom:"dame desu ka",           note:"",kanji:"—",       meaning:"Tidak bisa ya?/Tidak boleh ya?",                          type:"expr" },
-        { jp:"またこんどおねがいします", rom:"mata kondo onegai shimasu",note:"",kanji:"—",    meaning:"Maaf, lain kali saja.",                                   type:"expr" },
-      ]
-    }
+    { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
+      { jp:"わかります", rom:"wakarimasu", note:"", kanji:"—",      meaning:"mengerti",       type:"verb" },
+      { jp:"あります",   rom:"arimasu",    note:"", kanji:"あります",meaning:"ada, mempunyai",  type:"verb" },
+    ]},
+    { id:"adj", num:"02", title:"Kata Sifat な", jp:"な形容詞", rows:[
+      { jp:"すき[な]",    rom:"suki [na]",    note:"", kanji:"好き[な]", meaning:"suka, gemar",               type:"adj" },
+      { jp:"きらい[な]",  rom:"kirai [na]",   note:"", kanji:"嫌い[な]", meaning:"tidak suka",                type:"adj" },
+      { jp:"じょうず[な]",rom:"jōzu [na]",    note:"", kanji:"上手[な]", meaning:"pandai, pintar",            type:"adj" },
+      { jp:"へた[な]",    rom:"heta [na]",    note:"", kanji:"下手[な]", meaning:"tidak pandai",              type:"adj" },
+    ]},
+    { id:"noun", num:"03", title:"Kata Benda — Hobi & Keluarga", jp:"名詞・趣味・家族", rows:[
+      { jp:"のみもの",     rom:"nomimono",   note:"",kanji:"飲み物", meaning:"minuman",         type:"noun" },
+      { jp:"りょうり",     rom:"ryōri",      note:"",kanji:"料理",   meaning:"masakan",         type:"noun" },
+      { jp:"スポーツ",     rom:"supōtsu",    note:"",kanji:"—",      meaning:"olahraga",        type:"noun" },
+      { jp:"やきゅう",     rom:"yakyū",      note:"",kanji:"野球",   meaning:"baseball",        type:"noun" },
+      { jp:"ダンス",       rom:"dansu",      note:"",kanji:"—",      meaning:"dansa",           type:"noun" },
+      { jp:"りょこう",     rom:"ryokō",      note:"",kanji:"旅行",   meaning:"tamasya",         type:"noun" },
+      { jp:"おんがく",     rom:"ongaku",     note:"",kanji:"音楽",   meaning:"musik",           type:"noun" },
+      { jp:"うた",         rom:"uta",        note:"",kanji:"歌",     meaning:"lagu",            type:"noun" },
+      { jp:"コンサート",   rom:"konsāto",    note:"",kanji:"—",      meaning:"konser",          type:"noun" },
+      { jp:"カラオケ",     rom:"karaoke",    note:"",kanji:"—",      meaning:"karaoke",         type:"noun" },
+      { jp:"かんじ",       rom:"kanji",      note:"",kanji:"漢字",   meaning:"Kanji",           type:"noun" },
+      { jp:"ひらがな",     rom:"hiragana",   note:"",kanji:"—",      meaning:"Hiragana",        type:"noun" },
+      { jp:"じかん",       rom:"jikan",      note:"",kanji:"時間",   meaning:"jam, waktu",      type:"noun" },
+      { jp:"ようじ",       rom:"yōji",       note:"",kanji:"用事",   meaning:"urusan",          type:"noun" },
+      { jp:"やくそく",     rom:"yakusoku",   note:"",kanji:"約束",   meaning:"janji",           type:"noun" },
+      { jp:"よく",         rom:"yoku",       note:"",kanji:"—",      meaning:"dengan baik, sering", type:"noun" },
+      { jp:"たくさん",     rom:"takusan",    note:"",kanji:"—",      meaning:"banyak",          type:"noun" },
+      { jp:"すこし",       rom:"sukoshi",    note:"",kanji:"少し",   meaning:"sedikit",         type:"noun" },
+      { jp:"ぜんぜん",     rom:"zenzen",     note:"",kanji:"全然",   meaning:"sama sekali (+ negatif)",type:"noun" },
+      { jp:"どうして",     rom:"dōshite",    note:"",kanji:"—",      meaning:"kenapa",          type:"noun" },
+    ]},
   ],
 
   10: [
@@ -1148,36 +966,18 @@ const allBabs = {
       { jp:"あります", rom:"arimasu", note:"", kanji:"あります", meaning:"ada (benda mati)",       type:"verb" },
       { jp:"います",   rom:"imasu",   note:"", kanji:"います",   meaning:"ada (makhluk hidup)",    type:"verb" },
     ]},
-    { id:"noun", num:"02", title:"Kata Benda & Posisi", jp:"名詞・位置", rows:[
-      { jp:"いろいろ[な]", rom:"iroiro [na]", note:"",kanji:"—",     meaning:"berbagai",           type:"noun" },
-      { jp:"おとこのひと", rom:"otoko no hito",note:"",kanji:"男の人",meaning:"orang laki-laki",   type:"noun" },
-      { jp:"おんなのひと", rom:"onna no hito", note:"",kanji:"女の人",meaning:"orang perempuan",   type:"noun" },
-      { jp:"おとこのこ",   rom:"otoko no ko",  note:"",kanji:"男の子",meaning:"anak laki-laki",    type:"noun" },
-      { jp:"おんなのこ",   rom:"onna no ko",   note:"",kanji:"女の子",meaning:"anak perempuan",    type:"noun" },
+    { id:"noun", num:"02", title:"Posisi & Kata Benda", jp:"位置・名詞", rows:[
       { jp:"いぬ",         rom:"inu",          note:"",kanji:"犬",    meaning:"anjing",            type:"noun" },
       { jp:"ねこ",         rom:"neko",         note:"",kanji:"猫",    meaning:"kucing",            type:"noun" },
-      { jp:"パンダ",       rom:"panda",        note:"",kanji:"—",     meaning:"panda",             type:"noun" },
-      { jp:"ぞう",         rom:"zō",           note:"",kanji:"象",    meaning:"gajah",             type:"noun" },
       { jp:"き",           rom:"ki",           note:"",kanji:"木",    meaning:"pohon",             type:"noun" },
-      { jp:"もの",         rom:"mono",         note:"",kanji:"物",    meaning:"barang",            type:"noun" },
-      { jp:"でんち",       rom:"denchi",       note:"",kanji:"電池",  meaning:"baterai",           type:"noun" },
-      { jp:"はこ",         rom:"hako",         note:"",kanji:"箱",    meaning:"kotak",             type:"noun" },
-      { jp:"スイッチ",     rom:"suicchi",      note:"",kanji:"—",     meaning:"tombol, sakelar",   type:"noun" },
       { jp:"れいぞうこ",   rom:"reizōko",      note:"",kanji:"冷蔵庫",meaning:"kulkas, lemari es", type:"noun" },
       { jp:"テーブル",     rom:"tēburu",       note:"",kanji:"—",     meaning:"meja makan",        type:"noun" },
       { jp:"ベッド",       rom:"beddo",        note:"",kanji:"—",     meaning:"tempat tidur",      type:"noun" },
       { jp:"たな",         rom:"tana",         note:"",kanji:"棚",    meaning:"lemari",            type:"noun" },
       { jp:"ドア",         rom:"doa",          note:"",kanji:"—",     meaning:"pintu",             type:"noun" },
       { jp:"まど",         rom:"mado",         note:"",kanji:"窓",    meaning:"jendela",           type:"noun" },
-      { jp:"ポスト",       rom:"posuto",       note:"",kanji:"—",     meaning:"kotak surat",       type:"noun" },
-      { jp:"ビル",         rom:"biru",         note:"",kanji:"—",     meaning:"gedung",            type:"noun" },
-      { jp:"ATM",          rom:"ētīemu",       note:"",kanji:"—",     meaning:"ATM",               type:"noun" },
       { jp:"コンビニ",     rom:"konbini",      note:"",kanji:"—",     meaning:"toko 24 jam",       type:"noun" },
       { jp:"こうえん",     rom:"kōen",         note:"",kanji:"公園",  meaning:"taman",             type:"noun" },
-      { jp:"きっさてん",   rom:"kissaten",     note:"",kanji:"喫茶店",meaning:"coffee shop",       type:"noun" },
-      { jp:"〜や",         rom:"-ya",          note:"",kanji:"〜屋",  meaning:"toko 〜",           type:"noun" },
-      { jp:"のりば",       rom:"noriba",       note:"",kanji:"乗り場",meaning:"tempat naik",       type:"noun" },
-      { jp:"けん",         rom:"ken",          note:"",kanji:"県",    meaning:"prefektur",         type:"noun" },
       { jp:"うえ",         rom:"ue",           note:"",kanji:"上",    meaning:"atas",              type:"noun" },
       { jp:"した",         rom:"shita",        note:"",kanji:"下",    meaning:"bawah",             type:"noun" },
       { jp:"まえ",         rom:"mae",          note:"",kanji:"前",    meaning:"depan, muka",       type:"noun" },
@@ -1189,18 +989,11 @@ const allBabs = {
       { jp:"となり",       rom:"tonari",       note:"",kanji:"隣",    meaning:"sebelah",           type:"noun" },
       { jp:"ちかく",       rom:"chikaku",      note:"",kanji:"近く",  meaning:"dekat",             type:"noun" },
       { jp:"あいだ",       rom:"aida",         note:"",kanji:"間",    meaning:"antara",            type:"noun" },
-      { jp:"〜や〜[など]", rom:"~ ya ~ [nado]",note:"",kanji:"—",    meaning:"〜 dan 〜 [dan lain-lain]",type:"noun" },
     ]},
   ],
 
   11: [
-    { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
-      { jp:"います[こどもが〜]",  rom:"imasu",       note:"[子どもが〜]",kanji:"います",  meaning:"ada, mempunyai [anak]",   type:"verb" },
-      { jp:"います[にほんに〜]",  rom:"imasu",       note:"[日本に〜]",  kanji:"います",  meaning:"ada [di Jepang]",         type:"verb" },
-      { jp:"かかります",          rom:"kakarimasu",  note:"",            kanji:"かかります",meaning:"memakan (waktu/uang)",  type:"verb" },
-      { jp:"やすみます[かいしゃを〜]",rom:"yasumimasu",note:"[会社を〜]",kanji:"休みます",meaning:"tidak masuk [kerja]",   type:"verb" },
-    ]},
-    { id:"noun", num:"02", title:"Bilangan & Keluarga", jp:"数え方・家族", rows:[
+    { id:"noun", num:"01", title:"Bilangan & Keluarga", jp:"数え方・家族", rows:[
       {jp:"ひとつ",rom:"hitotsu",note:"",kanji:"1つ",meaning:"satu (untuk menghitung barang)",type:"noun"},
       {jp:"ふたつ",rom:"futatsu",note:"",kanji:"2つ",meaning:"dua",type:"noun"},
       {jp:"みっつ",rom:"mittsu",note:"",kanji:"3つ",meaning:"tiga",type:"noun"},
@@ -1215,17 +1008,11 @@ const allBabs = {
       {jp:"ひとり",rom:"hitori",note:"",kanji:"1人",meaning:"seorang",type:"noun"},
       {jp:"ふたり",rom:"futari",note:"",kanji:"2人",meaning:"dua orang",type:"noun"},
       {jp:"〜にん",rom:"-nin",note:"",kanji:"〜人",meaning:"〜 orang",type:"noun"},
-      {jp:"〜だい",rom:"-dai",note:"",kanji:"〜台",meaning:"buah (mesin/mobil)",type:"noun"},
-      {jp:"〜まい",rom:"-mai",note:"",kanji:"〜枚",meaning:"lembar, helai (kertas/perangko)",type:"noun"},
-      {jp:"〜かい",rom:"-kai",note:"",kanji:"〜回",meaning:"〜 kali",type:"noun"},
+      {jp:"〜まい",rom:"-mai",note:"",kanji:"〜枚",meaning:"lembar, helai",type:"noun"},
       {jp:"りんご",rom:"ringo",note:"",kanji:"—",meaning:"apel",type:"noun"},
       {jp:"みかん",rom:"mikan",note:"",kanji:"—",meaning:"jeruk",type:"noun"},
-      {jp:"サンドイッチ",rom:"sandoicchi",note:"",kanji:"—",meaning:"sandwich",type:"noun"},
-      {jp:"カレー[ライス]",rom:"karē [raisu]",note:"",kanji:"—",meaning:"[nasi dan] kare",type:"noun"},
-      {jp:"アイスクリーム",rom:"aisukurīmu",note:"",kanji:"—",meaning:"es krim",type:"noun"},
       {jp:"きって",rom:"kitte",note:"",kanji:"切手",meaning:"perangko",type:"noun"},
       {jp:"はがき",rom:"hagaki",note:"",kanji:"—",meaning:"kartu pos",type:"noun"},
-      {jp:"ふうとう",rom:"fūtō",note:"",kanji:"封筒",meaning:"amplop",type:"noun"},
       {jp:"りょうしん",rom:"ryōshin",note:"",kanji:"両親",meaning:"orang tua",type:"noun"},
       {jp:"きょうだい",rom:"kyōdai",note:"",kanji:"兄弟",meaning:"saudara, saudari",type:"noun"},
       {jp:"あに",rom:"ani",note:"",kanji:"兄",meaning:"kakak laki-laki (sendiri)",type:"noun"},
@@ -1233,20 +1020,9 @@ const allBabs = {
       {jp:"あね",rom:"ane",note:"",kanji:"姉",meaning:"kakak perempuan (sendiri)",type:"noun"},
       {jp:"おねえさん",rom:"onēsan",note:"",kanji:"お姉さん",meaning:"kakak perempuan (orang lain)",type:"noun"},
       {jp:"おとうと",rom:"otōto",note:"",kanji:"弟",meaning:"adik laki-laki (sendiri)",type:"noun"},
-      {jp:"おとうとさん",rom:"otōtosan",note:"",kanji:"弟さん",meaning:"adik laki-laki (orang lain)",type:"noun"},
       {jp:"いもうと",rom:"imōto",note:"",kanji:"妹",meaning:"adik perempuan (sendiri)",type:"noun"},
-      {jp:"いもうとさん",rom:"imōtosan",note:"",kanji:"妹さん",meaning:"adik perempuan (orang lain)",type:"noun"},
-      {jp:"がいこく",rom:"gaikoku",note:"",kanji:"外国",meaning:"luar negeri",type:"noun"},
-      {jp:"りゅうがくせい",rom:"ryūgakusei",note:"",kanji:"留学生",meaning:"pelajar asing",type:"noun"},
-      {jp:"クラス",rom:"kurasu",note:"",kanji:"—",meaning:"kelas",type:"noun"},
-      {jp:"〜じかん",rom:"-jikan",note:"",kanji:"〜時間",meaning:"〜 jam",type:"noun"},
-      {jp:"〜しゅうかん",rom:"-shūkan",note:"",kanji:"〜週間",meaning:"〜 minggu",type:"noun"},
-      {jp:"〜かげつ",rom:"-kagetsu",note:"",kanji:"〜か月",meaning:"〜 bulan",type:"noun"},
-      {jp:"〜ねん",rom:"-nen",note:"",kanji:"〜年",meaning:"〜 tahun",type:"noun"},
-      {jp:"〜ぐらい",rom:"~ gurai",note:"",kanji:"—",meaning:"kira-kira 〜",type:"noun"},
       {jp:"どのくらい",rom:"dono kurai",note:"",kanji:"—",meaning:"berapa lama",type:"noun"},
-      {jp:"ぜんぶで",rom:"zenbu de",note:"",kanji:"全部で",meaning:"semuanya",type:"noun"},
-      {jp:"みんな",rom:"minna",note:"",kanji:"—",meaning:"semua",type:"noun"},
+      {jp:"〜ぐらい",rom:"~ gurai",note:"",kanji:"—",meaning:"kira-kira 〜",type:"noun"},
       {jp:"〜だけ",rom:"~ dake",note:"",kanji:"—",meaning:"hanya 〜, 〜 saja",type:"noun"},
     ]},
   ],
@@ -1258,15 +1034,14 @@ const allBabs = {
       {jp:"とおい",rom:"tōi",note:"",kanji:"遠い",meaning:"jauh",type:"adj"},
       {jp:"はやい",rom:"hayai",note:"",kanji:"速い、早い",meaning:"cepat",type:"adj"},
       {jp:"おそい",rom:"osoi",note:"",kanji:"遅い",meaning:"lambat",type:"adj"},
-      {jp:"おおい[ひとが〜]",rom:"ōi [hito ga ~]",note:"",kanji:"多い[人が〜]",meaning:"banyak [orang]",type:"adj"},
-      {jp:"すくない[ひとが〜]",rom:"sukunai [hito ga ~]",note:"",kanji:"少ない[人が〜]",meaning:"sedikit [orang]",type:"adj"},
-      {jp:"あたたかい",rom:"atatakai",note:"",kanji:"暖かい、温かい",meaning:"hangat",type:"adj"},
+      {jp:"おおい",rom:"ōi",note:"",kanji:"多い",meaning:"banyak",type:"adj"},
+      {jp:"すくない",rom:"sukunai",note:"",kanji:"少ない",meaning:"sedikit",type:"adj"},
+      {jp:"あたたかい",rom:"atatakai",note:"",kanji:"暖かい",meaning:"hangat",type:"adj"},
       {jp:"すずしい",rom:"suzushii",note:"",kanji:"涼しい",meaning:"sejuk",type:"adj"},
       {jp:"あまい",rom:"amai",note:"",kanji:"甘い",meaning:"manis",type:"adj"},
       {jp:"からい",rom:"karai",note:"",kanji:"辛い",meaning:"pedas",type:"adj"},
       {jp:"おもい",rom:"omoi",note:"",kanji:"重い",meaning:"berat",type:"adj"},
       {jp:"かるい",rom:"karui",note:"",kanji:"軽い",meaning:"ringan",type:"adj"},
-      {jp:"いい[コーヒーが〜]",rom:"ii [kōhī ga ~]",note:"",kanji:"—",meaning:"lebih baik [kopi]",type:"adj"},
     ]},
     { id:"noun", num:"02", title:"Musim, Cuaca & Makanan Jepang", jp:"季節・天気・和食", rows:[
       {jp:"きせつ",rom:"kisetsu",note:"",kanji:"季節",meaning:"musim",type:"noun"},
@@ -1278,25 +1053,13 @@ const allBabs = {
       {jp:"あめ",rom:"ame",note:"",kanji:"雨",meaning:"hujan",type:"noun"},
       {jp:"ゆき",rom:"yuki",note:"",kanji:"雪",meaning:"salju",type:"noun"},
       {jp:"くもり",rom:"kumori",note:"",kanji:"曇り",meaning:"mendung",type:"noun"},
-      {jp:"ホテル",rom:"hoteru",note:"",kanji:"—",meaning:"hotel",type:"noun"},
-      {jp:"くうこう",rom:"kūkō",note:"",kanji:"空港",meaning:"bandara",type:"noun"},
       {jp:"うみ",rom:"umi",note:"",kanji:"海",meaning:"laut",type:"noun"},
-      {jp:"せかい",rom:"sekai",note:"",kanji:"世界",meaning:"dunia",type:"noun"},
-      {jp:"パーティー",rom:"pātī",note:"",kanji:"—",meaning:"pesta",type:"noun"},
-      {jp:"[お]まつり",rom:"[o]matsuri",note:"",kanji:"[お]祭り",meaning:"perayaan",type:"noun"},
-      {jp:"すきやき",rom:"sukiyaki",note:"",kanji:"すき焼き",meaning:"Sukiyaki (masakan daging sapi dan sayur dalam panci)",type:"noun"},
-      {jp:"さしみ",rom:"sashimi",note:"",kanji:"刺身",meaning:"Sashimi (ikan mentah dipotong tipis)",type:"noun"},
-      {jp:"[お]すし",rom:"[o]sushi",note:"",kanji:"—",meaning:"Sushi (nasi cuka dengan ikan mentah di atasnya)",type:"noun"},
-      {jp:"てんぷら",rom:"tenpura",note:"",kanji:"—",meaning:"Tempura (gorengan sari laut dan sayur berbalut tepung)",type:"noun"},
-      {jp:"ぶたにく",rom:"butaniku",note:"",kanji:"豚肉",meaning:"daging babi",type:"noun"},
-      {jp:"とりにく",rom:"toriniku",note:"",kanji:"とり肉",meaning:"daging ayam",type:"noun"},
-      {jp:"ぎゅうにく",rom:"gyūniku",note:"",kanji:"牛肉",meaning:"daging sapi",type:"noun"},
-      {jp:"レモン",rom:"remon",note:"",kanji:"—",meaning:"lemon",type:"noun"},
-      {jp:"いけばな",rom:"ikebana",note:"",kanji:"生け花",meaning:"seni merangkai bunga",type:"noun"},
-      {jp:"もみじ",rom:"momiji",note:"",kanji:"紅葉",meaning:"maple, daun yang berubah warna menjadi merah",type:"noun"},
-      {jp:"どちら",rom:"dochira",note:"",kanji:"—",meaning:"yang mana",type:"noun"},
-      {jp:"どちらも",rom:"dochira mo",note:"",kanji:"—",meaning:"dua-duanya, yang mana juga",type:"noun"},
+      {jp:"すきやき",rom:"sukiyaki",note:"",kanji:"すき焼き",meaning:"Sukiyaki",type:"noun"},
+      {jp:"さしみ",rom:"sashimi",note:"",kanji:"刺身",meaning:"Sashimi (ikan mentah)",type:"noun"},
+      {jp:"[お]すし",rom:"[o]sushi",note:"",kanji:"—",meaning:"Sushi",type:"noun"},
+      {jp:"てんぷら",rom:"tenpura",note:"",kanji:"—",meaning:"Tempura",type:"noun"},
       {jp:"いちばん",rom:"ichiban",note:"",kanji:"—",meaning:"paling",type:"noun"},
+      {jp:"どちらも",rom:"dochira mo",note:"",kanji:"—",meaning:"dua-duanya",type:"noun"},
       {jp:"ずっと",rom:"zutto",note:"",kanji:"—",meaning:"jauh lebih",type:"noun"},
       {jp:"はじめて",rom:"hajimete",note:"",kanji:"初めて",meaning:"untuk pertama kali",type:"noun"},
     ]},
@@ -1311,7 +1074,7 @@ const allBabs = {
       {jp:"けっこんします",rom:"kekkon shimasu",note:"",kanji:"結婚します",meaning:"menikah",type:"verb"},
       {jp:"かいものします",rom:"kaimono shimasu",note:"",kanji:"買い物します",meaning:"berbelanja",type:"verb"},
       {jp:"しょくじします",rom:"shokuji shimasu",note:"",kanji:"食事します",meaning:"makan",type:"verb"},
-      {jp:"さんぽします",rom:"sanpo shimasu",note:"[こうえんを〜]",kanji:"散歩します",meaning:"berjalan-jalan [di taman]",type:"verb"},
+      {jp:"さんぽします",rom:"sanpo shimasu",note:"",kanji:"散歩します",meaning:"berjalan-jalan",type:"verb"},
     ]},
     { id:"adj", num:"02", title:"Kata Sifat", jp:"形容詞", rows:[
       {jp:"たいへん[な]",rom:"taihen [na]",note:"",kanji:"大変[な]",meaning:"berat, susah",type:"adj"},
@@ -1322,12 +1085,10 @@ const allBabs = {
     { id:"noun", num:"03", title:"Kata Benda", jp:"名詞", rows:[
       {jp:"プール",rom:"pūru",note:"",kanji:"—",meaning:"kolam renang",type:"noun"},
       {jp:"かわ",rom:"kawa",note:"",kanji:"川",meaning:"sungai",type:"noun"},
-      {jp:"びじゅつ",rom:"bijutsu",note:"",kanji:"美術",meaning:"seni",type:"noun"},
-      {jp:"つり",rom:"tsuri",note:"",kanji:"釣り",meaning:"pancing",type:"noun"},
       {jp:"スキー",rom:"sukī",note:"",kanji:"—",meaning:"ski",type:"noun"},
       {jp:"しゅうまつ",rom:"shūmatsu",note:"",kanji:"週末",meaning:"akhir pekan",type:"noun"},
       {jp:"[お]しょうがつ",rom:"[o]shōgatsu",note:"",kanji:"[お]正月",meaning:"tahun baru",type:"noun"},
-      {jp:"〜ごろ",rom:"~ goro",note:"",kanji:"—",meaning:"sekitar 〜, kira-kira",type:"noun"},
+      {jp:"〜ごろ",rom:"~ goro",note:"",kanji:"—",meaning:"sekitar 〜",type:"noun"},
       {jp:"なにか",rom:"nanika",note:"",kanji:"何か",meaning:"sesuatu",type:"noun"},
       {jp:"どこか",rom:"dokoka",note:"",kanji:"—",meaning:"suatu tempat",type:"noun"},
     ]},
@@ -1335,93 +1096,65 @@ const allBabs = {
 
   14: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
-      {jp:"つけます",rom:"tsukemasu",note:"",kanji:"つけます",meaning:"menyalakan, memasang, menghidupkan",type:"verb"},
+      {jp:"つけます",rom:"tsukemasu",note:"",kanji:"つけます",meaning:"menyalakan, menghidupkan",type:"verb"},
       {jp:"けします",rom:"keshimasu",note:"",kanji:"消します",meaning:"mematikan, memadamkan",type:"verb"},
       {jp:"あけます",rom:"akemasu",note:"",kanji:"開けます",meaning:"membuka",type:"verb"},
       {jp:"しめます",rom:"shimemasu",note:"",kanji:"閉めます",meaning:"menutup",type:"verb"},
       {jp:"いそぎます",rom:"isogimasu",note:"",kanji:"急ぎます",meaning:"buru-buru",type:"verb"},
       {jp:"まちます",rom:"machimasu",note:"",kanji:"待ちます",meaning:"menunggu",type:"verb"},
       {jp:"もちます",rom:"mochimasu",note:"",kanji:"持ちます",meaning:"membawa",type:"verb"},
-      {jp:"とります",rom:"torimasu",note:"",kanji:"取ります",meaning:"mengambil",type:"verb"},
       {jp:"てつだいます",rom:"tetsudaimasu",note:"",kanji:"手伝います",meaning:"membantu",type:"verb"},
       {jp:"よびます",rom:"yobimasu",note:"",kanji:"呼びます",meaning:"memanggil",type:"verb"},
       {jp:"はなします",rom:"hanashimasu",note:"",kanji:"話します",meaning:"berbicara",type:"verb"},
       {jp:"つかいます",rom:"tsukaimasu",note:"",kanji:"使います",meaning:"memakai",type:"verb"},
-      {jp:"とめます",rom:"tomemasu",note:"",kanji:"止めます",meaning:"menghentikan, memarkir",type:"verb"},
-      {jp:"みせます",rom:"misemasu",note:"",kanji:"見せます",meaning:"memperlihatkan",type:"verb"},
-      {jp:"おしえます",rom:"oshiemasu",note:"[じゅうしょを〜]",kanji:"教えます",meaning:"memberitahukan [alamat]",type:"verb"},
       {jp:"すわります",rom:"suwarimasu",note:"",kanji:"座ります",meaning:"duduk",type:"verb"},
       {jp:"たちます",rom:"tachimasu",note:"",kanji:"立ちます",meaning:"berdiri",type:"verb"},
-      {jp:"はいります",rom:"hairimasu",note:"[きっさてんに〜]",kanji:"入ります",meaning:"masuk [ke coffee shop]",type:"verb"},
-      {jp:"でます",rom:"demasu",note:"[きっさてんを〜]",kanji:"出ます",meaning:"keluar [dari coffee shop]",type:"verb"},
-      {jp:"ふります",rom:"furimasu",note:"[あめが〜]",kanji:"降ります",meaning:"turun [hujan]",type:"verb"},
+      {jp:"はいります",rom:"hairimasu",note:"",kanji:"入ります",meaning:"masuk",type:"verb"},
+      {jp:"でます",rom:"demasu",note:"",kanji:"出ます",meaning:"keluar",type:"verb"},
       {jp:"コピーします",rom:"kopī shimasu",note:"",kanji:"—",meaning:"memfotokopi",type:"verb"},
     ]},
     { id:"noun", num:"02", title:"Kata Benda", jp:"名詞", rows:[
       {jp:"でんき",rom:"denki",note:"",kanji:"電気",meaning:"listrik, lampu",type:"noun"},
       {jp:"エアコン",rom:"eakon",note:"",kanji:"—",meaning:"AC",type:"noun"},
-      {jp:"パスポート",rom:"pasupōto",note:"",kanji:"—",meaning:"paspor",type:"noun"},
       {jp:"なまえ",rom:"namae",note:"",kanji:"名前",meaning:"nama",type:"noun"},
       {jp:"じゅうしょ",rom:"jūsho",note:"",kanji:"住所",meaning:"alamat",type:"noun"},
       {jp:"ちず",rom:"chizu",note:"",kanji:"地図",meaning:"peta",type:"noun"},
       {jp:"しお",rom:"shio",note:"",kanji:"塩",meaning:"garam",type:"noun"},
       {jp:"さとう",rom:"satō",note:"",kanji:"砂糖",meaning:"gula",type:"noun"},
-      {jp:"もんだい",rom:"mondai",note:"",kanji:"問題",meaning:"masalah, soal",type:"noun"},
-      {jp:"こたえ",rom:"kotae",note:"",kanji:"答え",meaning:"jawaban",type:"noun"},
-      {jp:"よみかた",rom:"yomikata",note:"",kanji:"読み方",meaning:"cara membaca",type:"noun"},
-      {jp:"〜かた",rom:"-kata",note:"",kanji:"〜方",meaning:"cara 〜",type:"noun"},
       {jp:"まっすぐ",rom:"massugu",note:"",kanji:"—",meaning:"lurus",type:"noun"},
-      {jp:"ゆっくり",rom:"yukkuri",note:"",kanji:"—",meaning:"pelan-pelan, istirahat dengan baik",type:"noun"},
+      {jp:"ゆっくり",rom:"yukkuri",note:"",kanji:"—",meaning:"pelan-pelan",type:"noun"},
       {jp:"すぐ",rom:"sugu",note:"",kanji:"—",meaning:"segera, langsung",type:"noun"},
       {jp:"また",rom:"mata",note:"",kanji:"—",meaning:"lagi",type:"noun"},
       {jp:"あとで",rom:"ato de",note:"",kanji:"—",meaning:"nanti",type:"noun"},
-      {jp:"もうすこし",rom:"mō sukoshi",note:"",kanji:"もう少し",meaning:"sedikit lagi",type:"noun"},
-      {jp:"もう〜",rom:"mō ~",note:"",kanji:"—",meaning:"〜 lagi",type:"noun"},
     ]},
   ],
 
   15: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
-      {jp:"おきます",rom:"okimasu",note:"",kanji:"置きます",meaning:"meletakkan, menaruh",type:"verb"},
-      {jp:"つくります",rom:"tsukurimasu",note:"",kanji:"作ります、造ります",meaning:"membuat, membangun, memproduksi",type:"verb"},
+      {jp:"つくります",rom:"tsukurimasu",note:"",kanji:"作ります",meaning:"membuat, membangun",type:"verb"},
       {jp:"うります",rom:"urimasu",note:"",kanji:"売ります",meaning:"menjual",type:"verb"},
       {jp:"しります",rom:"shirimasu",note:"",kanji:"知ります",meaning:"mengetahui, mengenal",type:"verb"},
       {jp:"すみます",rom:"sumimasu",note:"",kanji:"住みます",meaning:"tinggal",type:"verb"},
-      {jp:"けんきゅうします",rom:"kenkyū shimasu",note:"",kanji:"研究します",meaning:"meneliti",type:"verb"},
     ]},
     { id:"noun", num:"02", title:"Kata Benda", jp:"名詞", rows:[
-      {jp:"しりょう",rom:"shiryō",note:"",kanji:"資料",meaning:"data, bahan",type:"noun"},
-      {jp:"カタログ",rom:"katarogu",note:"",kanji:"—",meaning:"katalog",type:"noun"},
-      {jp:"じこくひょう",rom:"jikokuhyō",note:"",kanji:"時刻表",meaning:"jadwal",type:"noun"},
       {jp:"ふく",rom:"fuku",note:"",kanji:"服",meaning:"baju",type:"noun"},
-      {jp:"せいひん",rom:"seihin",note:"",kanji:"製品",meaning:"produk",type:"noun"},
-      {jp:"ソフト",rom:"sofuto",note:"",kanji:"—",meaning:"perangkat lunak",type:"noun"},
-      {jp:"でんしじしょ",rom:"denshi jisho",note:"",kanji:"電子辞書",meaning:"kamus elektronik",type:"noun"},
       {jp:"けいざい",rom:"keizai",note:"",kanji:"経済",meaning:"ekonomi",type:"noun"},
-      {jp:"しやくしょ",rom:"shiyakusho",note:"",kanji:"市役所",meaning:"kantor wali kota",type:"noun"},
       {jp:"こうこう",rom:"kōkō",note:"",kanji:"高校",meaning:"SMA",type:"noun"},
       {jp:"はいしゃ",rom:"haisha",note:"",kanji:"歯医者",meaning:"dokter gigi",type:"noun"},
       {jp:"どくしん",rom:"dokushin",note:"",kanji:"独身",meaning:"bujangan, belum berkeluarga",type:"noun"},
-      {jp:"すみません",rom:"sumimasen",note:"",kanji:"—",meaning:"Maaf.",type:"noun"},
     ]},
   ],
 
   16: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
-      {jp:"のります",rom:"norimasu",note:"[でんしゃに〜]",kanji:"乗ります",meaning:"naik [kereta rel listrik]",type:"verb"},
-      {jp:"おります",rom:"orimasu",note:"[でんしゃを〜]",kanji:"降ります",meaning:"turun [kereta rel listrik]",type:"verb"},
+      {jp:"のります",rom:"norimasu",note:"[でんしゃに〜]",kanji:"乗ります",meaning:"naik [kendaraan]",type:"verb"},
+      {jp:"おります",rom:"orimasu",note:"[でんしゃを〜]",kanji:"降ります",meaning:"turun [kendaraan]",type:"verb"},
       {jp:"のりかえます",rom:"norikaemasu",note:"",kanji:"乗り換えます",meaning:"ganti, pindah",type:"verb"},
       {jp:"あびます",rom:"abimasu",note:"[シャワーを〜]",kanji:"浴びます",meaning:"mandi",type:"verb"},
       {jp:"いれます",rom:"iremasu",note:"",kanji:"入れます",meaning:"memasukkan",type:"verb"},
-      {jp:"だします",rom:"dashimasu",note:"",kanji:"出します",meaning:"mengeluarkan, menyerahkan, mengirim",type:"verb"},
-      {jp:"おろします",rom:"oroshimasu",note:"[おかねを〜]",kanji:"下ろします",meaning:"mengeluarkan/mengambil [uang]",type:"verb"},
-      {jp:"はいります",rom:"hairimasu",note:"[だいがくに〜]",kanji:"入ります",meaning:"masuk [universitas]",type:"verb"},
-      {jp:"でます",rom:"demasu",note:"[だいがくを〜]",kanji:"出ます",meaning:"tamat [dari universitas]",type:"verb"},
+      {jp:"だします",rom:"dashimasu",note:"",kanji:"出します",meaning:"mengeluarkan, mengirim",type:"verb"},
       {jp:"おします",rom:"oshimasu",note:"",kanji:"押します",meaning:"menekan",type:"verb"},
-      {jp:"のみます",rom:"nomimasu",note:"",kanji:"飲みます",meaning:"minum (minuman keras)",type:"verb"},
       {jp:"はじめます",rom:"hajimemasu",note:"",kanji:"始めます",meaning:"mulai",type:"verb"},
-      {jp:"けんがくします",rom:"kengaku shimasu",note:"",kanji:"見学します",meaning:"mengunjungi",type:"verb"},
-      {jp:"でんわします",rom:"denwa shimasu",note:"",kanji:"電話します",meaning:"menelepon",type:"verb"},
     ]},
     { id:"adj", num:"02", title:"Kata Sifat", jp:"形容詞", rows:[
       {jp:"わかい",rom:"wakai",note:"",kanji:"若い",meaning:"muda",type:"adj"},
@@ -1431,37 +1164,18 @@ const allBabs = {
       {jp:"くらい",rom:"kurai",note:"",kanji:"暗い",meaning:"gelap",type:"adj"},
     ]},
     { id:"body", num:"03", title:"Anggota Tubuh", jp:"体の部位", rows:[
-      {jp:"からだ",rom:"karada",note:"*",kanji:"体",meaning:"badan",type:"body"},
+      {jp:"からだ",rom:"karada",note:"",kanji:"体",meaning:"badan",type:"body"},
       {jp:"あたま",rom:"atama",note:"",kanji:"頭",meaning:"kepala",type:"body"},
       {jp:"かみ",rom:"kami",note:"",kanji:"髪",meaning:"rambut",type:"body"},
-      {jp:"かお",rom:"kao",note:"*",kanji:"顔",meaning:"muka",type:"body"},
+      {jp:"かお",rom:"kao",note:"",kanji:"顔",meaning:"muka",type:"body"},
       {jp:"め",rom:"me",note:"",kanji:"目",meaning:"mata",type:"body"},
-      {jp:"みみ",rom:"mimi",note:"*",kanji:"耳",meaning:"telinga",type:"body"},
-      {jp:"はな",rom:"hana",note:"*",kanji:"鼻",meaning:"hidung",type:"body"},
-      {jp:"くち",rom:"kuchi",note:"*",kanji:"口",meaning:"mulut",type:"body"},
-      {jp:"は",rom:"ha",note:"*",kanji:"歯",meaning:"gigi",type:"body"},
-      {jp:"おなか",rom:"onaka",note:"*",kanji:"—",meaning:"perut",type:"body"},
-      {jp:"あし",rom:"ashi",note:"*",kanji:"足",meaning:"kaki",type:"body"},
-      {jp:"せ",rom:"se",note:"",kanji:"背",meaning:"punggung",type:"body"},
-    ]},
-    { id:"noun", num:"04", title:"Kata Benda & Ekspresi", jp:"名詞・表現", rows:[
-      {jp:"サービス",rom:"sābisu",note:"",kanji:"—",meaning:"pelayanan",type:"noun"},
-      {jp:"ジョギング",rom:"jogingu",note:"(〜をします: berlari pelan-pelan)",kanji:"—",meaning:"joging, lari pelan-pelan",type:"noun"},
-      {jp:"シャワー",rom:"shawā",note:"",kanji:"—",meaning:"shower",type:"noun"},
-      {jp:"みどり",rom:"midori",note:"",kanji:"緑",meaning:"hijau, tumbuhan hijau",type:"noun"},
-      {jp:"[お]てら",rom:"[o]tera",note:"",kanji:"[お]寺",meaning:"wihara",type:"noun"},
-      {jp:"じんじゃ",rom:"jinja",note:"",kanji:"神社",meaning:"kuil Shinto",type:"noun"},
-      {jp:"〜ばん",rom:"-ban",note:"",kanji:"〜番",meaning:"nomor 〜",type:"noun"},
-      {jp:"キャッシュカード",rom:"kyasshu kādo",note:"",kanji:"—",meaning:"kartu ATM",type:"noun"},
-      {jp:"あんしょうばんごう",rom:"anshō bangō",note:"",kanji:"暗証番号",meaning:"PIN",type:"noun"},
-      {jp:"きんがく",rom:"kingaku",note:"",kanji:"金額",meaning:"jumlah uang",type:"noun"},
-      {jp:"かくにん",rom:"kakunin",note:"(〜します: mengecek)",kanji:"確認",meaning:"cek, memastikan",type:"noun"},
-      {jp:"ボタン",rom:"botan",note:"",kanji:"—",meaning:"tombol",type:"noun"},
-      {jp:"どうやって",rom:"dō yatte",note:"",kanji:"—",meaning:"dengan cara bagaimana",type:"noun"},
-      {jp:"どの〜",rom:"dono ~",note:"",kanji:"—",meaning:"〜 yang mana (lebih dari 3 barang)",type:"noun"},
-      {jp:"どれ",rom:"dore",note:"",kanji:"—",meaning:"mana (lebih dari 3 barang)",type:"noun"},
-      {jp:"まず",rom:"mazu",note:"",kanji:"—",meaning:"pertama-tama, terlebih dahulu",type:"noun"},
-      {jp:"つぎに",rom:"tsugi ni",note:"",kanji:"次に",meaning:"kemudian",type:"noun"},
+      {jp:"みみ",rom:"mimi",note:"",kanji:"耳",meaning:"telinga",type:"body"},
+      {jp:"はな",rom:"hana",note:"",kanji:"鼻",meaning:"hidung",type:"body"},
+      {jp:"くち",rom:"kuchi",note:"",kanji:"口",meaning:"mulut",type:"body"},
+      {jp:"は",rom:"ha",note:"",kanji:"歯",meaning:"gigi",type:"body"},
+      {jp:"おなか",rom:"onaka",note:"",kanji:"—",meaning:"perut",type:"body"},
+      {jp:"あし",rom:"ashi",note:"",kanji:"足",meaning:"kaki",type:"body"},
+      {jp:"て",rom:"te",note:"",kanji:"手",meaning:"tangan",type:"body"},
     ]},
   ],
 
@@ -1476,114 +1190,81 @@ const allBabs = {
       {jp:"ぬぎます",rom:"nugimasu",note:"",kanji:"脱ぎます",meaning:"buka (baju, sepatu dll)",type:"verb"},
       {jp:"もっていきます",rom:"motte ikimasu",note:"",kanji:"持って行きます",meaning:"membawa pergi",type:"verb"},
       {jp:"もってきます",rom:"motte kimasu",note:"",kanji:"持って来ます",meaning:"membawa datang",type:"verb"},
-      {jp:"しんぱいします",rom:"shinpai shimasu",note:"",kanji:"心配します",meaning:"mengkhawatirkan",type:"verb"},
       {jp:"ざんぎょうします",rom:"zangyō shimasu",note:"",kanji:"残業します",meaning:"lembur",type:"verb"},
-      {jp:"しゅっちょうします",rom:"shutchō shimasu",note:"",kanji:"出張します",meaning:"dinas",type:"verb"},
-      {jp:"のみます[くすりを〜]",rom:"nomimasu [kusuri o~]",note:"[薬を〜]",kanji:"飲みます",meaning:"minum [obat]",type:"verb"},
-      {jp:"はいります[おふろに〜]",rom:"hairimasu [ofuro ni~]",note:"[お風呂に〜]",kanji:"入ります",meaning:"mandi, masuk [ofuro]",type:"verb"},
     ]},
     { id:"adj", num:"02", title:"Kata Sifat", jp:"形容詞", rows:[
-      {jp:"たいせつ[な]",rom:"taisetsu [na]",note:"",kanji:"大切[な]",meaning:"penting, bernilai, berharga",type:"adj"},
-      {jp:"だいじょうぶ[な]",rom:"daijōbu [na]",note:"",kanji:"大丈夫[な]",meaning:"tidak apa-apa, tidak masalah",type:"adj"},
+      {jp:"たいせつ[な]",rom:"taisetsu [na]",note:"",kanji:"大切[な]",meaning:"penting, bernilai",type:"adj"},
+      {jp:"だいじょうぶ[な]",rom:"daijōbu [na]",note:"",kanji:"大丈夫[な]",meaning:"tidak apa-apa",type:"adj"},
       {jp:"あぶない",rom:"abunai",note:"",kanji:"危ない",meaning:"berbahaya",type:"adj"},
     ]},
     { id:"noun", num:"03", title:"Kata Benda", jp:"名詞", rows:[
-      {jp:"きんえん",rom:"kin'en",note:"",kanji:"禁煙",meaning:"dilarang merokok",type:"noun"},
-      {jp:"[けんこう]ほけんしょう",rom:"[kenkō] hokenshō",note:"",kanji:"[健康]保険証",meaning:"kartu asuransi [kesehatan]",type:"noun"},
       {jp:"ねつ",rom:"netsu",note:"",kanji:"熱",meaning:"demam",type:"noun"},
       {jp:"びょうき",rom:"byōki",note:"",kanji:"病気",meaning:"sakit",type:"noun"},
       {jp:"くすり",rom:"kusuri",note:"",kanji:"薬",meaning:"obat",type:"noun"},
       {jp:"[お]ふろ",rom:"[o]furo",note:"",kanji:"—",meaning:"mandi, kamar mandi",type:"noun"},
-      {jp:"うわぎ",rom:"uwagi",note:"",kanji:"上着",meaning:"baju, jaket",type:"noun"},
-      {jp:"したぎ",rom:"shitagi",note:"",kanji:"下着",meaning:"pakaian dalam",type:"noun"},
-      {jp:"2、3にち",rom:"ni san nichi",note:"",kanji:"2、3日",meaning:"dua atau tiga hari",type:"noun"},
-      {jp:"〜までに",rom:"~ made ni",note:"",kanji:"—",meaning:"sampai dengan (batas waktu)",type:"noun"},
-      {jp:"ですから",rom:"desu kara",note:"",kanji:"—",meaning:"oleh karena itu",type:"noun"},
       {jp:"のど",rom:"nodo",note:"",kanji:"—",meaning:"kerongkongan",type:"noun"},
       {jp:"かぜ",rom:"kaze",note:"",kanji:"—",meaning:"masuk angin",type:"noun"},
+      {jp:"〜までに",rom:"~ made ni",note:"",kanji:"—",meaning:"sampai dengan (batas waktu)",type:"noun"},
+      {jp:"ですから",rom:"desu kara",note:"",kanji:"—",meaning:"oleh karena itu",type:"noun"},
     ]},
   ],
 
   18: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
-      {jp:"できます",rom:"dekimasu",note:"",kanji:"できます",meaning:"dapat, bisa, mampu; selesai",type:"verb"},
+      {jp:"できます",rom:"dekimasu",note:"",kanji:"できます",meaning:"dapat, bisa, mampu",type:"verb"},
       {jp:"あらいます",rom:"araimasu",note:"",kanji:"洗います",meaning:"mencuci",type:"verb"},
-      {jp:"ひきます",rom:"hikimasu",note:"",kanji:"弾きます",meaning:"bermain (alat musik senar dan piano)",type:"verb"},
-      {jp:"うたいます",rom:"utaimasu",note:"",kanji:"歌います",meaning:"bernyanyi, menyanyi",type:"verb"},
+      {jp:"ひきます",rom:"hikimasu",note:"",kanji:"弾きます",meaning:"bermain (alat musik senar/piano)",type:"verb"},
+      {jp:"うたいます",rom:"utaimasu",note:"",kanji:"歌います",meaning:"bernyanyi",type:"verb"},
       {jp:"あつめます",rom:"atsumemasu",note:"",kanji:"集めます",meaning:"mengumpulkan",type:"verb"},
       {jp:"すてます",rom:"sutemasu",note:"",kanji:"捨てます",meaning:"membuang",type:"verb"},
-      {jp:"かえます",rom:"kaemasu",note:"",kanji:"換えます",meaning:"mengganti, menukar",type:"verb"},
       {jp:"うんてんします",rom:"unten shimasu",note:"",kanji:"運転します",meaning:"menyetir, mengendarai",type:"verb"},
       {jp:"よやくします",rom:"yoyaku shimasu",note:"",kanji:"予約します",meaning:"memesan",type:"verb"},
     ]},
     { id:"noun", num:"02", title:"Kata Benda", jp:"名詞", rows:[
       {jp:"ピアノ",rom:"piano",note:"",kanji:"—",meaning:"piano",type:"noun"},
-      {jp:"〜メートル",rom:"~ mētoru",note:"",kanji:"—",meaning:"〜 meter",type:"noun"},
-      {jp:"げんきん",rom:"genkin",note:"",kanji:"現金",meaning:"uang tunai",type:"noun"},
       {jp:"しゅみ",rom:"shumi",note:"",kanji:"趣味",meaning:"hobi, kegemaran",type:"noun"},
       {jp:"にっき",rom:"nikki",note:"",kanji:"日記",meaning:"catatan harian",type:"noun"},
-      {jp:"おいのり",rom:"o-inori",note:"",kanji:"お祈り",meaning:"doa",type:"noun"},
       {jp:"かちょう",rom:"kachō",note:"",kanji:"課長",meaning:"kepala seksi",type:"noun"},
       {jp:"ぶちょう",rom:"buchō",note:"",kanji:"部長",meaning:"kepala bagian",type:"noun"},
-      {jp:"しゃちょう",rom:"shachō",note:"*",kanji:"社長",meaning:"direktur utama",type:"noun"},
+      {jp:"しゃちょう",rom:"shachō",note:"",kanji:"社長",meaning:"direktur utama",type:"noun"},
       {jp:"どうぶつ",rom:"dōbutsu",note:"",kanji:"動物",meaning:"hewan, binatang",type:"noun"},
-      {jp:"うま",rom:"uma",note:"",kanji:"馬",meaning:"kuda",type:"noun"},
       {jp:"インターネット",rom:"intānetto",note:"",kanji:"—",meaning:"internet",type:"noun"},
     ]},
   ],
 
   19: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
-      {jp:"のぼります",rom:"noborimasu",note:"",kanji:"登ります、上ります",meaning:"naik",type:"verb"},
+      {jp:"のぼります",rom:"noborimasu",note:"",kanji:"登ります",meaning:"naik",type:"verb"},
       {jp:"とまります",rom:"tomarimasu",note:"[ホテルに〜]",kanji:"泊まります",meaning:"menginap [di hotel]",type:"verb"},
       {jp:"そうじします",rom:"sōji shimasu",note:"",kanji:"掃除します",meaning:"membersihkan",type:"verb"},
       {jp:"せんたくします",rom:"sentaku shimasu",note:"",kanji:"洗濯します",meaning:"mencuci pakaian",type:"verb"},
       {jp:"なります",rom:"narimasu",note:"",kanji:"なります",meaning:"menjadi",type:"verb"},
     ]},
-    { id:"adj", num:"02", title:"Kata Sifat", jp:"形容詞", rows:[
-      {jp:"ねむい",rom:"nemui",note:"",kanji:"眠い",meaning:"mengantuk",type:"adj"},
-      {jp:"つよい",rom:"tsuyoi",note:"",kanji:"強い",meaning:"kuat",type:"adj"},
-      {jp:"よわい",rom:"yowai",note:"*",kanji:"弱い",meaning:"lemah",type:"adj"},
-    ]},
-    { id:"noun", num:"03", title:"Kata Benda", jp:"名詞", rows:[
-      {jp:"れんしゅう",rom:"renshū",note:"",kanji:"練習",meaning:"latihan (〜[を]します: berlatih)",type:"noun"},
+    { id:"noun", num:"02", title:"Kata Benda", jp:"名詞", rows:[
+      {jp:"れんしゅう",rom:"renshū",note:"",kanji:"練習",meaning:"latihan",type:"noun"},
       {jp:"ゴルフ",rom:"gorufu",note:"",kanji:"—",meaning:"golf",type:"noun"},
       {jp:"すもう",rom:"sumō",note:"",kanji:"相撲",meaning:"sumo",type:"noun"},
-      {jp:"おちゃ",rom:"ocha",note:"",kanji:"お茶",meaning:"upacara minum teh",type:"noun"},
-      {jp:"ひ",rom:"hi",note:"",kanji:"日",meaning:"hari",type:"noun"},
-      {jp:"ちょうし",rom:"chōshi",note:"",kanji:"調子",meaning:"kondisi",type:"noun"},
       {jp:"いちど",rom:"ichido",note:"",kanji:"一度",meaning:"sekali",type:"noun"},
-      {jp:"いちども",rom:"ichido mo",note:"",kanji:"一度も",meaning:"sekali-kali, satu kali pun (+ negatif)",type:"noun"},
-      {jp:"だんだん",rom:"dandan",note:"",kanji:"—",meaning:"berangsur-angsuran, lama-kelamaan",type:"noun"},
+      {jp:"だんだん",rom:"dandan",note:"",kanji:"—",meaning:"berangsur-angsuran",type:"noun"},
       {jp:"もうすぐ",rom:"mō sugu",note:"",kanji:"—",meaning:"tidak lama lagi",type:"noun"},
-      {jp:"おかげさまで",rom:"okage sama de",note:"",kanji:"—",meaning:"atas berkat (ungkapan terima kasih atas bantuan orang lain)",type:"noun"},
       {jp:"でも",rom:"demo",note:"",kanji:"—",meaning:"tetapi",type:"noun"},
     ]},
   ],
 
   20: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
-      {jp:"いります[ビザが〜]",rom:"irimasu [biza ga~]",note:"[ビザが〜]",kanji:"要ります",meaning:"memerlukan [VISA]",type:"verb"},
-      {jp:"しらべます",rom:"shirabemasu",note:"",kanji:"調べます",meaning:"memeriksa, meneliti, mengecek",type:"verb"},
+      {jp:"しらべます",rom:"shirabemasu",note:"",kanji:"調べます",meaning:"memeriksa, mengecek",type:"verb"},
       {jp:"しゅうりします",rom:"shūri shimasu",note:"",kanji:"修理します",meaning:"memperbaiki",type:"verb"},
     ]},
     { id:"noun", num:"02", title:"Kata Benda", jp:"名詞", rows:[
       {jp:"ぼく",rom:"boku",note:"",kanji:"僕",meaning:"aku (laki-laki, informal dari わたし)",type:"noun"},
-      {jp:"きみ",rom:"kimi",note:"*",kanji:"君",meaning:"kamu (informal dari あなた, untuk orang setaraf/di bawah)",type:"noun"},
-      {jp:"〜くん",rom:"~ kun",note:"",kanji:"〜君",meaning:"Sdr. 〜 (informal dari さん, sering untuk anak laki-laki)",type:"noun"},
+      {jp:"きみ",rom:"kimi",note:"",kanji:"君",meaning:"kamu (informal dari あなた)",type:"noun"},
       {jp:"うん",rom:"un",note:"",kanji:"—",meaning:"ya (informal dari はい)",type:"noun"},
       {jp:"ううん",rom:"uun",note:"",kanji:"—",meaning:"tidak, bukan (informal dari いいえ)",type:"noun"},
-      {jp:"ことば",rom:"kotoba",note:"",kanji:"—",meaning:"kata, bahasa",type:"noun"},
       {jp:"きもの",rom:"kimono",note:"",kanji:"着物",meaning:"kimono (pakaian tradisional Jepang)",type:"noun"},
       {jp:"ビザ",rom:"biza",note:"",kanji:"—",meaning:"VISA",type:"noun"},
       {jp:"はじめ",rom:"hajime",note:"",kanji:"初め",meaning:"awal, mula-mula",type:"noun"},
       {jp:"おわり",rom:"owari",note:"",kanji:"終わり",meaning:"akhir",type:"noun"},
-      {jp:"こっち",rom:"kocchi",note:"*",kanji:"—",meaning:"sini (informal dari こちら)",type:"noun"},
-      {jp:"そっち",rom:"socchi",note:"",kanji:"—",meaning:"situ (informal dari そちら)",type:"noun"},
-      {jp:"あっち",rom:"acchi",note:"*",kanji:"—",meaning:"sana (informal dari あちら)",type:"noun"},
-      {jp:"どっち",rom:"docchi",note:"",kanji:"—",meaning:"mana (informal dari どちら)",type:"noun"},
-      {jp:"みんなで",rom:"minna de",note:"",kanji:"—",meaning:"kita semua, kita sama-sama",type:"noun"},
-      {jp:"〜けど",rom:"~ kedo",note:"",kanji:"—",meaning:"〜 tetapi (informal dari が)",type:"noun"},
     ]},
   ],
 
@@ -1593,42 +1274,22 @@ const allBabs = {
       {jp:"いいます",rom:"iimasu",note:"",kanji:"言います",meaning:"mengatakan, berkata",type:"verb"},
       {jp:"かちます",rom:"kachimasu",note:"",kanji:"勝ちます",meaning:"menang",type:"verb"},
       {jp:"まけます",rom:"makemasu",note:"",kanji:"負けます",meaning:"kalah",type:"verb"},
-      {jp:"あります[おまつりが〜]",rom:"arimasu",note:"[お祭りが〜]",kanji:"あります",meaning:"ada, diadakan [pesta perayaan]",type:"verb"},
-      {jp:"やくにたちます",rom:"yaku ni tachimasu",note:"",kanji:"役に立ちます",meaning:"berguna, bermanfaat",type:"verb"},
-      {jp:"うごきます",rom:"ugokimasu",note:"",kanji:"動きます",meaning:"pindah, bergerak",type:"verb"},
-      {jp:"やめます[かいしゃを〜]",rom:"yamemasu",note:"[会社を〜]",kanji:"やめます",meaning:"berhenti [kerja]",type:"verb"},
       {jp:"きをつけます",rom:"ki o tsukemasu",note:"",kanji:"気をつけます",meaning:"berwaspada, berhati-hati",type:"verb"},
       {jp:"りゅうがくします",rom:"ryūgaku shimasu",note:"",kanji:"留学します",meaning:"studi di luar negeri",type:"verb"},
     ]},
-    { id:"adj", num:"02", title:"Kata Sifat", jp:"形容詞", rows:[
-      {jp:"むだ[な]",rom:"muda [na]",note:"",kanji:"—",meaning:"sia-sia, tidak berguna",type:"adj"},
-      {jp:"ふべん[な]",rom:"fuben [na]",note:"",kanji:"不便[な]",meaning:"tidak praktis",type:"adj"},
-      {jp:"すごい",rom:"sugoi",note:"",kanji:"—",meaning:"hebat, bukan main",type:"adj"},
-    ]},
-    { id:"noun", num:"03", title:"Kata Benda", jp:"名詞", rows:[
+    { id:"noun", num:"02", title:"Kata Benda", jp:"名詞", rows:[
       {jp:"ほんとう",rom:"hontō",note:"",kanji:"—",meaning:"betul, benar",type:"noun"},
-      {jp:"うそ",rom:"uso",note:"*",kanji:"—",meaning:"bohong",type:"noun"},
       {jp:"じどうしゃ",rom:"jidōsha",note:"",kanji:"自動車",meaning:"mobil",type:"noun"},
       {jp:"こうつう",rom:"kōtsū",note:"",kanji:"交通",meaning:"lalu lintas",type:"noun"},
-      {jp:"ぶっか",rom:"bukka",note:"",kanji:"物価",meaning:"harga barang",type:"noun"},
-      {jp:"ほうそう",rom:"hōsō",note:"",kanji:"放送",meaning:"siaran, pengumuman",type:"noun"},
       {jp:"ニュース",rom:"nyūsu",note:"",kanji:"—",meaning:"warta berita",type:"noun"},
       {jp:"アニメ",rom:"anime",note:"",kanji:"—",meaning:"animasi",type:"noun"},
       {jp:"マンガ",rom:"manga",note:"",kanji:"—",meaning:"manga, komik",type:"noun"},
-      {jp:"デザイン",rom:"dezain",note:"",kanji:"—",meaning:"desain, model",type:"noun"},
       {jp:"ゆめ",rom:"yume",note:"",kanji:"夢",meaning:"mimpi",type:"noun"},
-      {jp:"てんさい",rom:"tensai",note:"",kanji:"天才",meaning:"genius",type:"noun"},
       {jp:"しあい",rom:"shiai",note:"",kanji:"試合",meaning:"pertandingan",type:"noun"},
-      {jp:"いけん",rom:"iken",note:"",kanji:"意見",meaning:"pendapat",type:"noun"},
-      {jp:"はなし",rom:"hanashi",note:"",kanji:"話",meaning:"cerita",type:"noun"},
       {jp:"ちきゅう",rom:"chikyū",note:"",kanji:"地球",meaning:"bumi",type:"noun"},
-      {jp:"つき",rom:"tsuki",note:"",kanji:"月",meaning:"bulan",type:"noun"},
       {jp:"さいきん",rom:"saikin",note:"",kanji:"最近",meaning:"akhir-akhir ini",type:"noun"},
       {jp:"たぶん",rom:"tabun",note:"",kanji:"—",meaning:"mungkin, barangkali",type:"noun"},
       {jp:"きっと",rom:"kitto",note:"",kanji:"—",meaning:"pasti",type:"noun"},
-      {jp:"ほんとうに",rom:"hontō ni",note:"",kanji:"—",meaning:"betul-betul",type:"noun"},
-      {jp:"そんなに",rom:"sonna ni",note:"",kanji:"—",meaning:"tidak begitu (+ negatif)",type:"noun"},
-      {jp:"〜について",rom:"~ ni tsuite",note:"",kanji:"—",meaning:"tentang 〜, mengenai 〜",type:"noun"},
     ]},
   ],
 
@@ -1637,55 +1298,40 @@ const allBabs = {
       {jp:"きます",rom:"kimasu",note:"",kanji:"着ます",meaning:"memakai (kemeja)",type:"verb"},
       {jp:"はきます",rom:"hakimasu",note:"",kanji:"履きます",meaning:"memakai (sepatu, celana)",type:"verb"},
       {jp:"かぶります",rom:"kaburimasu",note:"",kanji:"被ります",meaning:"memakai (topi)",type:"verb"},
-      {jp:"かけます[めがねを〜]",rom:"kakemasu",note:"[眼鏡を〜]",kanji:"かけます",meaning:"memakai [kaca mata]",type:"verb"},
-      {jp:"します[ネクタイを〜]",rom:"shimasu",note:"[ネクタイを〜]",kanji:"—",meaning:"memakai [dasi]",type:"verb"},
+      {jp:"かけます",rom:"kakemasu",note:"[めがねを〜]",kanji:"かけます",meaning:"memakai [kaca mata]",type:"verb"},
       {jp:"うまれます",rom:"umaremasu",note:"",kanji:"生まれます",meaning:"lahir",type:"verb"},
     ]},
     { id:"noun", num:"02", title:"Pakaian & Kata Benda", jp:"服・名詞", rows:[
-      {jp:"わたしたち",rom:"watashitachi",note:"",kanji:"—",meaning:"kami, kita",type:"noun"},
       {jp:"コート",rom:"kōto",note:"",kanji:"—",meaning:"mantel",type:"noun"},
       {jp:"セーター",rom:"sētā",note:"",kanji:"—",meaning:"sweater, baju hangat",type:"noun"},
-      {jp:"スーツ",rom:"sūtsu",note:"*",kanji:"—",meaning:"pakaian setelan",type:"noun"},
+      {jp:"スーツ",rom:"sūtsu",note:"",kanji:"—",meaning:"pakaian setelan",type:"noun"},
       {jp:"ぼうし",rom:"bōshi",note:"",kanji:"帽子",meaning:"topi",type:"noun"},
       {jp:"めがね",rom:"megane",note:"",kanji:"眼鏡",meaning:"kaca mata",type:"noun"},
       {jp:"ケーキ",rom:"kēki",note:"",kanji:"—",meaning:"kue",type:"noun"},
       {jp:"[お]べんとう",rom:"[o]bentō",note:"",kanji:"[お]弁当",meaning:"bekal",type:"noun"},
       {jp:"ロボット",rom:"robotto",note:"",kanji:"—",meaning:"robot",type:"noun"},
-      {jp:"ユーモア",rom:"yūmoa",note:"",kanji:"—",meaning:"humor",type:"noun"},
-      {jp:"つごう",rom:"tsugō",note:"",kanji:"都合",meaning:"kondisi",type:"noun"},
-      {jp:"よく",rom:"yoku",note:"",kanji:"—",meaning:"sering kali",type:"noun"},
     ]},
   ],
 
   23: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
-      {jp:"ききます[せんせいに〜]",rom:"kikimasu",note:"[先生に〜]",kanji:"聞きます",meaning:"bertanya [kepada guru]",type:"verb"},
       {jp:"まわします",rom:"mawashimasu",note:"",kanji:"回します",meaning:"memutar",type:"verb"},
       {jp:"ひきます",rom:"hikimasu",note:"",kanji:"引きます",meaning:"tarik",type:"verb"},
-      {jp:"かえます",rom:"kaemasu",note:"",kanji:"変えます",meaning:"mengubah",type:"verb"},
-      {jp:"さわります[ドアに〜]",rom:"sawarimasu",note:"[ドアに〜]",kanji:"触ります",meaning:"menyentuh [pintu]",type:"verb"},
-      {jp:"でます[おつりが〜]",rom:"demasu",note:"[お釣りが〜]",kanji:"出ます",meaning:"keluar [uang kembalian]",type:"verb"},
+      {jp:"さわります",rom:"sawarimasu",note:"",kanji:"触ります",meaning:"menyentuh",type:"verb"},
       {jp:"あるきます",rom:"arukimasu",note:"",kanji:"歩きます",meaning:"berjalan kaki",type:"verb"},
-      {jp:"わたります[はしを〜]",rom:"watarimasu",note:"[橋を〜]",kanji:"渡ります",meaning:"menyeberang [jembatan]",type:"verb"},
-      {jp:"まがります[みぎへ〜]",rom:"magarimasu",note:"[右へ〜]",kanji:"曲がります",meaning:"belok [ke kanan]",type:"verb"},
+      {jp:"わたります",rom:"watarimasu",note:"[はしを〜]",kanji:"渡ります",meaning:"menyeberang [jembatan]",type:"verb"},
+      {jp:"まがります",rom:"magarimasu",note:"[みぎへ〜]",kanji:"曲がります",meaning:"belok [ke kanan]",type:"verb"},
     ]},
-    { id:"adj", num:"02", title:"Kata Sifat", jp:"形容詞", rows:[
-      {jp:"さびしい",rom:"sabishii",note:"",kanji:"寂しい",meaning:"sepi",type:"adj"},
-    ]},
-    { id:"noun", num:"03", title:"Kata Benda", jp:"名詞", rows:[
-      {jp:"[お]ゆ",rom:"[o]yu",note:"",kanji:"[お]湯",meaning:"air panas",type:"noun"},
+    { id:"noun", num:"02", title:"Kata Benda & Arah", jp:"名詞・道案内", rows:[
       {jp:"おと",rom:"oto",note:"",kanji:"音",meaning:"bunyi, suara",type:"noun"},
-      {jp:"サイズ",rom:"saizu",note:"",kanji:"—",meaning:"ukuran",type:"noun"},
-      {jp:"こしょう",rom:"koshō",note:"",kanji:"故障",meaning:"kerusakan (〜します: rusak)",type:"noun"},
       {jp:"みち",rom:"michi",note:"",kanji:"道",meaning:"jalan",type:"noun"},
       {jp:"こうさてん",rom:"kōsaten",note:"",kanji:"交差点",meaning:"perempatan",type:"noun"},
       {jp:"しんごう",rom:"shingō",note:"",kanji:"信号",meaning:"lampu lalu lintas",type:"noun"},
-      {jp:"かど",rom:"kado",note:"",kanji:"角",meaning:"sudut",type:"noun"},
+      {jp:"かど",rom:"kado",note:"",kanji:"角",meaning:"sudut, pojok",type:"noun"},
       {jp:"はし",rom:"hashi",note:"",kanji:"橋",meaning:"jembatan",type:"noun"},
       {jp:"ちゅうしゃじょう",rom:"chūshajō",note:"",kanji:"駐車場",meaning:"tempat parkir",type:"noun"},
       {jp:"たてもの",rom:"tatemono",note:"",kanji:"建物",meaning:"gedung",type:"noun"},
-      {jp:"なんかいも",rom:"nankai mo",note:"",kanji:"何回も",meaning:"berkali-kali",type:"noun"},
-      {jp:"〜め",rom:"~ me",note:"",kanji:"〜目",meaning:"yang ke 〜 (mengungkapkan urutan)",type:"noun"},
+      {jp:"〜め",rom:"~ me",note:"",kanji:"〜目",meaning:"yang ke 〜 (urutan)",type:"noun"},
     ]},
   ],
 
@@ -1694,23 +1340,19 @@ const allBabs = {
       {jp:"くれます",rom:"kuremasu",note:"",kanji:"くれます",meaning:"diberikan",type:"verb"},
       {jp:"なおします",rom:"naoshimasu",note:"",kanji:"直します",meaning:"mengoreksi",type:"verb"},
       {jp:"つれていきます",rom:"tsurete ikimasu",note:"",kanji:"連れて行きます",meaning:"membawa, mengajak pergi",type:"verb"},
-      {jp:"つれてきます",rom:"tsurete kimasu",note:"*",kanji:"連れて来ます",meaning:"membawa datang, mengajak datang",type:"verb"},
-      {jp:"おくります[ひとを〜]",rom:"okurimasu",note:"[人を〜]",kanji:"送ります",meaning:"mengantar [orang]",type:"verb"},
+      {jp:"おくります",rom:"okurimasu",note:"[ひとを〜]",kanji:"送ります",meaning:"mengantar [orang]",type:"verb"},
       {jp:"しょうかいします",rom:"shōkai shimasu",note:"",kanji:"紹介します",meaning:"memperkenalkan",type:"verb"},
       {jp:"あんないします",rom:"annai shimasu",note:"",kanji:"案内します",meaning:"mengantarkan",type:"verb"},
-      {jp:"せつめいします",rom:"setsumei shimasu",note:"",kanji:"説明します",meaning:"menjelaskan, menerangkan",type:"verb"},
+      {jp:"せつめいします",rom:"setsumei shimasu",note:"",kanji:"説明します",meaning:"menjelaskan",type:"verb"},
     ]},
     { id:"noun", num:"02", title:"Kata Benda", jp:"名詞", rows:[
-      {jp:"おじいさん／おじいちゃん",rom:"ojīsan/ojīchan",note:"",kanji:"—",meaning:"kakek",type:"noun"},
-      {jp:"おばあさん／おばあちゃん",rom:"obāsan/obāchan",note:"",kanji:"—",meaning:"nenek",type:"noun"},
-      {jp:"じゅんび",rom:"junbi",note:"",kanji:"準備",meaning:"persiapan (〜[を]します: mempersiapkan, menyiapkan)",type:"noun"},
-      {jp:"ひっこし",rom:"hikkoshi",note:"",kanji:"引っ越し",meaning:"pindah rumah (〜[を]します: pindah, memindahkan)",type:"noun"},
-      {jp:"[お]かし",rom:"[o]kashi",note:"",kanji:"[お]菓子",meaning:"kue",type:"noun"},
+      {jp:"おじいさん",rom:"ojīsan",note:"",kanji:"—",meaning:"kakek",type:"noun"},
+      {jp:"おばあさん",rom:"obāsan",note:"",kanji:"—",meaning:"nenek",type:"noun"},
+      {jp:"じゅんび",rom:"junbi",note:"",kanji:"準備",meaning:"persiapan",type:"noun"},
+      {jp:"ひっこし",rom:"hikkoshi",note:"",kanji:"引っ越し",meaning:"pindah rumah",type:"noun"},
       {jp:"ホームステイ",rom:"hōmusutei",note:"",kanji:"—",meaning:"homestay",type:"noun"},
       {jp:"ぜんぶ",rom:"zenbu",note:"",kanji:"全部",meaning:"semua",type:"noun"},
       {jp:"じぶんで",rom:"jibun de",note:"",kanji:"自分で",meaning:"dengan sendiri",type:"noun"},
-      {jp:"ほかに",rom:"hoka ni",note:"",kanji:"—",meaning:"selain, yang lain",type:"noun"},
-      {jp:"ははのひ",rom:"haha no hi",note:"",kanji:"母の日",meaning:"hari Ibu",type:"noun"},
     ]},
   ],
 
@@ -1718,69 +1360,65 @@ const allBabs = {
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"かんがえます",rom:"kangaemasu",note:"",kanji:"考えます",meaning:"berpikir, memikirkan",type:"verb"},
       {jp:"つきます",rom:"tsukimasu",note:"",kanji:"着きます",meaning:"tiba, sampai",type:"verb"},
-      {jp:"とります[としを〜]",rom:"torimasu",note:"[年を〜]",kanji:"取ります",meaning:"berumur, lanjut usia",type:"verb"},
       {jp:"たります",rom:"tarimasu",note:"",kanji:"足ります",meaning:"cukup",type:"verb"},
       {jp:"がんばります",rom:"ganbarimasu",note:"",kanji:"頑張ります",meaning:"berusaha, bekerja keras",type:"verb"},
     ]},
     { id:"noun", num:"02", title:"Kata Benda", jp:"名詞", rows:[
       {jp:"いなか",rom:"inaka",note:"",kanji:"田舎",meaning:"desa, kampung halaman",type:"noun"},
       {jp:"チャンス",rom:"chansu",note:"",kanji:"—",meaning:"kesempatan",type:"noun"},
-      {jp:"おく",rom:"oku",note:"",kanji:"億",meaning:"ratus juta",type:"noun"},
       {jp:"もし[〜たら]",rom:"moshi [~ tara]",note:"",kanji:"—",meaning:"kalau",type:"noun"},
       {jp:"いみ",rom:"imi",note:"",kanji:"意味",meaning:"arti, makna",type:"noun"},
-      {jp:"こと",rom:"koto",note:"",kanji:"—",meaning:"hal (〜のこと: hal 〜)",type:"noun"},
-      {jp:"ひま",rom:"hima",note:"",kanji:"暇",meaning:"waktu luang",type:"noun"},
-      {jp:"てんきん",rom:"tenkin",note:"",kanji:"転勤",meaning:"pindah ke kantor cabang lain atau jabatan lain",type:"noun"},
+      {jp:"こと",rom:"koto",note:"",kanji:"—",meaning:"hal",type:"noun"},
+      {jp:"てんきん",rom:"tenkin",note:"",kanji:"転勤",meaning:"pindah kantor",type:"noun"},
     ]},
     { id:"expr", num:"03", title:"Ekspresi", jp:"表現", rows:[
-      {jp:"もしもし",rom:"moshi moshi",note:"",kanji:"—",meaning:"halo (digunakan ketika menelepon)",type:"expr"},
-      {jp:"[いろいろ]おせわになりました",rom:"[iroiro] o-sewa ni narimashita",note:"",kanji:"—",meaning:"Terima kasih banyak bantuan Anda yang telah diberikan.",type:"expr"},
+      {jp:"もしもし",rom:"moshi moshi",note:"",kanji:"—",meaning:"halo (saat menelepon)",type:"expr"},
       {jp:"がんばります",rom:"ganbarimasu",note:"",kanji:"頑張ります",meaning:"berusaha, bekerja keras",type:"expr"},
-      {jp:"どうぞおげんきで",rom:"dōzo o-genki de",note:"",kanji:"—",meaning:"Semoga sehat-sehat selalu. (saat perpisahan jangka panjang)",type:"expr"},
-      {jp:"ベトナム",rom:"Betonamu",note:"referensi",kanji:"—",meaning:"Vietnam",type:"expr"},
+      {jp:"どうぞおげんきで",rom:"dōzo o-genki de",note:"",kanji:"—",meaning:"Semoga sehat-sehat selalu. (saat perpisahan)",type:"expr"},
     ]},
   ],
 };
 
+// ═══════════════ KANJI N5 ═══════════════
 const kanjiN5 = [
-  {char:"一",on:"イチ、イツ",kun:"ひと-",meaning:"satu",strokes:"1",ex:"一つ（ひとつ）= satu",cat:"angka"},
-  {char:"二",on:"ニ",kun:"ふた-",meaning:"dua",strokes:"2",ex:"二つ（ふたつ）= dua",cat:"angka"},
-  {char:"三",on:"サン",kun:"み-",meaning:"tiga",strokes:"3",ex:"三つ（みっつ）= tiga",cat:"angka"},
-  {char:"四",on:"シ",kun:"よ-、よっ-",meaning:"empat",strokes:"5",ex:"四つ（よっつ）= empat",cat:"angka"},
-  {char:"五",on:"ゴ",kun:"いつ-",meaning:"lima",strokes:"4",ex:"五つ（いつつ）= lima",cat:"angka"},
-  {char:"六",on:"ロク",kun:"む-",meaning:"enam",strokes:"4",ex:"六つ（むっつ）= enam",cat:"angka"},
-  {char:"七",on:"シチ",kun:"なな-",meaning:"tujuh",strokes:"2",ex:"七つ（ななつ）= tujuh",cat:"angka"},
-  {char:"八",on:"ハチ",kun:"や-",meaning:"delapan",strokes:"2",ex:"八つ（やっつ）= delapan",cat:"angka"},
-  {char:"九",on:"キュウ、ク",kun:"ここの-",meaning:"sembilan",strokes:"2",ex:"九つ（ここのつ）= sembilan",cat:"angka"},
-  {char:"十",on:"ジュウ、ジッ",kun:"とお、と",meaning:"sepuluh",strokes:"2",ex:"十（とお）= sepuluh",cat:"angka"},
-  {char:"百",on:"ヒャク",kun:"",meaning:"seratus",strokes:"6",ex:"百円（ひゃくえん）= 100 yen",cat:"angka"},
-  {char:"千",on:"セン",kun:"ち",meaning:"seribu",strokes:"3",ex:"千円（せんえん）= 1000 yen",cat:"angka"},
-  {char:"万",on:"マン、バン",kun:"",meaning:"sepuluh ribu",strokes:"3",ex:"一万円（いちまんえん）= 10000 yen",cat:"angka"},
+  {char:"一",on:"イチ、イツ",kun:"ひと-",meaning:"satu",strokes:"1",ex:"一つ = satu",cat:"angka"},
+  {char:"二",on:"ニ",kun:"ふた-",meaning:"dua",strokes:"2",ex:"二つ = dua",cat:"angka"},
+  {char:"三",on:"サン",kun:"み-",meaning:"tiga",strokes:"3",ex:"三つ = tiga",cat:"angka"},
+  {char:"四",on:"シ",kun:"よ-",meaning:"empat",strokes:"5",ex:"四つ = empat",cat:"angka"},
+  {char:"五",on:"ゴ",kun:"いつ-",meaning:"lima",strokes:"4",ex:"五つ = lima",cat:"angka"},
+  {char:"六",on:"ロク",kun:"む-",meaning:"enam",strokes:"4",ex:"六つ = enam",cat:"angka"},
+  {char:"七",on:"シチ",kun:"なな-",meaning:"tujuh",strokes:"2",ex:"七つ = tujuh",cat:"angka"},
+  {char:"八",on:"ハチ",kun:"や-",meaning:"delapan",strokes:"2",ex:"八つ = delapan",cat:"angka"},
+  {char:"九",on:"キュウ、ク",kun:"ここの-",meaning:"sembilan",strokes:"2",ex:"九つ = sembilan",cat:"angka"},
+  {char:"十",on:"ジュウ",kun:"とお",meaning:"sepuluh",strokes:"2",ex:"十 = sepuluh",cat:"angka"},
+  {char:"百",on:"ヒャク",kun:"",meaning:"seratus",strokes:"6",ex:"百円 = 100 yen",cat:"angka"},
+  {char:"千",on:"セン",kun:"ち",meaning:"seribu",strokes:"3",ex:"千円 = 1000 yen",cat:"angka"},
+  {char:"万",on:"マン、バン",kun:"",meaning:"sepuluh ribu",strokes:"3",ex:"一万円 = 10000 yen",cat:"angka"},
   {char:"年",on:"ネン",kun:"とし",meaning:"tahun",strokes:"6",ex:"今年（ことし）= tahun ini",cat:"waktu"},
-  {char:"月",on:"ゲツ、ガツ",kun:"つき",meaning:"bulan, bulan",strokes:"4",ex:"今月（こんげつ）= bulan ini",cat:"waktu"},
+  {char:"月",on:"ゲツ、ガツ",kun:"つき",meaning:"bulan",strokes:"4",ex:"今月（こんげつ）= bulan ini",cat:"waktu"},
   {char:"日",on:"ニチ、ジツ",kun:"ひ、か",meaning:"hari, matahari",strokes:"4",ex:"今日（きょう）= hari ini",cat:"waktu"},
   {char:"時",on:"ジ",kun:"とき",meaning:"waktu, jam",strokes:"10",ex:"何時（なんじ）= jam berapa",cat:"waktu"},
-  {char:"分",on:"フン、ブン",kun:"わ-かる",meaning:"menit, mengerti",strokes:"4",ex:"五分（ごふん）= 5 menit",cat:"waktu"},
-  {char:"半",on:"ハン",kun:"なか-ば",meaning:"setengah",strokes:"5",ex:"半分（はんぶん）= setengah",cat:"waktu"},
+  {char:"分",on:"フン、ブン",kun:"わかる",meaning:"menit, mengerti",strokes:"4",ex:"五分（ごふん）= 5 menit",cat:"waktu"},
+  {char:"半",on:"ハン",kun:"なかば",meaning:"setengah",strokes:"5",ex:"半分（はんぶん）= setengah",cat:"waktu"},
   {char:"今",on:"コン、キン",kun:"いま",meaning:"sekarang",strokes:"4",ex:"今（いま）= sekarang",cat:"waktu"},
   {char:"週",on:"シュウ",kun:"",meaning:"minggu",strokes:"11",ex:"今週（こんしゅう）= minggu ini",cat:"waktu"},
   {char:"毎",on:"マイ",kun:"",meaning:"setiap",strokes:"6",ex:"毎日（まいにち）= setiap hari",cat:"waktu"},
   {char:"朝",on:"チョウ",kun:"あさ",meaning:"pagi",strokes:"12",ex:"毎朝（まいあさ）= setiap pagi",cat:"waktu"},
   {char:"昼",on:"チュウ",kun:"ひる",meaning:"siang",strokes:"9",ex:"昼（ひる）= siang",cat:"waktu"},
-  {char:"夜",on:"ヤ",kun:"よる、よ",meaning:"malam",strokes:"8",ex:"夜（よる）= malam",cat:"waktu"},
+  {char:"夜",on:"ヤ",kun:"よる",meaning:"malam",strokes:"8",ex:"夜（よる）= malam",cat:"waktu"},
   {char:"前",on:"ゼン",kun:"まえ",meaning:"depan, sebelum",strokes:"9",ex:"午前（ごぜん）= a.m.",cat:"waktu"},
-  {char:"後",on:"ゴ、コウ",kun:"あと、うし-ろ",meaning:"setelah, belakang",strokes:"9",ex:"午後（ごご）= p.m.",cat:"waktu"},
+  {char:"後",on:"ゴ、コウ",kun:"あと、うしろ",meaning:"setelah, belakang",strokes:"9",ex:"午後（ごご）= p.m.",cat:"waktu"},
   {char:"山",on:"サン",kun:"やま",meaning:"gunung",strokes:"3",ex:"富士山（ふじさん）= Gunung Fuji",cat:"alam"},
   {char:"川",on:"セン",kun:"かわ",meaning:"sungai",strokes:"3",ex:"川（かわ）= sungai",cat:"alam"},
   {char:"海",on:"カイ",kun:"うみ",meaning:"laut",strokes:"9",ex:"海（うみ）= laut",cat:"alam"},
-  {char:"空",on:"クウ",kun:"そら、から",meaning:"langit, kosong",strokes:"8",ex:"空港（くうこう）= bandara",cat:"alam"},
+  {char:"空",on:"クウ",kun:"そら",meaning:"langit, kosong",strokes:"8",ex:"空港（くうこう）= bandara",cat:"alam"},
   {char:"木",on:"モク、ボク",kun:"き",meaning:"pohon, kayu",strokes:"4",ex:"木（き）= pohon",cat:"alam"},
   {char:"花",on:"カ",kun:"はな",meaning:"bunga",strokes:"7",ex:"花見（はなみ）= hanami",cat:"alam"},
-  {char:"雨",on:"ウ",kun:"あめ、あま",meaning:"hujan",strokes:"8",ex:"雨（あめ）= hujan",cat:"alam"},
+  {char:"雨",on:"ウ",kun:"あめ",meaning:"hujan",strokes:"8",ex:"雨（あめ）= hujan",cat:"alam"},
   {char:"雪",on:"セツ",kun:"ゆき",meaning:"salju",strokes:"11",ex:"雪（ゆき）= salju",cat:"alam"},
-  {char:"火",on:"カ",kun:"ひ、ほ",meaning:"api",strokes:"4",ex:"火曜日（かようび）= Selasa",cat:"alam"},
+  {char:"火",on:"カ",kun:"ひ",meaning:"api",strokes:"4",ex:"火曜日（かようび）= Selasa",cat:"alam"},
   {char:"水",on:"スイ",kun:"みず",meaning:"air",strokes:"4",ex:"水（みず）= air",cat:"alam"},
-  {char:"金",on:"キン、コン",kun:"かね、かな",meaning:"emas, uang",strokes:"8",ex:"お金（おかね）= uang",cat:"alam"},
+  {char:"金",on:"キン、コン",kun:"かね",meaning:"emas, uang",strokes:"8",ex:"お金（おかね）= uang",cat:"alam"},
   {char:"土",on:"ド、ト",kun:"つち",meaning:"tanah",strokes:"3",ex:"土曜日（どようび）= Sabtu",cat:"alam"},
   {char:"人",on:"ジン、ニン",kun:"ひと",meaning:"orang",strokes:"2",ex:"日本人（にほんじん）= orang Jepang",cat:"orang"},
   {char:"男",on:"ダン、ナン",kun:"おとこ",meaning:"laki-laki",strokes:"7",ex:"男の人（おとこのひと）= pria",cat:"orang"},
@@ -1790,245 +1428,233 @@ const kanjiN5 = [
   {char:"母",on:"ボ",kun:"はは",meaning:"ibu",strokes:"5",ex:"母（はは）= ibu",cat:"orang"},
   {char:"友",on:"ユウ",kun:"とも",meaning:"teman",strokes:"4",ex:"友達（ともだち）= teman",cat:"orang"},
   {char:"先",on:"セン",kun:"さき",meaning:"lebih dulu, guru",strokes:"6",ex:"先生（せんせい）= guru",cat:"orang"},
-  {char:"生",on:"セイ、ショウ",kun:"い-きる、う-まれる",meaning:"hidup, lahir",strokes:"5",ex:"学生（がくせい）= mahasiswa",cat:"orang"},
-  {char:"上",on:"ジョウ、ショウ",kun:"うえ、のぼ-る",meaning:"atas",strokes:"3",ex:"上（うえ）= atas",cat:"arah"},
-  {char:"下",on:"カ、ゲ",kun:"した、さが-る",meaning:"bawah",strokes:"3",ex:"下（した）= bawah",cat:"arah"},
+  {char:"生",on:"セイ、ショウ",kun:"いきる、うまれる",meaning:"hidup, lahir",strokes:"5",ex:"学生（がくせい）= mahasiswa",cat:"orang"},
+  {char:"上",on:"ジョウ",kun:"うえ、のぼる",meaning:"atas",strokes:"3",ex:"上（うえ）= atas",cat:"arah"},
+  {char:"下",on:"カ、ゲ",kun:"した、さがる",meaning:"bawah",strokes:"3",ex:"下（した）= bawah",cat:"arah"},
   {char:"中",on:"チュウ",kun:"なか",meaning:"dalam, tengah",strokes:"4",ex:"中（なか）= dalam",cat:"arah"},
-  {char:"外",on:"ガイ、ゲ",kun:"そと、はず-れる",meaning:"luar",strokes:"5",ex:"外国（がいこく）= luar negeri",cat:"arah"},
+  {char:"外",on:"ガイ、ゲ",kun:"そと",meaning:"luar",strokes:"5",ex:"外国（がいこく）= luar negeri",cat:"arah"},
   {char:"右",on:"ウ、ユウ",kun:"みぎ",meaning:"kanan",strokes:"5",ex:"右（みぎ）= kanan",cat:"arah"},
   {char:"左",on:"サ",kun:"ひだり",meaning:"kiri",strokes:"5",ex:"左（ひだり）= kiri",cat:"arah"},
   {char:"東",on:"トウ",kun:"ひがし",meaning:"timur",strokes:"8",ex:"東京（とうきょう）= Tokyo",cat:"arah"},
   {char:"西",on:"セイ、サイ",kun:"にし",meaning:"barat",strokes:"6",ex:"西（にし）= barat",cat:"arah"},
   {char:"南",on:"ナン",kun:"みなみ",meaning:"selatan",strokes:"9",ex:"南（みなみ）= selatan",cat:"arah"},
   {char:"北",on:"ホク",kun:"きた",meaning:"utara",strokes:"5",ex:"北（きた）= utara",cat:"arah"},
-  {char:"国",on:"コク、コッ",kun:"くに",meaning:"negara",strokes:"8",ex:"外国（がいこく）= luar negeri",cat:"tempat"},
-  {char:"学",on:"ガク",kun:"まな-ぶ",meaning:"belajar",strokes:"8",ex:"大学（だいがく）= universitas",cat:"tempat"},
+  {char:"国",on:"コク",kun:"くに",meaning:"negara",strokes:"8",ex:"外国（がいこく）= luar negeri",cat:"tempat"},
+  {char:"学",on:"ガク",kun:"まなぶ",meaning:"belajar",strokes:"8",ex:"大学（だいがく）= universitas",cat:"tempat"},
   {char:"校",on:"コウ",kun:"",meaning:"sekolah",strokes:"10",ex:"学校（がっこう）= sekolah",cat:"tempat"},
-  {char:"会",on:"カイ、エ",kun:"あ-う",meaning:"bertemu, perusahaan",strokes:"6",ex:"会社（かいしゃ）= perusahaan",cat:"tempat"},
+  {char:"会",on:"カイ、エ",kun:"あう",meaning:"bertemu, perusahaan",strokes:"6",ex:"会社（かいしゃ）= perusahaan",cat:"tempat"},
   {char:"社",on:"シャ",kun:"やしろ",meaning:"perusahaan, kuil",strokes:"7",ex:"会社（かいしゃ）= perusahaan",cat:"tempat"},
   {char:"店",on:"テン",kun:"みせ",meaning:"toko",strokes:"8",ex:"お店（おみせ）= toko",cat:"tempat"},
   {char:"駅",on:"エキ",kun:"",meaning:"stasiun",strokes:"14",ex:"駅（えき）= stasiun",cat:"tempat"},
   {char:"銀",on:"ギン",kun:"",meaning:"perak",strokes:"14",ex:"銀行（ぎんこう）= bank",cat:"tempat"},
-  {char:"行",on:"コウ、ギョウ",kun:"い-く、おこな-う",meaning:"pergi, baris",strokes:"6",ex:"銀行（ぎんこう）= bank",cat:"tempat"},
+  {char:"行",on:"コウ、ギョウ",kun:"いく、おこなう",meaning:"pergi, baris",strokes:"6",ex:"銀行（ぎんこう）= bank",cat:"tempat"},
   {char:"本",on:"ホン",kun:"もと",meaning:"buku, asal",strokes:"5",ex:"本（ほん）= buku",cat:"benda"},
   {char:"車",on:"シャ",kun:"くるま",meaning:"mobil",strokes:"7",ex:"車（くるま）= mobil",cat:"benda"},
   {char:"電",on:"デン",kun:"",meaning:"listrik",strokes:"13",ex:"電車（でんしゃ）= kereta",cat:"benda"},
-  {char:"語",on:"ゴ",kun:"かた-る",meaning:"bahasa, cerita",strokes:"14",ex:"日本語（にほんご）= bahasa Jepang",cat:"benda"},
+  {char:"語",on:"ゴ",kun:"かたる",meaning:"bahasa, cerita",strokes:"14",ex:"日本語（にほんご）= bahasa Jepang",cat:"benda"},
   {char:"字",on:"ジ",kun:"あざ",meaning:"huruf",strokes:"6",ex:"漢字（かんじ）= kanji",cat:"benda"},
-  {char:"食",on:"ショク",kun:"た-べる",meaning:"makan",strokes:"9",ex:"食堂（しょくどう）= kantin",cat:"benda"},
-  {char:"飲",on:"イン",kun:"の-む",meaning:"minum",strokes:"12",ex:"飲み物（のみもの）= minuman",cat:"benda"},
-  {char:"見",on:"ケン",kun:"み-る",meaning:"melihat",strokes:"7",ex:"見ます（みます）= melihat",cat:"benda"},
-  {char:"聞",on:"ブン、モン",kun:"き-く",meaning:"mendengar",strokes:"14",ex:"聞きます（ききます）= mendengar",cat:"benda"},
-  {char:"読",on:"ドク",kun:"よ-む",meaning:"membaca",strokes:"14",ex:"読みます（よみます）= membaca",cat:"benda"},
-  {char:"大",on:"ダイ、タイ",kun:"おお-きい",meaning:"besar",strokes:"3",ex:"大きい（おおきい）= besar",cat:"lainnya"},
-  {char:"小",on:"ショウ",kun:"ちい-さい、こ、お",meaning:"kecil",strokes:"3",ex:"小さい（ちいさい）= kecil",cat:"lainnya"},
+  {char:"食",on:"ショク",kun:"たべる",meaning:"makan",strokes:"9",ex:"食堂（しょくどう）= kantin",cat:"benda"},
+  {char:"飲",on:"イン",kun:"のむ",meaning:"minum",strokes:"12",ex:"飲み物（のみもの）= minuman",cat:"benda"},
+  {char:"見",on:"ケン",kun:"みる",meaning:"melihat",strokes:"7",ex:"見ます = melihat",cat:"benda"},
+  {char:"聞",on:"ブン、モン",kun:"きく",meaning:"mendengar",strokes:"14",ex:"聞きます = mendengar",cat:"benda"},
+  {char:"読",on:"ドク",kun:"よむ",meaning:"membaca",strokes:"14",ex:"読みます = membaca",cat:"benda"},
+  {char:"大",on:"ダイ、タイ",kun:"おおきい",meaning:"besar",strokes:"3",ex:"大きい = besar",cat:"lainnya"},
+  {char:"小",on:"ショウ",kun:"ちいさい",meaning:"kecil",strokes:"3",ex:"小さい = kecil",cat:"lainnya"},
   {char:"何",on:"カ",kun:"なに、なん",meaning:"apa",strokes:"7",ex:"何（なに）= apa",cat:"lainnya"},
-  {char:"円",on:"エン",kun:"まる-い",meaning:"yen, bulat",strokes:"4",ex:"百円（ひゃくえん）= 100 yen",cat:"lainnya"},
-  {char:"白",on:"ハク、ビャク",kun:"しろ-い",meaning:"putih",strokes:"5",ex:"白い（しろい）= putih",cat:"lainnya"},
-  {char:"黒",on:"コク",kun:"くろ-い",meaning:"hitam",strokes:"11",ex:"黒い（くろい）= hitam",cat:"lainnya"},
-  {char:"赤",on:"セキ、シャク",kun:"あか-い",meaning:"merah",strokes:"7",ex:"赤い（あかい）= merah",cat:"lainnya"},
-  {char:"青",on:"セイ、ショウ",kun:"あお-い",meaning:"biru, muda",strokes:"8",ex:"青い（あおい）= biru",cat:"lainnya"},
-  {char:"新",on:"シン",kun:"あたら-しい",meaning:"baru",strokes:"13",ex:"新しい（あたらしい）= baru",cat:"lainnya"},
-  {char:"古",on:"コ",kun:"ふる-い",meaning:"lama",strokes:"5",ex:"古い（ふるい）= lama",cat:"lainnya"},
+  {char:"円",on:"エン",kun:"まるい",meaning:"yen, bulat",strokes:"4",ex:"百円 = 100 yen",cat:"lainnya"},
+  {char:"白",on:"ハク",kun:"しろい",meaning:"putih",strokes:"5",ex:"白い = putih",cat:"lainnya"},
+  {char:"黒",on:"コク",kun:"くろい",meaning:"hitam",strokes:"11",ex:"黒い = hitam",cat:"lainnya"},
+  {char:"赤",on:"セキ",kun:"あかい",meaning:"merah",strokes:"7",ex:"赤い = merah",cat:"lainnya"},
+  {char:"青",on:"セイ",kun:"あおい",meaning:"biru, muda",strokes:"8",ex:"青い = biru",cat:"lainnya"},
+  {char:"新",on:"シン",kun:"あたらしい",meaning:"baru",strokes:"13",ex:"新しい = baru",cat:"lainnya"},
+  {char:"古",on:"コ",kun:"ふるい",meaning:"lama",strokes:"5",ex:"古い = lama",cat:"lainnya"},
 ];
 
 const babTitles = {
-  1:{title:"Pelajaran 1",jp:"第一課 · 語彙",seal:"一",kanji:"第一課"},
-  2:{title:"Pelajaran 2",jp:"第二課 · 語彙",seal:"二",kanji:"第二課"},
-  3:{title:"Pelajaran 3",jp:"第三課 · 語彙",seal:"三",kanji:"第三課"},
-  4:{title:"Pelajaran 4",jp:"第四課 · 語彙",seal:"四",kanji:"第四課"},
-  5:{title:"Pelajaran 5",jp:"第五課 · 語彙",seal:"五",kanji:"第五課"},
-  6:{title:"Pelajaran 6",jp:"第六課 · 語彙",seal:"六",kanji:"第六課"},
-  7:{title:"Pelajaran 7",jp:"第七課 · 語彙",seal:"七",kanji:"第七課"},
-  8:{title:"Pelajaran 8",jp:"第八課 · 語彙",seal:"八",kanji:"第八課"},
-  9:{title:"Pelajaran 9",jp:"第九課 · 語彙",seal:"九",kanji:"第九課"},
-  10:{title:"Pelajaran 10",jp:"第十課 · 語彙",seal:"十",kanji:"第十課"},
-  11:{title:"Pelajaran 11",jp:"第十一課 · 語彙",seal:"十一",kanji:"第十一課"},
-  12:{title:"Pelajaran 12",jp:"第十二課 · 語彙",seal:"十二",kanji:"第十二課"},
-  13:{title:"Pelajaran 13",jp:"第十三課 · 語彙",seal:"十三",kanji:"第十三課"},
-  14:{title:"Pelajaran 14",jp:"第十四課 · 語彙",seal:"十四",kanji:"第十四課"},
-  15:{title:"Pelajaran 15",jp:"第十五課 · 語彙",seal:"十五",kanji:"第十五課"},
-  16:{title:"Pelajaran 16",jp:"第十六課 · 語彙",seal:"十六",kanji:"第十六課"},
-  17:{title:"Pelajaran 17",jp:"第十七課 · 語彙",seal:"十七",kanji:"第十七課"},
-  18:{title:"Pelajaran 18",jp:"第十八課 · 語彙",seal:"十八",kanji:"第十八課"},
-  19:{title:"Pelajaran 19",jp:"第十九課 · 語彙",seal:"十九",kanji:"第十九課"},
-  20:{title:"Pelajaran 20",jp:"第二十課 · 語彙",seal:"二十",kanji:"第二十課"},
-  21:{title:"Pelajaran 21",jp:"第二十一課 · 語彙",seal:"廿一",kanji:"第二十一課"},
-  22:{title:"Pelajaran 22",jp:"第二十二課 · 語彙",seal:"廿二",kanji:"第二十二課"},
-  23:{title:"Pelajaran 23",jp:"第二十三課 · 語彙",seal:"廿三",kanji:"第二十三課"},
-  24:{title:"Pelajaran 24",jp:"第二十四課 · 語彙",seal:"廿四",kanji:"第二十四課"},
-  25:{title:"Pelajaran 25",jp:"第二十五課 · 語彙",seal:"廿五",kanji:"第二十五課"},
+  1:{t:"Pelajaran 1",jp:"第一課 · 語彙"}, 2:{t:"Pelajaran 2",jp:"第二課 · 語彙"},
+  3:{t:"Pelajaran 3",jp:"第三課 · 語彙"}, 4:{t:"Pelajaran 4",jp:"第四課 · 語彙"},
+  5:{t:"Pelajaran 5",jp:"第五課 · 語彙"}, 6:{t:"Pelajaran 6",jp:"第六課 · 語彙"},
+  7:{t:"Pelajaran 7",jp:"第七課 · 語彙"}, 8:{t:"Pelajaran 8",jp:"第八課 · 語彙"},
+  9:{t:"Pelajaran 9",jp:"第九課 · 語彙"}, 10:{t:"Pelajaran 10",jp:"第十課 · 語彙"},
+  11:{t:"Pelajaran 11",jp:"第十一課 · 語彙"}, 12:{t:"Pelajaran 12",jp:"第十二課 · 語彙"},
+  13:{t:"Pelajaran 13",jp:"第十三課 · 語彙"}, 14:{t:"Pelajaran 14",jp:"第十四課 · 語彙"},
+  15:{t:"Pelajaran 15",jp:"第十五課 · 語彙"}, 16:{t:"Pelajaran 16",jp:"第十六課 · 語彙"},
+  17:{t:"Pelajaran 17",jp:"第十七課 · 語彙"}, 18:{t:"Pelajaran 18",jp:"第十八課 · 語彙"},
+  19:{t:"Pelajaran 19",jp:"第十九課 · 語彙"}, 20:{t:"Pelajaran 20",jp:"第二十課 · 語彙"},
+  21:{t:"Pelajaran 21",jp:"第二十一課 · 語彙"}, 22:{t:"Pelajaran 22",jp:"第二十二課 · 語彙"},
+  23:{t:"Pelajaran 23",jp:"第二十三課 · 語彙"}, 24:{t:"Pelajaran 24",jp:"第二十四課 · 語彙"},
+  25:{t:"Pelajaran 25",jp:"第二十五課 · 語彙"},
 };
 
-let currentBab = 1;
-let activeFilter = "all";
-let searchQ = "";
-let currentMode = "vocab";
-let activeKCat = "all";
+// ═══════════════ STATE ═══════════════
+let currentBab = 1, activeFilter = 'all', searchQ = '', currentMode = 'vocab', activeKCat = 'all';
 
-function switchMode(mode) {
-  currentMode = mode;
-  document.getElementById('vocabPanel').classList.toggle('active', mode === 'vocab');
-  document.getElementById('kanjiPanel').classList.toggle('active', mode === 'kanji');
-  document.getElementById('tabVocab').classList.toggle('active', mode === 'vocab');
-  document.getElementById('tabKanji').classList.toggle('active', mode === 'kanji');
-  document.getElementById('babNav').style.display = mode === 'vocab' ? '' : 'none';
-  document.getElementById('filterBtns').style.display = mode === 'vocab' ? '' : 'none';
-  document.getElementById('search').placeholder = mode === 'vocab'
-    ? 'Cari kata Jepang, romaji, atau arti...'
-    : 'Cari kanji, cara baca, atau arti...';
-  if (mode === 'kanji') renderKanji();
-  else render();
-}
-
-function updateHeader(i) {
-  const t = babTitles[i];
-  const h1 = document.getElementById('headerTitle');
-  const span = document.getElementById('headerJp');
-  h1.innerHTML = '';
-  h1.appendChild(document.createTextNode(t.title + ' '));
-  span.textContent = t.jp;
-  h1.appendChild(span);
-  document.getElementById('sealEl').textContent = t.seal;
-  document.getElementById('footerEl').innerHTML =
-    t.kanji + ' &nbsp;·&nbsp; ' + t.title + ' &nbsp;·&nbsp; Kosa Kata Bahasa Jepang &nbsp;|&nbsp; By PrinceQiu · @Prince.Qiu';
-}
-
-const babContainer = document.getElementById('babBtns');
+// ═══════════════ BAB BUTTONS ═══════════════
+const babBtnsEl = document.getElementById('babBtns');
 for (let i = 1; i <= 25; i++) {
   const btn = document.createElement('button');
   const hasData = !!allBabs[i];
-  btn.className = 'bab-btn' + (i===1?' active':'') + (hasData?' has-data':' empty');
+  btn.className = 'bab-btn' + (i===1?' active':'') + (!hasData?' empty':'');
   btn.textContent = i;
   btn.title = 'Pelajaran ' + i;
   if (hasData) {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', () => {
       if (currentBab === i) return;
       currentBab = i;
       document.querySelectorAll('.bab-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
+      btn.classList.add('active');
       activeFilter = 'all';
       searchQ = '';
       document.getElementById('search').value = '';
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
       document.querySelector('[data-filter="all"]').classList.add('active');
-      updateHeader(i);
-      document.getElementById('mainContent').scrollIntoView({behavior:'smooth', block:'start'});
+      // Update hero
+      const t = babTitles[i];
+      document.getElementById('heroTitle').innerHTML = t.t + '<span class="jp">' + t.jp + '</span>';
+      // ── FIX BUG: scroll ke top section, bukan scroll yg ada id salah ──
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       render();
     });
   }
-  babContainer.appendChild(btn);
+  babBtnsEl.appendChild(btn);
 }
 
-document.querySelectorAll('.filter-btn').forEach(btn => {
+// ═══════════════ FILTER PILLS ═══════════════
+document.querySelectorAll('.filter-pill').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeFilter = btn.dataset.filter;
     render();
   });
 });
 
-document.querySelectorAll('.k-filter-btn').forEach(btn => {
+document.querySelectorAll('.kf-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.k-filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.kf-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeKCat = btn.dataset.kcat;
     renderKanji();
   });
 });
 
+// ═══════════════ SEARCH ═══════════════
 document.getElementById('search').addEventListener('input', e => {
   searchQ = e.target.value.trim();
   if (currentMode === 'vocab') render();
   else renderKanji();
 });
 
+// ═══════════════ MODE SWITCH ═══════════════
+function switchMode(mode) {
+  currentMode = mode;
+  document.getElementById('vocabPanel').style.display = mode === 'vocab' ? '' : 'none';
+  document.getElementById('kanjiPanel').style.display = mode === 'kanji' ? '' : 'none';
+  document.getElementById('tabVocab').classList.toggle('active', mode === 'vocab');
+  document.getElementById('tabKanji').classList.toggle('active', mode === 'kanji');
+  document.getElementById('subbar').style.display = mode === 'vocab' ? '' : 'none';
+  document.getElementById('search').placeholder = mode === 'vocab'
+    ? 'Cari kata, romaji, atau arti...'
+    : 'Cari kanji, cara baca, atau arti...';
+  if (mode === 'kanji') { renderKanji(); window.scrollTo({top:0}); }
+  else render();
+}
+
+// ═══════════════ HELPERS ═══════════════
 function hl(text) {
   if (!searchQ) return text;
-  const re = new RegExp(`(${searchQ.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
-  return String(text).replace(re,'<mark>$1</mark>');
+  const re = new RegExp('(' + searchQ.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
+  return String(text).replace(re, '<mark>$1</mark>');
 }
 function matchRow(r) {
   if (!searchQ) return true;
   const q = searchQ.toLowerCase();
-  return r.jp.includes(q)||r.rom.toLowerCase().includes(q)||r.meaning.toLowerCase().includes(q)||r.kanji.toLowerCase().includes(q)||(r.note&&r.note.includes(q));
+  return r.jp.includes(q) || r.rom.toLowerCase().includes(q) ||
+    r.meaning.toLowerCase().includes(q) || r.kanji.toLowerCase().includes(q) ||
+    (r.note && r.note.includes(q));
 }
+const typeLabel = { verb:'動詞', adj:'形容詞', noun:'名詞', expr:'表現', place:'場所', body:'体' };
 
+// ═══════════════ RENDER VOCAB ═══════════════
 function render() {
-  const mainEl = document.getElementById('vocabPanel');
-  const emptyEl = document.getElementById('emptyState');
   const sections = allBabs[currentBab];
-  if (!sections) { mainEl.innerHTML=''; document.getElementById('count').textContent='—'; return; }
+  const secEl = document.getElementById('vocabSections');
+  const empty = document.getElementById('emptyVocab');
+  if (!sections) { secEl.innerHTML = ''; document.getElementById('count').textContent = '—'; return; }
 
   let total = 0;
-  mainEl.innerHTML = sections.map(sec => {
+  secEl.innerHTML = sections.map(sec => {
     const rows = sec.rows.filter(r => {
-      const typeOk = activeFilter==='all' || r.type===activeFilter || sec.id===activeFilter;
+      const typeOk = activeFilter === 'all' || r.type === activeFilter;
       return typeOk && matchRow(r);
     });
     if (!rows.length) return '';
     total += rows.length;
-    const rowsHtml = rows.map((r,i) => `
-      <tr class="vocab-row">
-        <td class="td-num row-num">${String(i+1).padStart(2,'0')}</td>
+    const tagClass = ['verb','adj','expr','place','body'].includes(sec.id) ? sec.id : '';
+    const rowsHtml = rows.map((r, i) => {
+      const tl = typeLabel[r.type] || r.type;
+      return `<tr class="vocab-row">
+        <td class="td-num">${String(i+1).padStart(2,'0')}</td>
         <td class="td-jp">
-          <div class="jp-main">${hl(r.jp)}</div>
-          <div class="jp-romaji">${hl(r.rom)}</div>
-          ${r.note?`<div class="jp-note">${r.note}</div>`:''}
+          <div class="jp-word">${hl(r.jp)}</div>
+          <div class="jp-rom">${hl(r.rom)}</div>
+          ${r.note ? `<div class="jp-note-text">${r.note}</div>` : ''}
         </td>
-        <td class="td-kanji">${r.kanji!=='—'?hl(r.kanji):'<span style="color:var(--ink-faint)">—</span>'}</td>
+        <td class="td-kanji">${r.kanji !== '—' ? hl(r.kanji) : '<span style="color:var(--text4)">—</span>'}</td>
         <td class="td-meaning">${hl(r.meaning)}</td>
-      </tr>`).join('');
-    return `
-      <div class="section">
-        <div class="section-header">
-          <span class="section-num">${sec.num}</span>
-          <span class="section-title">${sec.title}</span>
-          <span class="section-jp">${sec.jp}</span>
+        <td class="td-type"><span class="type-badge type-${r.type}">${tl}</span></td>
+      </tr>`;
+    }).join('');
+
+    return `<div class="section">
+      <div class="section-card">
+        <div class="section-head">
+          <span class="section-tag ${tagClass}">${sec.num}</span>
+          <span class="section-name">${sec.title}</span>
+          <span class="section-jp-label">${sec.jp}</span>
         </div>
         <table class="vocab-table">
-          <colgroup>
-            <col><col><col><col>
-          </colgroup>
           <thead><tr>
-            <th></th>
+            <th style="width:30px"></th>
             <th>Hiragana / Katakana</th>
             <th>Kanji</th>
-            <th>Arti (Bahasa Indonesia)</th>
+            <th>Arti Bahasa Indonesia</th>
+            <th style="width:72px">Tipe</th>
           </tr></thead>
           <tbody>${rowsHtml}</tbody>
         </table>
-      </div>`;
+      </div>
+    </div>`;
   }).join('');
 
   document.getElementById('count').textContent = total + ' kata';
-  emptyEl.style.display = total===0 ? 'block' : 'none';
+  empty.style.display = total === 0 ? 'block' : 'none';
 }
 
+// ═══════════════ RENDER KANJI ═══════════════
 function renderKanji() {
-  const grid = document.getElementById('kanjiGrid');
   const q = searchQ.toLowerCase();
-  let filtered = kanjiN5.filter(k => {
-    const catOk = activeKCat==='all' || k.cat===activeKCat;
-    const searchOk = !q || k.char.includes(q) || k.on.toLowerCase().includes(q) || k.kun.toLowerCase().includes(q) || k.meaning.toLowerCase().includes(q) || k.ex.toLowerCase().includes(q);
+  const filtered = kanjiN5.filter(k => {
+    const catOk = activeKCat === 'all' || k.cat === activeKCat;
+    const searchOk = !q || k.char.includes(q) || k.on.toLowerCase().includes(q) ||
+      k.kun.toLowerCase().includes(q) || k.meaning.toLowerCase().includes(q) || k.ex.toLowerCase().includes(q);
     return catOk && searchOk;
   });
-
   document.getElementById('count').textContent = filtered.length + ' kanji';
-  grid.innerHTML = filtered.map((k,i) => `
-    <div class="kanji-card" style="animation-delay:${i*0.02}s">
+  document.getElementById('kanjiGrid').innerHTML = filtered.map((k,i) =>
+    `<div class="kanji-card" style="animation-delay:${i*0.018}s">
       <span class="k-char">${k.char}</span>
       <span class="k-on">音：${k.on}</span>
-      <span class="k-kun">訓：${k.kun||'—'}</span>
+      <span class="k-kun">訓：${k.kun || '—'}</span>
       <div class="k-meaning">${k.meaning}</div>
       <div class="k-stroke">${k.strokes} coretan</div>
       <div class="k-example">${k.ex}</div>
-    </div>`).join('');
-
-  document.getElementById('emptyState').style.display = filtered.length===0?'block':'none';
+    </div>`
+  ).join('');
+  document.getElementById('emptyKanji').style.display = filtered.length === 0 ? 'block' : 'none';
 }
 
+// Initial
 render();
 </script>
 </body>
