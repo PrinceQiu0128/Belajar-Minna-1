@@ -7,15 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@300;400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f8f9fb;
+    --bg: #f4f6fb;
     --bg2: #ffffff;
-    --bg3: #f1f3f7;
-    --border: #e4e7ef;
-    --border2: #d0d5e3;
-    --text: #0f1523;
-    --text2: #3d4663;
-    --text3: #7b84a3;
-    --text4: #b0b8d0;
+    --bg3: #eef1f8;
+    --border: #e2e7f2;
+    --border2: #cdd4e8;
+    --text: #0d1220;
+    --text2: #3a4260;
+    --text3: #7580a0;
+    --text4: #adb6ce;
     --accent: #4f62e8;
     --accent-light: #eef0fd;
     --accent2: #e8376e;
@@ -28,33 +28,33 @@
     --purple-light: #f5f3ff;
     --red: #ef4444;
     --red-light: #fee2e2;
-    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
-    --shadow-lg: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
-    --radius: 12px;
-    --radius-sm: 8px;
-    --radius-xs: 6px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.04);
+    --shadow-lg: 0 4px 24px rgba(0,0,0,0.08);
+    --radius: 14px;
+    --radius-sm: 10px;
   }
   [data-theme="dark"] {
-    --bg: #0d0f18;
-    --bg2: #151823;
-    --bg3: #1e2130;
-    --border: #252a3d;
-    --border2: #323750;
+    --bg: #0b0d16;
+    --bg2: #121520;
+    --bg3: #1a1e2e;
+    --border: #222638;
+    --border2: #2e334d;
     --text: #eef0f8;
-    --text2: #a8b0cc;
-    --text3: #6b749a;
-    --text4: #444c6a;
-    --accent-light: #1a1f40;
-    --accent2-light: #2a1220;
-    --green-light: #0a2216;
-    --amber-light: #231a08;
-    --purple-light: #1a1228;
-    --red-light: #200d0d;
-    --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
-    --shadow-lg: 0 4px 24px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.2);
+    --text2: #a0aac4;
+    --text3: #606880;
+    --text4: #3e4560;
+    --accent-light: #181d3a;
+    --accent2-light: #28101e;
+    --green-light: #091c12;
+    --amber-light: #1e1608;
+    --purple-light: #160e28;
+    --red-light: #1c0b0b;
+    --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.2);
+    --shadow-lg: 0 4px 24px rgba(0,0,0,0.4);
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
   body {
     background: var(--bg);
     color: var(--text);
@@ -68,108 +68,108 @@
     position: sticky; top: 0; z-index: 200;
     background: var(--bg2);
     border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(20px);
     display: flex; align-items: center;
-    padding: 0 1.5rem; height: 60px; gap: 1rem;
+    padding: 0 1rem; height: 56px; gap: 8px;
     box-shadow: var(--shadow);
   }
   .nav-brand {
-    display: flex; align-items: center; gap: 0.6rem;
-    font-weight: 800; font-size: 0.95rem;
+    display: flex; align-items: center; gap: 6px;
+    font-weight: 800; font-size: 0.85rem;
     color: var(--text); white-space: nowrap; flex-shrink: 0;
   }
   .nav-brand .jp-badge {
     background: var(--accent); color: #fff;
-    font-family: 'Noto Serif JP', serif; font-size: 0.85rem;
-    padding: 3px 8px; border-radius: 6px;
+    font-family: 'Noto Serif JP', serif; font-size: 0.8rem;
+    padding: 3px 7px; border-radius: 6px;
   }
-  .nav-divider { width:1px; height:24px; background:var(--border); flex-shrink:0; }
+  .nav-brand .brand-text { display: none; }
+  @media(min-width:500px){ .nav-brand .brand-text { display: inline; } }
+
   .mode-pills {
     display: flex; background: var(--bg3);
-    border-radius: 10px; padding: 3px; gap: 2px; flex-shrink: 0;
+    border-radius: 9px; padding: 3px; gap: 2px; flex-shrink: 0;
   }
   .mode-pill {
-    padding: 5px 14px; border: none; background: transparent;
-    border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.78rem; font-weight: 600; color: var(--text3);
+    padding: 5px 11px; border: none; background: transparent;
+    border-radius: 7px; font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem; font-weight: 600; color: var(--text3);
     cursor: pointer; transition: all 0.2s; white-space: nowrap;
   }
   .mode-pill.active {
     background: var(--bg2); color: var(--accent);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   }
   .nav-search {
-    flex: 1; position: relative; min-width: 120px;
+    flex: 1; position: relative; min-width: 0;
   }
   .nav-search svg {
-    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
-    width: 15px; height: 15px; color: var(--text3); pointer-events: none;
+    position: absolute; left: 9px; top: 50%; transform: translateY(-50%);
+    width: 14px; height: 14px; color: var(--text3); pointer-events: none;
   }
   .nav-search input {
-    width: 100%; height: 36px; padding: 0 12px 0 34px;
+    width: 100%; height: 34px; padding: 0 10px 0 30px;
     background: var(--bg3); border: 1px solid var(--border);
     border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.82rem; color: var(--text); outline: none;
+    font-size: 0.8rem; color: var(--text); outline: none;
     transition: all 0.2s;
   }
   .nav-search input::placeholder { color: var(--text4); }
   .nav-search input:focus { border-color: var(--accent); background: var(--bg2); box-shadow: 0 0 0 3px var(--accent-light); }
   .theme-btn {
-    width: 36px; height: 36px; border: 1px solid var(--border);
+    width: 34px; height: 34px; border: 1px solid var(--border);
     background: var(--bg3); border-radius: 8px; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; transition: all 0.2s; flex-shrink: 0;
+    font-size: 0.9rem; transition: all 0.2s; flex-shrink: 0;
   }
-  .theme-btn:hover { background: var(--accent-light); border-color: var(--accent); }
   .count-chip {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
     color: var(--text3); white-space: nowrap; flex-shrink: 0;
     background: var(--bg3); border: 1px solid var(--border);
-    padding: 4px 10px; border-radius: 20px;
+    padding: 3px 8px; border-radius: 20px; display: none;
   }
+  @media(min-width:400px){ .count-chip { display: block; } }
 
-  /* ── SUB BAR (bab + filter) ── */
+  /* ── SUB BAR ── */
   .subbar {
-    position: sticky; top: 60px; z-index: 190;
+    position: sticky; top: 56px; z-index: 190;
     background: var(--bg2); border-bottom: 1px solid var(--border);
   }
   .bab-row {
-    display: flex; align-items: center; gap: 0.6rem;
-    padding: 0.5rem 1.5rem; overflow-x: auto;
-    scrollbar-width: none;
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 1rem; overflow-x: auto; scrollbar-width: none;
   }
   .bab-row::-webkit-scrollbar { display: none; }
   .bab-label {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--text4);
+    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text4);
     white-space: nowrap; flex-shrink: 0;
   }
-  .bab-scroller { display: flex; gap: 4px; flex-shrink: 0; }
+  .bab-scroller { display: flex; gap: 3px; }
   .bab-btn {
-    width: 30px; height: 26px; border: 1px solid var(--border);
+    width: 28px; height: 26px; border: 1px solid var(--border);
     background: transparent; border-radius: 6px;
-    font-family: 'JetBrains Mono', monospace; font-size: 0.67rem; font-weight: 500;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600;
     color: var(--text3); cursor: pointer; transition: all 0.15s;
-    display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .bab-btn:hover:not(.empty) { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
   .bab-btn.active { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; }
   .bab-btn.empty { opacity: 0.25; cursor: default; }
 
   .filter-row {
-    display: flex; align-items: center; gap: 6px;
-    padding: 0.45rem 1.5rem; border-top: 1px solid var(--border);
+    display: flex; align-items: center; gap: 5px;
+    padding: 6px 1rem; border-top: 1px solid var(--border);
     overflow-x: auto; scrollbar-width: none;
   }
   .filter-row::-webkit-scrollbar { display: none; }
   .filter-pill {
-    display: flex; align-items: center; gap: 5px;
-    padding: 4px 12px; border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 4px;
+    padding: 4px 10px; border: 1px solid var(--border);
     background: transparent; border-radius: 20px;
-    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.73rem; font-weight: 600;
+    font-size: 0.7rem; font-weight: 600;
     color: var(--text3); cursor: pointer; transition: all 0.15s; white-space: nowrap;
   }
-  .filter-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .filter-pill .dot { width: 5px; height: 5px; border-radius: 50%; }
   .filter-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
   .filter-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
   .filter-pill.active .dot { background: rgba(255,255,255,0.8); }
@@ -181,122 +181,153 @@
   .dot-body { background: var(--red); }
 
   /* ── MAIN ── */
-  main { max-width: 1000px; margin: 0 auto; padding: 1.5rem 1.5rem 6rem; }
+  main { max-width: 900px; margin: 0 auto; padding: 1rem 0.75rem 6rem; }
 
-  /* ── HEADER CARD ── */
+  /* ── HERO ── */
   .page-hero {
-    background: linear-gradient(135deg, var(--accent) 0%, #6b7ff0 50%, var(--accent2) 100%);
-    border-radius: 16px; padding: 1.8rem 2rem;
-    margin-bottom: 1.5rem; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #4f62e8 0%, #7b6ff0 50%, #e8376e 100%);
+    border-radius: var(--radius); padding: 1.4rem 1.2rem;
+    margin-bottom: 1rem; position: relative; overflow: hidden;
     color: white;
   }
   .page-hero::before {
-    content: '日本語'; position: absolute; right: -20px; top: 50%;
+    content: '日本語'; position: absolute; right: -10px; top: 50%;
     transform: translateY(-50%); font-family: 'Noto Serif JP', serif;
-    font-size: 7rem; font-weight: 700; opacity: 0.08; line-height: 1;
+    font-size: 5.5rem; font-weight: 700; opacity: 0.1; line-height: 1;
     pointer-events: none; user-select: none;
   }
   .hero-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(255,255,255,0.2); backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 4px 12px; border-radius: 20px;
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
-    margin-bottom: 0.7rem;
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,0.18); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.07em;
+    margin-bottom: 0.5rem;
   }
   .hero-title {
-    font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.1;
+    font-size: clamp(1.4rem, 5vw, 2rem); font-weight: 800; line-height: 1.1;
   }
-  .hero-title .jp { font-family: 'Noto Serif JP', serif; font-size: 0.6em; opacity: 0.85; display: block; margin-top: 2px; }
-  .hero-sub { font-size: 0.82rem; opacity: 0.75; margin-top: 0.5rem; }
+  .hero-title .jp { font-family: 'Noto Serif JP', serif; font-size: 0.55em; opacity: 0.8; display: block; margin-top: 2px; }
+  .hero-sub { font-size: 0.75rem; opacity: 0.7; margin-top: 0.4rem; }
   .hero-credit {
-    display: flex; align-items: center; gap: 8px; margin-top: 1rem;
-    font-size: 0.75rem; opacity: 0.8;
+    display: flex; align-items: center; gap: 6px; margin-top: 0.7rem;
+    font-size: 0.7rem; opacity: 0.75;
   }
   .hero-credit a { color: rgba(255,255,255,0.9); }
 
-  /* ── KANJI PANEL HEADER ── */
-  .kanji-panel-hero {
-    background: linear-gradient(135deg, #1a4a3a 0%, #2d6a52 50%, #1a3a4a 100%);
-    border-radius: 16px; padding: 1.5rem 2rem;
-    margin-bottom: 1.5rem; color: white;
-  }
-
   /* ── SECTION ── */
-  .section { margin-bottom: 1.5rem; animation: fadeUp 0.35s ease both; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-  .section:nth-child(1){animation-delay:0.03s}
-  .section:nth-child(2){animation-delay:0.06s}
-  .section:nth-child(3){animation-delay:0.09s}
-  .section:nth-child(4){animation-delay:0.12s}
-  .section:nth-child(5){animation-delay:0.15s}
+  .section { margin-bottom: 1rem; animation: fadeUp 0.3s ease both; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
   .section-card {
     background: var(--bg2); border: 1px solid var(--border);
     border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
   }
   .section-head {
-    display: flex; align-items: center; gap: 0.7rem;
-    padding: 0.75rem 1rem; background: var(--bg3);
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 12px; background: var(--bg3);
     border-bottom: 1px solid var(--border);
   }
   .section-tag {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
     letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 2px 8px; border-radius: 4px;
-    background: var(--accent); color: white; font-weight: 600;
+    padding: 2px 7px; border-radius: 4px;
+    background: var(--accent); color: white; font-weight: 700;
   }
   .section-tag.verb { background: var(--accent2); }
   .section-tag.adj { background: var(--purple); }
   .section-tag.expr { background: var(--green); }
   .section-tag.place { background: var(--amber); }
   .section-tag.body { background: var(--red); }
-  .section-name { font-size: 0.85rem; font-weight: 700; color: var(--text); }
-  .section-jp-label { font-family: 'Noto Serif JP', serif; font-size: 0.78rem; color: var(--text3); margin-left: auto; }
+  .section-name { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+  .section-jp-label { font-family: 'Noto Serif JP', serif; font-size: 0.72rem; color: var(--text3); margin-left: auto; }
 
-  /* ── TABLE ── */
+  /* ── DESKTOP TABLE ── */
+  .vocab-table-wrap { display: none; }
+  @media(min-width: 600px) {
+    .vocab-table-wrap { display: block; }
+    .vocab-cards-wrap { display: none; }
+  }
+
   .vocab-table { width: 100%; border-collapse: collapse; }
   .vocab-table thead th {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--text4);
+    font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text4);
     padding: 7px 12px; text-align: left; border-bottom: 1px solid var(--border);
-    background: var(--bg3); position: sticky; top: 120px;
+    background: var(--bg3);
   }
   .vocab-row {
-    border-bottom: 1px solid var(--border); transition: background 0.12s;
+    border-bottom: 1px solid var(--border); transition: background 0.1s;
   }
   .vocab-row:last-child { border-bottom: none; }
   .vocab-row:hover { background: var(--bg3); }
   .vocab-row td { padding: 9px 12px; vertical-align: middle; }
   .td-num {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.58rem;
     color: var(--text4); width: 28px; text-align: right; padding-right: 4px !important;
   }
-  .vocab-row:hover .td-num { color: var(--accent); }
-  .td-jp { width: 160px; }
+  .td-jp { width: 155px; }
   .jp-word {
-    font-family: 'Noto Serif JP', serif; font-size: 1.05rem;
+    font-family: 'Noto Serif JP', serif; font-size: 1rem;
     font-weight: 500; color: var(--text); line-height: 1.2;
   }
   .jp-rom {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
     color: var(--accent); margin-top: 2px; font-style: italic;
   }
   .jp-note-text {
-    font-size: 0.62rem; color: var(--text3); margin-top: 1px;
+    font-size: 0.58rem; color: var(--text3); margin-top: 1px;
     font-family: 'JetBrains Mono', monospace;
   }
   .td-kanji {
     width: 90px;
-    font-family: 'Noto Serif JP', serif; font-size: 1.1rem;
+    font-family: 'Noto Serif JP', serif; font-size: 1.05rem;
     color: var(--accent2); font-weight: 400;
   }
-  .td-meaning { font-size: 0.85rem; color: var(--text2); line-height: 1.55; }
-  .td-type { width: 72px; }
+  .td-meaning { font-size: 0.82rem; color: var(--text2); line-height: 1.5; }
+  .td-type { width: 68px; }
+
+  /* ── MOBILE CARDS ── */
+  .vocab-cards-wrap { display: block; }
+  .vocab-card {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 11px 12px; border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+  }
+  .vocab-card:last-child { border-bottom: none; }
+  .vocab-card:active { background: var(--bg3); }
+  .vc-left { flex-shrink: 0; width: 110px; }
+  .vc-jp-word {
+    font-family: 'Noto Serif JP', serif; font-size: 1rem;
+    font-weight: 500; color: var(--text); line-height: 1.25;
+    word-break: break-all;
+  }
+  .vc-rom {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+    color: var(--accent); margin-top: 2px; font-style: italic;
+    word-break: break-all;
+  }
+  .vc-note {
+    font-size: 0.55rem; color: var(--text3); margin-top: 1px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .vc-right { flex: 1; min-width: 0; }
+  .vc-kanji {
+    font-family: 'Noto Serif JP', serif; font-size: 0.95rem;
+    color: var(--accent2); font-weight: 400; margin-bottom: 2px;
+  }
+  .vc-meaning { font-size: 0.82rem; color: var(--text2); line-height: 1.5; }
+  .vc-badge-row { display: flex; align-items: center; gap: 5px; margin-top: 5px; }
+  .vc-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
+    color: var(--text4);
+  }
+
+  /* ── TYPE BADGE ── */
   .type-badge {
-    display: inline-block; font-size: 0.58rem; font-weight: 700;
-    font-family: 'JetBrains Mono', monospace; letter-spacing: 0.06em;
-    text-transform: uppercase; padding: 2px 7px; border-radius: 4px;
+    display: inline-block; font-size: 0.56rem; font-weight: 700;
+    font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em;
+    text-transform: uppercase; padding: 2px 6px; border-radius: 4px;
   }
   .type-verb { background: var(--accent2-light); color: var(--accent2); }
   .type-adj  { background: var(--purple-light); color: var(--purple); }
@@ -306,71 +337,57 @@
   .type-body { background: var(--red-light); color: var(--red); }
 
   /* ── KANJI PANEL ── */
-  .kf-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.2rem; }
+  .kanji-panel-hero {
+    background: linear-gradient(135deg, #1a4a3a 0%, #2d6a52 50%, #1a3a4a 100%);
+    border-radius: var(--radius); padding: 1.4rem 1.2rem;
+    margin-bottom: 1rem; color: white;
+  }
+  .kf-row { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 1rem; }
   .kf-btn {
-    padding: 5px 14px; border: 1px solid var(--border);
+    padding: 5px 12px; border: 1px solid var(--border);
     background: var(--bg2); border-radius: 20px;
-    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; font-weight: 600;
+    font-size: 0.7rem; font-weight: 600;
     color: var(--text3); cursor: pointer; transition: all 0.15s;
   }
   .kf-btn:hover { border-color: #1a4a3a; color: #1a4a3a; background: #e0f0ea; }
   .kf-btn.active { background: #1a4a3a; color: white; border-color: #1a4a3a; }
   .kanji-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 0.8rem;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.7rem;
   }
   .kanji-card {
     background: var(--bg2); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 1rem 0.9rem;
-    transition: all 0.18s; cursor: default; text-align: center;
+    border-radius: var(--radius); padding: 0.9rem 0.8rem;
+    transition: all 0.18s; text-align: center;
     animation: fadeUp 0.3s ease both; box-shadow: var(--shadow);
   }
   .kanji-card:hover {
-    border-color: #1a4a3a; transform: translateY(-3px);
+    border-color: #1a4a3a; transform: translateY(-2px);
     box-shadow: var(--shadow-lg); background: #f0f9f4;
   }
   [data-theme="dark"] .kanji-card:hover { background: #0f1f18; }
   .k-char {
-    font-family: 'Noto Serif JP', serif; font-size: 2.6rem;
-    font-weight: 700; color: #1a4a3a; line-height: 1; display: block; margin-bottom: 0.5rem;
+    font-family: 'Noto Serif JP', serif; font-size: 2.4rem;
+    font-weight: 700; color: #1a4a3a; line-height: 1; display: block; margin-bottom: 0.4rem;
   }
   [data-theme="dark"] .k-char { color: #4ade80; }
-  .k-on { font-family: 'Noto Serif JP', serif; font-size: 0.7rem; color: var(--accent2); display: block; margin-bottom: 1px; }
-  .k-kun { font-family: 'Noto Serif JP', serif; font-size: 0.7rem; color: var(--accent); display: block; margin-bottom: 0.4rem; }
-  .k-meaning { font-size: 0.77rem; color: var(--text2); line-height: 1.4; font-style: italic; }
-  .k-stroke { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--text4); margin-top: 4px; }
-  .k-example { font-family: 'Noto Serif JP', serif; font-size: 0.68rem; color: var(--text2); margin-top: 0.5rem; border-top: 1px solid var(--border); padding-top: 0.4rem; }
+  .k-on { font-family: 'Noto Serif JP', serif; font-size: 0.65rem; color: var(--accent2); display: block; margin-bottom: 1px; }
+  .k-kun { font-family: 'Noto Serif JP', serif; font-size: 0.65rem; color: var(--accent); display: block; margin-bottom: 4px; }
+  .k-meaning { font-size: 0.72rem; color: var(--text2); line-height: 1.4; font-style: italic; }
+  .k-stroke { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--text4); margin-top: 3px; }
+  .k-example { font-family: 'Noto Serif JP', serif; font-size: 0.64rem; color: var(--text2); margin-top: 5px; border-top: 1px solid var(--border); padding-top: 4px; }
 
   mark { background: rgba(245,158,11,0.3); color: inherit; border-radius: 2px; padding: 0 1px; }
 
   .empty-state {
-    text-align: center; padding: 3rem 1rem; color: var(--text3);
-    font-size: 1rem;
+    text-align: center; padding: 2.5rem 1rem; color: var(--text3); font-size: 0.9rem;
   }
-  .empty-state .big { font-family: 'Noto Serif JP', serif; font-size: 3rem; display: block; opacity: 0.2; margin-bottom: 0.5rem; }
+  .empty-state .big { font-family: 'Noto Serif JP', serif; font-size: 2.5rem; display: block; opacity: 0.2; margin-bottom: 0.5rem; }
 
   footer {
-    text-align: center; padding: 1.5rem;
-    font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+    text-align: center; padding: 1.2rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
     letter-spacing: 0.08em; color: var(--text4);
     border-top: 1px solid var(--border);
-  }
-
-  @media(max-width:640px){
-    .topnav { padding: 0 0.8rem; }
-    .nav-brand span:last-child { display: none; }
-    .bab-row, .filter-row { padding: 0.4rem 0.8rem; }
-    main { padding: 1rem 0.8rem 5rem; }
-    .page-hero { padding: 1.2rem 1.2rem; }
-    .page-hero::before { font-size: 4rem; }
-    .td-num { display: none; }
-    .td-jp { width: 120px; }
-    .td-type { display: none; }
-    .td-kanji { width: 65px; font-size: 0.95rem; }
-    .jp-word { font-size: 0.9rem; }
-    .section-jp-label { display: none; }
-    .vocab-table thead th:nth-child(4) { display: none; }
-    .hero-credit { display: none; }
-    .kanji-grid { grid-template-columns: repeat(auto-fill, minmax(130px,1fr)); }
   }
 </style>
 </head>
@@ -380,29 +397,26 @@
 <nav class="topnav">
   <div class="nav-brand">
     <span class="jp-badge">日本語</span>
-    <span>Minna no Nihongo</span>
+    <span class="brand-text">Minna no Nihongo</span>
   </div>
-  <div class="nav-divider"></div>
   <div class="mode-pills">
     <button class="mode-pill active" id="tabVocab" onclick="switchMode('vocab')">📖 Kosa Kata</button>
-    <button class="mode-pill" id="tabKanji" onclick="switchMode('kanji')">漢 Kanji N5</button>
+    <button class="mode-pill" id="tabKanji" onclick="switchMode('kanji')">漢 Kanji</button>
   </div>
   <div class="nav-search">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" id="search" placeholder="Cari kata, romaji, atau arti...">
+    <input type="text" id="search" placeholder="Cari...">
   </div>
   <span class="count-chip" id="count">—</span>
-  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle dark/light mode">🌙</button>
+  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
 </nav>
 
 <!-- SUB BAR -->
 <div class="subbar" id="subbar">
-  <!-- BAB NAV -->
   <div class="bab-row" id="babRow">
     <span class="bab-label">Bab:</span>
     <div class="bab-scroller" id="babBtns"></div>
   </div>
-  <!-- FILTER -->
   <div class="filter-row" id="filterRow">
     <button class="filter-pill active" data-filter="all">Semua</button>
     <button class="filter-pill" data-filter="verb"><span class="dot dot-verb"></span>Kata Kerja</button>
@@ -417,7 +431,6 @@
 <main id="mainEl">
   <!-- VOCAB PANEL -->
   <div id="vocabPanel">
-    <!-- Hero -->
     <div class="page-hero" id="heroCard">
       <div class="hero-badge">✦ Minna no Nihongo · Buku I</div>
       <div class="hero-title" id="heroTitle">
@@ -431,10 +444,9 @@
         <a href="https://www.tiktok.com/@Prince.Qiu" target="_blank">@Prince.Qiu</a>
       </div>
     </div>
-    <!-- Sections -->
     <div id="vocabSections"></div>
     <div class="empty-state" id="emptyVocab" style="display:none">
-      <span class="big">見つからない</span>Kata tidak ditemukan. Coba kata lain.
+      <span class="big">見つからない</span>Kata tidak ditemukan.
     </div>
   </div>
 
@@ -443,7 +455,7 @@
     <div class="kanji-panel-hero">
       <div class="hero-badge" style="background:rgba(255,255,255,0.15)">✦ JLPT N5 · 80 Kanji Dasar</div>
       <div class="hero-title">漢字 N5 <span class="jp">Kanji Wajib JLPT N5</span></div>
-      <div class="hero-sub">Disusun berdasarkan kelompok makna · Klik kartu untuk detail</div>
+      <div class="hero-sub">Disusun berdasarkan kelompok makna</div>
     </div>
     <div class="kf-row" id="kfRow">
       <button class="kf-btn active" data-kcat="all">Semua (80)</button>
@@ -474,7 +486,7 @@ function toggleTheme() {
   document.getElementById('themeBtn').textContent = isDark ? '☀️' : '🌙';
 }
 
-// ═══════════════ DATA KOSA KATA ═══════════════
+// ═══════════════ DATA ═══════════════
 const allBabs = {
   1: [
     {
@@ -531,7 +543,6 @@ const allBabs = {
       ]
     }
   ],
-
   2: [
     {
       id:"noun", num:"01", title:"Kata Tunjuk & Kata Benda", jp:"指示詞・名詞",
@@ -595,7 +606,6 @@ const allBabs = {
       ]
     }
   ],
-
   3: [
     {
       id:"noun", num:"01", title:"Kata Tunjuk Tempat", jp:"場所の指示詞",
@@ -654,7 +664,6 @@ const allBabs = {
       ]
     }
   ],
-
   4: [
     {
       id:"verb", num:"01", title:"Kata Kerja", jp:"動詞",
@@ -721,7 +730,6 @@ const allBabs = {
       ]
     }
   ],
-
   5: [
     {
       id:"verb", num:"01", title:"Kata Kerja", jp:"動詞",
@@ -771,7 +779,6 @@ const allBabs = {
       ]
     },
   ],
-
   6: [
     {
       id:"verb", num:"01", title:"Kata Kerja", jp:"動詞",
@@ -813,7 +820,6 @@ const allBabs = {
       ]
     },
   ],
-
   7: [
     {
       id:"verb", num:"01", title:"Kata Kerja", jp:"動詞",
@@ -861,7 +867,6 @@ const allBabs = {
       ]
     },
   ],
-
   8: [
     {
       id:"adj", num:"01", title:"Kata Sifat な (na-adjektiva)", jp:"な形容詞",
@@ -925,7 +930,6 @@ const allBabs = {
       ]
     },
   ],
-
   9: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       { jp:"わかります", rom:"wakarimasu", note:"", kanji:"—",      meaning:"mengerti",       type:"verb" },
@@ -960,7 +964,6 @@ const allBabs = {
       { jp:"どうして",     rom:"dōshite",    note:"",kanji:"—",      meaning:"kenapa",          type:"noun" },
     ]},
   ],
-
   10: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       { jp:"あります", rom:"arimasu", note:"", kanji:"あります", meaning:"ada (benda mati)",       type:"verb" },
@@ -991,7 +994,6 @@ const allBabs = {
       { jp:"あいだ",       rom:"aida",         note:"",kanji:"間",    meaning:"antara",            type:"noun" },
     ]},
   ],
-
   11: [
     { id:"noun", num:"01", title:"Bilangan & Keluarga", jp:"数え方・家族", rows:[
       {jp:"ひとつ",rom:"hitotsu",note:"",kanji:"1つ",meaning:"satu (untuk menghitung barang)",type:"noun"},
@@ -1026,7 +1028,6 @@ const allBabs = {
       {jp:"〜だけ",rom:"~ dake",note:"",kanji:"—",meaning:"hanya 〜, 〜 saja",type:"noun"},
     ]},
   ],
-
   12: [
     { id:"adj", num:"01", title:"Kata Sifat", jp:"形容詞", rows:[
       {jp:"かんたん[な]",rom:"kantan [na]",note:"",kanji:"簡単[な]",meaning:"mudah, gampang",type:"adj"},
@@ -1064,7 +1065,6 @@ const allBabs = {
       {jp:"はじめて",rom:"hajimete",note:"",kanji:"初めて",meaning:"untuk pertama kali",type:"noun"},
     ]},
   ],
-
   13: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"あそびます",rom:"asobimasu",note:"",kanji:"遊びます",meaning:"bermain",type:"verb"},
@@ -1093,7 +1093,6 @@ const allBabs = {
       {jp:"どこか",rom:"dokoka",note:"",kanji:"—",meaning:"suatu tempat",type:"noun"},
     ]},
   ],
-
   14: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"つけます",rom:"tsukemasu",note:"",kanji:"つけます",meaning:"menyalakan, menghidupkan",type:"verb"},
@@ -1128,7 +1127,6 @@ const allBabs = {
       {jp:"あとで",rom:"ato de",note:"",kanji:"—",meaning:"nanti",type:"noun"},
     ]},
   ],
-
   15: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"つくります",rom:"tsukurimasu",note:"",kanji:"作ります",meaning:"membuat, membangun",type:"verb"},
@@ -1144,7 +1142,6 @@ const allBabs = {
       {jp:"どくしん",rom:"dokushin",note:"",kanji:"独身",meaning:"bujangan, belum berkeluarga",type:"noun"},
     ]},
   ],
-
   16: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"のります",rom:"norimasu",note:"[でんしゃに〜]",kanji:"乗ります",meaning:"naik [kendaraan]",type:"verb"},
@@ -1178,7 +1175,6 @@ const allBabs = {
       {jp:"て",rom:"te",note:"",kanji:"手",meaning:"tangan",type:"body"},
     ]},
   ],
-
   17: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"おぼえます",rom:"oboemasu",note:"",kanji:"覚えます",meaning:"mengingat, menghafal",type:"verb"},
@@ -1208,7 +1204,6 @@ const allBabs = {
       {jp:"ですから",rom:"desu kara",note:"",kanji:"—",meaning:"oleh karena itu",type:"noun"},
     ]},
   ],
-
   18: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"できます",rom:"dekimasu",note:"",kanji:"できます",meaning:"dapat, bisa, mampu",type:"verb"},
@@ -1231,7 +1226,6 @@ const allBabs = {
       {jp:"インターネット",rom:"intānetto",note:"",kanji:"—",meaning:"internet",type:"noun"},
     ]},
   ],
-
   19: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"のぼります",rom:"noborimasu",note:"",kanji:"登ります",meaning:"naik",type:"verb"},
@@ -1250,7 +1244,6 @@ const allBabs = {
       {jp:"でも",rom:"demo",note:"",kanji:"—",meaning:"tetapi",type:"noun"},
     ]},
   ],
-
   20: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"しらべます",rom:"shirabemasu",note:"",kanji:"調べます",meaning:"memeriksa, mengecek",type:"verb"},
@@ -1267,7 +1260,6 @@ const allBabs = {
       {jp:"おわり",rom:"owari",note:"",kanji:"終わり",meaning:"akhir",type:"noun"},
     ]},
   ],
-
   21: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"おもいます",rom:"omoimasu",note:"",kanji:"思います",meaning:"mengira, berpikir",type:"verb"},
@@ -1292,7 +1284,6 @@ const allBabs = {
       {jp:"きっと",rom:"kitto",note:"",kanji:"—",meaning:"pasti",type:"noun"},
     ]},
   ],
-
   22: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"きます",rom:"kimasu",note:"",kanji:"着ます",meaning:"memakai (kemeja)",type:"verb"},
@@ -1312,7 +1303,6 @@ const allBabs = {
       {jp:"ロボット",rom:"robotto",note:"",kanji:"—",meaning:"robot",type:"noun"},
     ]},
   ],
-
   23: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"まわします",rom:"mawashimasu",note:"",kanji:"回します",meaning:"memutar",type:"verb"},
@@ -1334,7 +1324,6 @@ const allBabs = {
       {jp:"〜め",rom:"~ me",note:"",kanji:"〜目",meaning:"yang ke 〜 (urutan)",type:"noun"},
     ]},
   ],
-
   24: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"くれます",rom:"kuremasu",note:"",kanji:"くれます",meaning:"diberikan",type:"verb"},
@@ -1355,7 +1344,6 @@ const allBabs = {
       {jp:"じぶんで",rom:"jibun de",note:"",kanji:"自分で",meaning:"dengan sendiri",type:"noun"},
     ]},
   ],
-
   25: [
     { id:"verb", num:"01", title:"Kata Kerja", jp:"動詞", rows:[
       {jp:"かんがえます",rom:"kangaemasu",note:"",kanji:"考えます",meaning:"berpikir, memikirkan",type:"verb"},
@@ -1496,7 +1484,6 @@ for (let i = 1; i <= 25; i++) {
   const hasData = !!allBabs[i];
   btn.className = 'bab-btn' + (i===1?' active':'') + (!hasData?' empty':'');
   btn.textContent = i;
-  btn.title = 'Pelajaran ' + i;
   if (hasData) {
     btn.addEventListener('click', () => {
       if (currentBab === i) return;
@@ -1508,10 +1495,8 @@ for (let i = 1; i <= 25; i++) {
       document.getElementById('search').value = '';
       document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
       document.querySelector('[data-filter="all"]').classList.add('active');
-      // Update hero
       const t = babTitles[i];
       document.getElementById('heroTitle').innerHTML = t.t + '<span class="jp">' + t.jp + '</span>';
-      // ── FIX BUG: scroll ke top section, bukan scroll yg ada id salah ──
       window.scrollTo({ top: 0, behavior: 'smooth' });
       render();
     });
@@ -1553,9 +1538,7 @@ function switchMode(mode) {
   document.getElementById('tabVocab').classList.toggle('active', mode === 'vocab');
   document.getElementById('tabKanji').classList.toggle('active', mode === 'kanji');
   document.getElementById('subbar').style.display = mode === 'vocab' ? '' : 'none';
-  document.getElementById('search').placeholder = mode === 'vocab'
-    ? 'Cari kata, romaji, atau arti...'
-    : 'Cari kanji, cara baca, atau arti...';
+  document.getElementById('search').placeholder = mode === 'vocab' ? 'Cari...' : 'Cari kanji...';
   if (mode === 'kanji') { renderKanji(); window.scrollTo({top:0}); }
   else render();
 }
@@ -1591,7 +1574,9 @@ function render() {
     if (!rows.length) return '';
     total += rows.length;
     const tagClass = ['verb','adj','expr','place','body'].includes(sec.id) ? sec.id : '';
-    const rowsHtml = rows.map((r, i) => {
+
+    // Desktop table rows
+    const tableRows = rows.map((r, i) => {
       const tl = typeLabel[r.type] || r.type;
       return `<tr class="vocab-row">
         <td class="td-num">${String(i+1).padStart(2,'0')}</td>
@@ -1606,6 +1591,26 @@ function render() {
       </tr>`;
     }).join('');
 
+    // Mobile card rows
+    const cardRows = rows.map((r, i) => {
+      const tl = typeLabel[r.type] || r.type;
+      return `<div class="vocab-card">
+        <div class="vc-left">
+          <div class="vc-jp-word">${hl(r.jp)}</div>
+          <div class="vc-rom">${hl(r.rom)}</div>
+          ${r.note ? `<div class="vc-note">${r.note}</div>` : ''}
+        </div>
+        <div class="vc-right">
+          ${r.kanji !== '—' ? `<div class="vc-kanji">${hl(r.kanji)}</div>` : ''}
+          <div class="vc-meaning">${hl(r.meaning)}</div>
+          <div class="vc-badge-row">
+            <span class="vc-num">${String(i+1).padStart(2,'0')}</span>
+            <span class="type-badge type-${r.type}">${tl}</span>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+
     return `<div class="section">
       <div class="section-card">
         <div class="section-head">
@@ -1613,16 +1618,19 @@ function render() {
           <span class="section-name">${sec.title}</span>
           <span class="section-jp-label">${sec.jp}</span>
         </div>
-        <table class="vocab-table">
-          <thead><tr>
-            <th style="width:30px"></th>
-            <th>Hiragana / Katakana</th>
-            <th>Kanji</th>
-            <th>Arti Bahasa Indonesia</th>
-            <th style="width:72px">Tipe</th>
-          </tr></thead>
-          <tbody>${rowsHtml}</tbody>
-        </table>
+        <div class="vocab-table-wrap">
+          <table class="vocab-table">
+            <thead><tr>
+              <th style="width:30px"></th>
+              <th>Hiragana / Katakana</th>
+              <th>Kanji</th>
+              <th>Arti Bahasa Indonesia</th>
+              <th style="width:68px">Tipe</th>
+            </tr></thead>
+            <tbody>${tableRows}</tbody>
+          </table>
+        </div>
+        <div class="vocab-cards-wrap">${cardRows}</div>
       </div>
     </div>`;
   }).join('');
@@ -1642,7 +1650,7 @@ function renderKanji() {
   });
   document.getElementById('count').textContent = filtered.length + ' kanji';
   document.getElementById('kanjiGrid').innerHTML = filtered.map((k,i) =>
-    `<div class="kanji-card" style="animation-delay:${i*0.018}s">
+    `<div class="kanji-card" style="animation-delay:${i*0.015}s">
       <span class="k-char">${k.char}</span>
       <span class="k-on">音：${k.on}</span>
       <span class="k-kun">訓：${k.kun || '—'}</span>
@@ -1654,7 +1662,6 @@ function renderKanji() {
   document.getElementById('emptyKanji').style.display = filtered.length === 0 ? 'block' : 'none';
 }
 
-// Initial
 render();
 </script>
 </body>
