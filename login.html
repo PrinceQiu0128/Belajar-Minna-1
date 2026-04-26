@@ -18,332 +18,102 @@ body{
   min-height:100dvh;
   position:relative;
 }
-
-/* ── ANIMATED BG ── */
 .scene{
   position:fixed;inset:0;z-index:0;overflow:hidden;
   background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(139,92,246,0.18) 0%,transparent 60%),
              radial-gradient(ellipse 60% 50% at 80% 90%,rgba(232,55,110,0.14) 0%,transparent 60%),
              #0a0a14;
 }
-.orb{
-  position:absolute;border-radius:50%;
-  filter:blur(60px);pointer-events:none;animation:drift 12s ease-in-out infinite;
-}
+.orb{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;animation:drift 12s ease-in-out infinite;}
 .orb1{width:280px;height:280px;background:rgba(139,92,246,0.22);top:-60px;left:-80px;animation-delay:0s;}
 .orb2{width:220px;height:220px;background:rgba(232,55,110,0.18);bottom:-40px;right:-60px;animation-delay:-5s;}
 .orb3{width:160px;height:160px;background:rgba(79,98,232,0.14);top:45%;left:60%;animation-delay:-8s;}
-@keyframes drift{
-  0%,100%{transform:translate(0,0);}
-  33%{transform:translate(20px,-15px);}
-  66%{transform:translate(-15px,20px);}
-}
-
-/* Kanji watermark */
+@keyframes drift{0%,100%{transform:translate(0,0);}33%{transform:translate(20px,-15px);}66%{transform:translate(-15px,20px);}}
 .kanji-bg{
-  position:fixed;
-  font-family:'Noto Serif JP',serif;
-  font-size:min(55vw,280px);
-  color:rgba(255,255,255,0.025);
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  pointer-events:none;user-select:none;
-  line-height:1;letter-spacing:-8px;
+  position:fixed;font-family:'Noto Serif JP',serif;font-size:min(55vw,280px);
+  color:rgba(255,255,255,0.025);top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;user-select:none;line-height:1;letter-spacing:-8px;
 }
-
-/* ── MAIN LAYOUT ── */
 .page{
-  position:relative;z-index:10;
-  display:flex;flex-direction:column;
+  position:relative;z-index:10;display:flex;flex-direction:column;
   min-height:100vh;min-height:100dvh;
   padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
-
-/* ── TOP BAR ── */
-.topbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 20px;flex-shrink:0;
-}
-.brand{
-  display:flex;align-items:center;gap:8px;
-  font-family:'Noto Serif JP',serif;font-size:0.8rem;color:rgba(255,255,255,0.7);
-}
-.brand-dot{
-  width:28px;height:28px;background:linear-gradient(135deg,#8b5cf6,#e8376e);
-  border-radius:8px;display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-family:'Noto Serif JP',serif;color:#fff;font-weight:700;
-}
-.pill-badge{
-  font-size:0.65rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
-  padding:3px 10px;border-radius:20px;
-  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
-  color:rgba(255,255,255,0.6);
-}
-
-/* ── HERO ── */
-.hero{
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:0 20px;
-  padding-bottom:20px;
-}
-
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;flex-shrink:0;}
+.brand{display:flex;align-items:center;gap:8px;font-family:'Noto Serif JP',serif;font-size:0.8rem;color:rgba(255,255,255,0.7);}
+.brand-dot{width:28px;height:28px;background:linear-gradient(135deg,#8b5cf6,#e8376e);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-family:'Noto Serif JP',serif;color:#fff;font-weight:700;}
+.pill-badge{font-size:0.65rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.6);}
+.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 20px 20px;}
 .hero-text{text-align:center;margin-bottom:28px;}
-.hero-jp{
-  font-family:'Noto Serif JP',serif;
-  font-size:clamp(1.5rem,6vw,2.2rem);
-  font-weight:700;color:#fff;
-  line-height:1.2;margin-bottom:6px;
-}
-.hero-en{
-  font-size:0.78rem;font-weight:400;letter-spacing:2px;
-  text-transform:uppercase;color:rgba(255,255,255,0.4);
-}
-
-/* ── GLASS CARD ── */
-.glass-card{
-  width:100%;max-width:420px;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:24px;
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  overflow:hidden;
-}
-
-/* ── TABS ── */
-.tabs{
-  display:flex;
-  border-bottom:1px solid rgba(255,255,255,0.08);
-}
-.tab-btn{
-  flex:1;padding:15px 10px;
-  background:transparent;border:none;cursor:pointer;
-  font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;
-  color:rgba(255,255,255,0.4);
-  transition:color 0.2s,background 0.2s;
-  position:relative;
-}
-.tab-btn.active{
-  color:#fff;
-  background:rgba(255,255,255,0.04);
-}
-.tab-btn.active::after{
-  content:'';position:absolute;bottom:0;left:15%;right:15%;height:2px;
-  background:linear-gradient(90deg,#8b5cf6,#e8376e);border-radius:2px;
-}
+.hero-jp{font-family:'Noto Serif JP',serif;font-size:clamp(1.5rem,6vw,2.2rem);font-weight:700;color:#fff;line-height:1.2;margin-bottom:6px;}
+.hero-en{font-size:0.78rem;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+.glass-card{width:100%;max-width:420px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:24px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow:hidden;}
+.tabs{display:flex;border-bottom:1px solid rgba(255,255,255,0.08);}
+.tab-btn{flex:1;padding:15px 10px;background:transparent;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.4);transition:color 0.2s,background 0.2s;position:relative;}
+.tab-btn.active{color:#fff;background:rgba(255,255,255,0.04);}
+.tab-btn.active::after{content:'';position:absolute;bottom:0;left:15%;right:15%;height:2px;background:linear-gradient(90deg,#8b5cf6,#e8376e);border-radius:2px;}
 .tab-btn .tab-icon{display:block;font-size:14px;margin-bottom:2px;}
 .tab-btn .tab-label{font-size:0.72rem;}
-
-/* ── PANELS ── */
 .panel{display:none;padding:24px 20px;}
 .panel.active{display:block;}
-
-/* ── INPUTS ── */
 .field-group{margin-bottom:16px;}
-.field-label{
-  display:block;font-size:0.7rem;font-weight:600;
-  letter-spacing:1px;text-transform:uppercase;
-  color:rgba(255,255,255,0.4);margin-bottom:7px;
-}
-.field-input{
-  width:100%;padding:13px 16px;
-  background:rgba(255,255,255,0.07);
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:12px;
-  font-family:'Inter',sans-serif;font-size:0.92rem;
-  color:#fff;outline:none;
-  transition:border-color 0.2s,background 0.2s;
-  -webkit-appearance:none;
-}
+.field-label{display:block;font-size:0.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px;}
+.field-input{width:100%;padding:13px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:12px;font-family:'Inter',sans-serif;font-size:0.92rem;color:#fff;outline:none;transition:border-color 0.2s,background 0.2s;-webkit-appearance:none;}
 .field-input::placeholder{color:rgba(255,255,255,0.25);}
-.field-input:focus{
-  border-color:rgba(139,92,246,0.6);
-  background:rgba(139,92,246,0.08);
-}
-
-/* ── BUTTONS ── */
-.btn-primary{
-  width:100%;padding:14px;border:none;cursor:pointer;
-  border-radius:12px;font-family:'Inter',sans-serif;
-  font-size:0.92rem;font-weight:600;letter-spacing:0.3px;
-  background:linear-gradient(135deg,#8b5cf6 0%,#e8376e 100%);
-  color:#fff;transition:opacity 0.2s,transform 0.15s;
-  position:relative;overflow:hidden;
-}
+.field-input:focus{border-color:rgba(139,92,246,0.6);background:rgba(139,92,246,0.08);}
+.btn-primary{width:100%;padding:14px;border:none;cursor:pointer;border-radius:12px;font-family:'Inter',sans-serif;font-size:0.92rem;font-weight:600;letter-spacing:0.3px;background:linear-gradient(135deg,#8b5cf6 0%,#e8376e 100%);color:#fff;transition:opacity 0.2s,transform 0.15s;}
 .btn-primary:hover{opacity:0.9;}
 .btn-primary:active{transform:scale(0.98);}
 .btn-primary:disabled{opacity:0.5;cursor:not-allowed;}
-
-.btn-ghost{
-  width:100%;padding:13px;border:1px solid rgba(255,255,255,0.18);cursor:pointer;
-  border-radius:12px;font-family:'Inter',sans-serif;
-  font-size:0.88rem;font-weight:500;
-  background:rgba(255,255,255,0.05);
-  color:rgba(255,255,255,0.7);
-  transition:background 0.2s,transform 0.15s;
-  margin-top:10px;
-}
+.btn-ghost{width:100%;padding:13px;border:1px solid rgba(255,255,255,0.18);cursor:pointer;border-radius:12px;font-family:'Inter',sans-serif;font-size:0.88rem;font-weight:500;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);transition:background 0.2s,transform 0.15s;margin-top:10px;}
 .btn-ghost:hover{background:rgba(255,255,255,0.1);}
-.btn-ghost:active{transform:scale(0.98);}
-
-/* ── GUEST BOX ── */
-.guest-box{
-  background:rgba(139,92,246,0.1);
-  border:1px solid rgba(139,92,246,0.25);
-  border-radius:14px;padding:16px;margin-bottom:18px;
-}
-.guest-title{
-  font-size:0.78rem;font-weight:600;letter-spacing:0.5px;
-  color:rgba(139,92,246,0.9);margin-bottom:6px;
-  display:flex;align-items:center;gap:6px;
-}
-.guest-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:rgba(139,92,246,0.8);
-  display:inline-block;animation:blink 2s infinite;
-}
+.guest-box{background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.25);border-radius:14px;padding:16px;margin-bottom:18px;}
+.guest-title{font-size:0.78rem;font-weight:600;letter-spacing:0.5px;color:rgba(139,92,246,0.9);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.guest-dot{width:6px;height:6px;border-radius:50%;background:rgba(139,92,246,0.8);display:inline-block;animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
 .guest-desc{font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.5;}
 .guest-progress-wrap{margin-top:10px;}
-.guest-progress-label{
-  display:flex;justify-content:space-between;
-  font-size:0.68rem;color:rgba(255,255,255,0.35);margin-bottom:5px;
-}
-.guest-progress-bar{
-  height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;
-}
-.guest-progress-fill{
-  height:100%;
-  background:linear-gradient(90deg,#8b5cf6,#e8376e);
-  border-radius:2px;transition:width 1s linear;
-}
-
-/* ── TIMER MODAL ── */
-.overlay{
-  display:none;position:fixed;inset:0;z-index:100;
-  background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);
-  align-items:center;justify-content:center;padding:20px;
-}
+.guest-progress-label{display:flex;justify-content:space-between;font-size:0.68rem;color:rgba(255,255,255,0.35);margin-bottom:5px;}
+.guest-progress-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+.guest-progress-fill{height:100%;background:linear-gradient(90deg,#8b5cf6,#e8376e);border-radius:2px;transition:width 1s linear;}
+.overlay{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px;}
 .overlay.show{display:flex;}
-.modal{
-  background:#12121e;border:1px solid rgba(255,255,255,0.12);
-  border-radius:24px;padding:28px 24px;max-width:360px;width:100%;text-align:center;
-}
-.modal-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(232,55,110,0.15);border:1px solid rgba(232,55,110,0.3);
-  border-radius:20px;padding:4px 12px;
-  font-size:0.7rem;font-weight:600;letter-spacing:1px;
-  color:#e8376e;margin-bottom:16px;
-}
-.modal-jp{
-  font-family:'Noto Serif JP',serif;font-size:1.6rem;
-  color:#fff;margin-bottom:4px;
-}
+.modal{background:#12121e;border:1px solid rgba(255,255,255,0.12);border-radius:24px;padding:28px 24px;max-width:360px;width:100%;text-align:center;}
+.modal-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(232,55,110,0.15);border:1px solid rgba(232,55,110,0.3);border-radius:20px;padding:4px 12px;font-size:0.7rem;font-weight:600;letter-spacing:1px;color:#e8376e;margin-bottom:16px;}
+.modal-jp{font-family:'Noto Serif JP',serif;font-size:1.6rem;color:#fff;margin-bottom:4px;}
 .modal-en{font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:20px;}
-
-/* Timer ring */
 .timer-ring-wrap{position:relative;width:120px;height:120px;margin:0 auto 20px;}
 .timer-ring-wrap svg{transform:rotate(-90deg);}
 .timer-ring-bg{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:6;}
-.timer-ring-fg{
-  fill:none;stroke:url(#grad);stroke-width:6;
-  stroke-linecap:round;
-  transition:stroke-dashoffset 1s linear;
-}
-.timer-text{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  text-align:center;
-}
+.timer-ring-fg{fill:none;stroke:url(#grad);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 1s linear;}
+.timer-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
 .timer-num{font-size:1.6rem;font-weight:700;color:#fff;line-height:1;}
 .timer-sub{font-size:0.62rem;color:rgba(255,255,255,0.35);letter-spacing:1px;margin-top:2px;}
-
 .modal-desc{font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:20px;}
-.modal-cta{
-  background:linear-gradient(135deg,#8b5cf6,#e8376e);
-  color:#fff;border:none;border-radius:12px;
-  padding:13px 24px;font-family:'Inter',sans-serif;
-  font-size:0.88rem;font-weight:600;cursor:pointer;width:100%;
-  transition:opacity 0.2s;
-}
+.modal-cta{background:linear-gradient(135deg,#8b5cf6,#e8376e);color:#fff;border:none;border-radius:12px;padding:13px 24px;font-family:'Inter',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;width:100%;transition:opacity 0.2s;}
 .modal-cta:hover{opacity:0.9;}
-
-/* ── EXPIRED MODAL ── */
-.expired-icon{
-  width:56px;height:56px;border-radius:50%;
-  background:rgba(232,55,110,0.15);border:1px solid rgba(232,55,110,0.3);
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 16px;font-size:22px;
-}
-
-/* ── INFO BOX ── */
-.info-box{
-  background:rgba(255,255,255,0.03);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:12px;padding:12px 14px;margin-top:14px;
-}
-.info-box-title{
-  font-size:0.7rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;
-  color:rgba(255,255,255,0.35);margin-bottom:6px;
-}
-.info-box-text{
-  font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;
-}
-.wa-link{
-  display:inline-flex;align-items:center;gap:5px;margin-top:8px;
-  background:#25d366;color:#fff;font-size:0.78rem;font-weight:600;
-  padding:7px 14px;border-radius:20px;text-decoration:none;
-  transition:opacity 0.2s;
-}
+.expired-icon{width:56px;height:56px;border-radius:50%;background:rgba(232,55,110,0.15);border:1px solid rgba(232,55,110,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:22px;}
+.info-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 14px;margin-top:14px;}
+.info-box-title{font-size:0.7rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:6px;}
+.info-box-text{font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;}
+.wa-link{display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:#25d366;color:#fff;font-size:0.78rem;font-weight:600;padding:7px 14px;border-radius:20px;text-decoration:none;transition:opacity 0.2s;}
 .wa-link:hover{opacity:0.88;}
 
-/* ── DEVICE WARNING ── */
-.device-warn{
-  background:rgba(232,55,110,0.08);
-  border:1px solid rgba(232,55,110,0.2);
-  border-radius:12px;padding:12px 14px;margin-bottom:16px;
-  font-size:0.8rem;color:rgba(232,55,110,0.9);
-  display:none;
-}
+/* WARN BOX — device lain atau akun belum diaktivasi */
+.warn-box{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:0.8rem;color:rgba(239,68,68,0.9);line-height:1.5;display:none;}
 
-/* ── FOOTER ── */
-.footer{
-  text-align:center;padding:12px 20px;flex-shrink:0;
-  font-size:0.68rem;color:rgba(255,255,255,0.18);letter-spacing:0.5px;
-}
+.footer{text-align:center;padding:12px 20px;flex-shrink:0;font-size:0.68rem;color:rgba(255,255,255,0.18);letter-spacing:0.5px;}
 .footer span{font-family:'Noto Serif JP',serif;color:rgba(139,92,246,0.5);}
-
-/* ── LOADING SPINNER ── */
-.spinner{
-  display:inline-block;width:16px;height:16px;
-  border:2px solid rgba(255,255,255,0.3);
-  border-top-color:#fff;border-radius:50%;
-  animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:6px;
-}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:6px;}
 @keyframes spin{to{transform:rotate(360deg);}}
-
-/* ── ERROR MSG ── */
-.err-msg{
-  font-size:0.75rem;color:#fc8181;margin-top:6px;
-  display:none;padding:8px 10px;background:rgba(232,55,110,0.08);
-  border-radius:8px;border:1px solid rgba(232,55,110,0.2);
-}
-
-/* Mobile tweaks */
-@media(max-width:380px){
-  .panel{padding:20px 16px;}
-  .hero-jp{font-size:1.4rem;}
-}
+.err-msg{font-size:0.75rem;color:#fc8181;margin-top:6px;display:none;padding:8px 10px;background:rgba(232,55,110,0.08);border-radius:8px;border:1px solid rgba(232,55,110,0.2);}
+@media(max-width:380px){.panel{padding:20px 16px;}.hero-jp{font-size:1.4rem;}}
 </style>
 </head>
 <body>
 
-<!-- BG -->
 <div class="scene">
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="orb orb3"></div>
+  <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
 </div>
 <div class="kanji-bg">語</div>
 
@@ -353,34 +123,16 @@ body{
     <div class="modal-badge">⏱ Mode Tamu Aktif</div>
     <div class="modal-jp">無料体験</div>
     <div class="modal-en">Free Trial — 10 Minutes</div>
-
     <div class="timer-ring-wrap">
       <svg width="120" height="120" viewBox="0 0 120 120">
-        <defs>
-          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#8b5cf6"/>
-            <stop offset="100%" stop-color="#e8376e"/>
-          </linearGradient>
-        </defs>
+        <defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#e8376e"/></linearGradient></defs>
         <circle class="timer-ring-bg" cx="60" cy="60" r="54"/>
-        <circle class="timer-ring-fg" id="timerRing" cx="60" cy="60" r="54"
-          stroke-dasharray="339.29" stroke-dashoffset="0"/>
+        <circle class="timer-ring-fg" id="timerRing" cx="60" cy="60" r="54" stroke-dasharray="339.29" stroke-dashoffset="0"/>
       </svg>
-      <div class="timer-text">
-        <div class="timer-num" id="timerNum">10:00</div>
-        <div class="timer-sub">TERSISA</div>
-      </div>
+      <div class="timer-text"><div class="timer-num" id="timerNum">10:00</div><div class="timer-sub">TERSISA</div></div>
     </div>
-
-    <div class="modal-desc">
-      Kamu sedang dalam <strong style="color:#fff">Mode Tamu</strong>.<br>
-      Akses gratis 10 menit per hari per perangkat.<br>
-      Beli key untuk akses penuh &amp; tidak terbatas!
-    </div>
-
-    <button class="modal-cta" onclick="closeTimer()">
-      Mulai Belajar →
-    </button>
+    <div class="modal-desc">Kamu sedang dalam <strong style="color:#fff">Mode Tamu</strong>.<br>Akses gratis 10 menit per hari per perangkat.<br>Beli key untuk akses penuh &amp; tidak terbatas!</div>
+    <button class="modal-cta" onclick="closeTimer()">Mulai Belajar →</button>
   </div>
 </div>
 
@@ -388,30 +140,18 @@ body{
 <div class="overlay" id="expiredOverlay">
   <div class="modal">
     <div class="expired-icon">⏰</div>
-    <div class="modal-badge" style="background:rgba(232,55,110,0.15);border-color:rgba(232,55,110,0.3);color:#e8376e;">
-      Waktu Habis
-    </div>
+    <div class="modal-badge" style="background:rgba(232,55,110,0.15);border-color:rgba(232,55,110,0.3);color:#e8376e;">Waktu Habis</div>
     <div class="modal-jp" style="font-size:1.3rem;margin-bottom:8px;">時間切れ</div>
-    <div class="modal-desc" style="margin-bottom:6px;">
-      Waktu tamu harianmu sudah habis!<br>
-      Akses reset otomatis besok pukul 00:00.<br><br>
-      Mau akses <strong style="color:#fff">tidak terbatas</strong>?<br>
-      Hubungi admin untuk beli key premium! 🎌
-    </div>
-    <a class="modal-cta" href="https://wa.me/6283141814509" target="_blank" style="display:block;text-decoration:none;text-align:center;padding:13px 24px;margin-bottom:10px;background:linear-gradient(135deg,#8b5cf6,#e8376e);">
-      Hubungi Admin WhatsApp
-    </a>
+    <div class="modal-desc" style="margin-bottom:6px;">Waktu tamu harianmu sudah habis!<br>Akses reset otomatis besok pukul 00:00.<br><br>Mau akses <strong style="color:#fff">tidak terbatas</strong>?<br>Hubungi admin untuk beli key premium! 🎌</div>
+    <a class="modal-cta" href="https://wa.me/6283141814509" target="_blank" style="display:block;text-decoration:none;text-align:center;padding:13px 24px;margin-bottom:10px;">Hubungi Admin WhatsApp</a>
     <button class="btn-ghost" onclick="location.reload()">Kembali</button>
   </div>
 </div>
 
-<!-- MAIN PAGE -->
+<!-- MAIN -->
 <div class="page">
   <div class="topbar">
-    <div class="brand">
-      <div class="brand-dot">語</div>
-      <span>Minna no Nihongo</span>
-    </div>
+    <div class="brand"><div class="brand-dot">語</div><span>Minna no Nihongo</span></div>
     <div class="pill-badge">N5 · Buku 1</div>
   </div>
 
@@ -422,24 +162,25 @@ body{
     </div>
 
     <div class="glass-card">
-      <!-- TABS -->
       <div class="tabs">
         <button class="tab-btn active" id="tabLogin" onclick="switchTab('login')">
-          <span class="tab-icon">🔐</span>
-          <span class="tab-label">Login Premium</span>
+          <span class="tab-icon">🔐</span><span class="tab-label">Login Premium</span>
         </button>
         <button class="tab-btn" id="tabGuest" onclick="switchTab('guest')">
-          <span class="tab-icon">👁</span>
-          <span class="tab-label">Coba Gratis</span>
+          <span class="tab-icon">👁</span><span class="tab-label">Coba Gratis</span>
         </button>
       </div>
 
       <!-- LOGIN PANEL -->
       <div class="panel active" id="panelLogin">
-        <div class="device-warn" id="deviceWarn">
-          ⚠️ Akun ini sudah login di perangkat lain. Logout dari perangkat lain dulu, atau hubungi admin.
+        <div class="warn-box" id="deviceWarn">
+          ⚠️ <strong>Akun ini sudah aktif di perangkat lain.</strong><br>
+          Satu akun hanya bisa dipakai di 1 perangkat. Hubungi admin untuk reset.
         </div>
-
+        <div class="warn-box" id="notActivatedWarn">
+          ❌ <strong>Akun belum diaktivasi.</strong><br>
+          Hubungi admin untuk mengaktifkan akunmu terlebih dahulu.
+        </div>
         <div class="field-group">
           <label class="field-label">Email</label>
           <input type="email" id="email" class="field-input" placeholder="emailkamu@gmail.com" autocomplete="email">
@@ -449,14 +190,10 @@ body{
           <input type="password" id="password" class="field-input" placeholder="••••••••" autocomplete="current-password">
         </div>
         <div class="err-msg" id="loginErr"></div>
-
-        <button class="btn-primary" id="btnLogin" onclick="doLogin()">
-          Masuk ログイン
-        </button>
-
+        <button class="btn-primary" id="btnLogin" onclick="doLogin()">Masuk ログイン</button>
         <div class="info-box">
           <div class="info-box-title">📚 Belum punya akun?</div>
-          <div class="info-box-text">Hubungi admin untuk mendapatkan akses premium permanen ke semua materi Minna no Nihongo Buku 1.</div>
+          <div class="info-box-text">Hubungi admin untuk mendapatkan akses premium ke semua materi Minna no Nihongo Buku 1.</div>
           <a class="wa-link" href="https://wa.me/6283141814509" target="_blank">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.121 1.532 5.857L.057 23.882l6.19-1.623A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.946 0-3.773-.525-5.337-1.438l-.383-.226-3.675.964.981-3.584-.249-.402A9.952 9.952 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
             0831-4181-4509
@@ -467,35 +204,16 @@ body{
       <!-- GUEST PANEL -->
       <div class="panel" id="panelGuest">
         <div class="guest-box">
-          <div class="guest-title">
-            <span class="guest-dot"></span>
-            Mode Tamu · Free Preview
-          </div>
-          <div class="guest-desc">
-            Coba akses materi gratis <strong style="color:rgba(255,255,255,0.7)">10 menit sehari</strong>.<br>
-            Satu perangkat = satu kuota harian.
-          </div>
+          <div class="guest-title"><span class="guest-dot"></span>Mode Tamu · Free Preview</div>
+          <div class="guest-desc">Coba akses materi gratis <strong style="color:rgba(255,255,255,0.7)">10 menit sehari</strong>.<br>Satu perangkat = satu kuota harian.</div>
           <div class="guest-progress-wrap" id="guestProgressWrap">
-            <div class="guest-progress-label">
-              <span>Kuota Harian</span>
-              <span id="guestTimeLeft">10:00 tersisa</span>
-            </div>
-            <div class="guest-progress-bar">
-              <div class="guest-progress-fill" id="guestProgressFill" style="width:100%"></div>
-            </div>
+            <div class="guest-progress-label"><span>Kuota Harian</span><span id="guestTimeLeft">10:00 tersisa</span></div>
+            <div class="guest-progress-bar"><div class="guest-progress-fill" id="guestProgressFill" style="width:100%"></div></div>
           </div>
         </div>
-
         <div class="err-msg" id="guestErr" style="display:none;"></div>
-
-        <button class="btn-primary" id="btnGuest" onclick="startGuest()">
-          Mulai Gratis 10 Menit →
-        </button>
-
-        <button class="btn-ghost" onclick="switchTab('login')">
-          Punya Key? Login Premium
-        </button>
-
+        <button class="btn-primary" id="btnGuest" onclick="startGuest()">Mulai Gratis 10 Menit →</button>
+        <button class="btn-ghost" onclick="switchTab('login')">Punya Key? Login Premium</button>
         <div class="info-box" style="margin-top:14px;">
           <div class="info-box-title">🎌 Unlock Full Access</div>
           <div class="info-box-text">Akses semua bab, kosa kata, kanji, dan bunpou tanpa batas waktu.</div>
@@ -508,16 +226,13 @@ body{
     </div>
   </div>
 
-  <div class="footer">
-    © 2024 みんなの日本語 &nbsp;·&nbsp; <span>日本語を楽しもう！</span>
-  </div>
+  <div class="footer">© 2024 みんなの日本語 &nbsp;·&nbsp; <span>日本語を楽しもう！</span></div>
 </div>
 
-<!-- FIREBASE + LOGIC -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc, serverTimestamp, deleteField } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDinwdzN-Y-P0BlCqPvj6y1Inc6dhvssKU",
@@ -532,60 +247,33 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ── DEVICE ID ──
 function getDeviceId() {
   let id = localStorage.getItem('_did');
-  if (!id) {
-    id = 'dev_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
-    localStorage.setItem('_did', id);
-  }
+  if (!id) { id = 'dev_' + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('_did', id); }
   return id;
 }
 const DEVICE_ID = getDeviceId();
 
-// ── GUEST TIMER LOGIC ──
-const GUEST_DURATION = 10 * 60; // 600 seconds
+// ── GUEST ──
+const GUEST_DURATION = 10 * 60;
 const TOTAL_CIRCUMFERENCE = 339.29;
 
-function getGuestKey() {
-  const today = new Date().toDateString();
-  return `guest_${today}_${DEVICE_ID}`;
-}
+function getGuestKey() { return `guest_${new Date().toDateString()}_${DEVICE_ID}`; }
+function getGuestSecondsUsed() { return parseInt(localStorage.getItem(getGuestKey()) || '0', 10); }
+function setGuestSecondsUsed(s) { localStorage.setItem(getGuestKey(), String(s)); }
+function formatTime(s) { const m=Math.floor(s/60),sec=s%60; return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`; }
 
-function getGuestSecondsUsed() {
-  const key = getGuestKey();
-  return parseInt(localStorage.getItem(key) || '0', 10);
-}
-
-function setGuestSecondsUsed(s) {
-  localStorage.setItem(getGuestKey(), String(s));
-}
-
-function formatTime(s) {
-  const m = Math.floor(s / 60);
-  const sec = s % 60;
-  return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
-}
-
-// Update guest panel display
 function updateGuestPanel() {
   const used = getGuestSecondsUsed();
   const left = Math.max(0, GUEST_DURATION - used);
   document.getElementById('guestTimeLeft').textContent = formatTime(left) + ' tersisa';
-  const pct = (left / GUEST_DURATION) * 100;
-  document.getElementById('guestProgressFill').style.width = pct + '%';
+  document.getElementById('guestProgressFill').style.width = ((left/GUEST_DURATION)*100) + '%';
 }
 updateGuestPanel();
 
-// expose to global
 window.startGuest = function() {
   const used = getGuestSecondsUsed();
-  if (used >= GUEST_DURATION) {
-    // Show expired
-    document.getElementById('expiredOverlay').classList.add('show');
-    return;
-  }
-  // Show timer modal then go to index
+  if (used >= GUEST_DURATION) { document.getElementById('expiredOverlay').classList.add('show'); return; }
   document.getElementById('timerOverlay').classList.add('show');
   startTimerCountdown(GUEST_DURATION - used);
 };
@@ -595,20 +283,16 @@ function startTimerCountdown(leftSecs) {
   let secs = leftSecs;
   const ring = document.getElementById('timerRing');
   const num = document.getElementById('timerNum');
-
   function tick() {
     if (secs <= 0) {
       clearInterval(timerInterval);
-      // Mark expired
       setGuestSecondsUsed(GUEST_DURATION);
       document.getElementById('timerOverlay').classList.remove('show');
       document.getElementById('expiredOverlay').classList.add('show');
       return;
     }
     num.textContent = formatTime(secs);
-    const offset = TOTAL_CIRCUMFERENCE - (secs / GUEST_DURATION) * TOTAL_CIRCUMFERENCE;
-    ring.style.strokeDashoffset = offset;
-    // Save progress
+    ring.style.strokeDashoffset = TOTAL_CIRCUMFERENCE - (secs/GUEST_DURATION)*TOTAL_CIRCUMFERENCE;
     setGuestSecondsUsed(GUEST_DURATION - secs);
     secs--;
   }
@@ -618,27 +302,25 @@ function startTimerCountdown(leftSecs) {
 
 window.closeTimer = function() {
   document.getElementById('timerOverlay').classList.remove('show');
-  // Continue countdown in background, redirect to main
   sessionStorage.setItem('guestMode', '1');
   window.location.href = 'index.html';
 };
 
-// ── LOGIN LOGIC ──
+// ── LOGIN (FIXED) ──
 window.doLogin = async function() {
   const email = document.getElementById('email').value.trim();
   const pass = document.getElementById('password').value;
   const btn = document.getElementById('btnLogin');
   const errEl = document.getElementById('loginErr');
-  const warnEl = document.getElementById('deviceWarn');
+  const deviceWarn = document.getElementById('deviceWarn');
+  const notActivatedWarn = document.getElementById('notActivatedWarn');
 
+  // Reset semua warning
   errEl.style.display = 'none';
-  warnEl.style.display = 'none';
+  deviceWarn.style.display = 'none';
+  notActivatedWarn.style.display = 'none';
 
-  if (!email || !pass) {
-    errEl.textContent = 'Email dan password tidak boleh kosong.';
-    errEl.style.display = 'block';
-    return;
-  }
+  if (!email || !pass) { errEl.textContent = 'Email dan password tidak boleh kosong.'; errEl.style.display = 'block'; return; }
 
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>Memproses...';
@@ -647,29 +329,40 @@ window.doLogin = async function() {
     const cred = await signInWithEmailAndPassword(auth, email, pass);
     const uid = cred.user.uid;
 
-    // Check device lock in Firestore
+    // Cek dokumen Firestore
     const userRef = doc(db, 'users', uid);
     const snap = await getDoc(userRef);
 
-    if (snap.exists()) {
-      const data = snap.data();
-      const registeredDevice = data.deviceId;
-      if (registeredDevice && registeredDevice !== DEVICE_ID) {
-        // Different device — block
-        await signOut(auth);
-        btn.disabled = false;
-        btn.innerHTML = 'Masuk ログイン';
-        warnEl.style.display = 'block';
-        return;
-      }
+    // ── KUNCI 1: Dokumen WAJIB ada (dibuat admin duluan)
+    if (!snap.exists()) {
+      await signOut(auth);
+      btn.disabled = false;
+      btn.innerHTML = 'Masuk ログイン';
+      notActivatedWarn.style.display = 'block';
+      return;
     }
 
-    // Register this device
-    await setDoc(userRef, {
-      deviceId: DEVICE_ID,
-      lastLogin: serverTimestamp(),
-      email: email
-    }, { merge: true });
+    const data = snap.data();
+
+    // ── KUNCI 2: Cek device lock
+    if (data.deviceId && data.deviceId !== DEVICE_ID) {
+      await signOut(auth);
+      btn.disabled = false;
+      btn.innerHTML = 'Masuk ログイン';
+      deviceWarn.style.display = 'block';
+      return;
+    }
+
+    // ── Kalau deviceId belum ada (login pertama kali) → daftarkan device ini
+    if (!data.deviceId) {
+      await setDoc(userRef, {
+        deviceId: DEVICE_ID,
+        lastLogin: serverTimestamp(),
+      }, { merge: true });
+    } else {
+      // Update lastLogin saja
+      await setDoc(userRef, { lastLogin: serverTimestamp() }, { merge: true });
+    }
 
     window.location.href = 'index.html';
 
@@ -677,39 +370,29 @@ window.doLogin = async function() {
     btn.disabled = false;
     btn.innerHTML = 'Masuk ログイン';
     let msg = 'Login gagal. Coba lagi.';
-    if (e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found' || e.code === 'auth/invalid-credential') {
-      msg = 'Email atau password salah.';
-    } else if (e.code === 'auth/too-many-requests') {
-      msg = 'Terlalu banyak percobaan. Tunggu sebentar.';
-    } else if (e.code === 'auth/network-request-failed') {
-      msg = 'Tidak ada koneksi internet.';
-    }
+    if (e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found' || e.code === 'auth/invalid-credential') msg = 'Email atau password salah.';
+    else if (e.code === 'auth/too-many-requests') msg = 'Terlalu banyak percobaan. Tunggu sebentar.';
+    else if (e.code === 'auth/network-request-failed') msg = 'Tidak ada koneksi internet.';
     errEl.textContent = msg;
     errEl.style.display = 'block';
   }
 };
 
-// Allow Enter key
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    const activePanel = document.querySelector('.panel.active').id;
-    if (activePanel === 'panelLogin') doLogin();
-  }
+  if (e.key === 'Enter' && document.querySelector('.panel.active').id === 'panelLogin') doLogin();
 });
 
-// Already logged in? redirect
 onAuthStateChanged(auth, (user) => {
   if (user) window.location.href = 'index.html';
 });
 </script>
 
 <script>
-// ── TAB SWITCHER ──
 window.switchTab = function(tab) {
-  const panels = ['login','guest'];
-  panels.forEach(p => {
-    document.getElementById('tab' + p.charAt(0).toUpperCase() + p.slice(1)).classList.toggle('active', p === tab);
-    document.getElementById('panel' + p.charAt(0).toUpperCase() + p.slice(1)).classList.toggle('active', p === tab);
+  ['login','guest'].forEach(p => {
+    const cap = p.charAt(0).toUpperCase() + p.slice(1);
+    document.getElementById('tab'+cap).classList.toggle('active', p===tab);
+    document.getElementById('panel'+cap).classList.toggle('active', p===tab);
   });
 };
 </script>
