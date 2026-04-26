@@ -98,10 +98,7 @@ body{
 .info-box-text{font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;}
 .wa-link{display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:#25d366;color:#fff;font-size:0.78rem;font-weight:600;padding:7px 14px;border-radius:20px;text-decoration:none;transition:opacity 0.2s;}
 .wa-link:hover{opacity:0.88;}
-
-/* WARN BOX — device lain atau akun belum diaktivasi */
 .warn-box{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:0.8rem;color:rgba(239,68,68,0.9);line-height:1.5;display:none;}
-
 .footer{text-align:center;padding:12px 20px;flex-shrink:0;font-size:0.68rem;color:rgba(255,255,255,0.18);letter-spacing:0.5px;}
 .footer span{font-family:'Noto Serif JP',serif;color:rgba(139,92,246,0.5);}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:6px;}
@@ -173,10 +170,12 @@ body{
 
       <!-- LOGIN PANEL -->
       <div class="panel active" id="panelLogin">
+        <!-- Warn: device lain -->
         <div class="warn-box" id="deviceWarn">
           ⚠️ <strong>Akun ini sudah aktif di perangkat lain.</strong><br>
           Satu akun hanya bisa dipakai di 1 perangkat. Hubungi admin untuk reset.
         </div>
+        <!-- Warn: belum diaktivasi / dinonaktifkan -->
         <div class="warn-box" id="notActivatedWarn">
           ❌ <strong>Akun belum diaktivasi.</strong><br>
           Hubungi admin untuk mengaktifkan akunmu terlebih dahulu.
@@ -206,12 +205,11 @@ body{
         <div class="guest-box">
           <div class="guest-title"><span class="guest-dot"></span>Mode Tamu · Free Preview</div>
           <div class="guest-desc">Coba akses materi gratis <strong style="color:rgba(255,255,255,0.7)">10 menit sehari</strong>.<br>Satu perangkat = satu kuota harian.</div>
-          <div class="guest-progress-wrap" id="guestProgressWrap">
+          <div class="guest-progress-wrap">
             <div class="guest-progress-label"><span>Kuota Harian</span><span id="guestTimeLeft">10:00 tersisa</span></div>
             <div class="guest-progress-bar"><div class="guest-progress-fill" id="guestProgressFill" style="width:100%"></div></div>
           </div>
         </div>
-        <div class="err-msg" id="guestErr" style="display:none;"></div>
         <button class="btn-primary" id="btnGuest" onclick="startGuest()">Mulai Gratis 10 Menit →</button>
         <button class="btn-ghost" onclick="switchTab('login')">Punya Key? Login Premium</button>
         <div class="info-box" style="margin-top:14px;">
@@ -231,8 +229,12 @@ body{
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import {
+  getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import {
+  getFirestore, doc, setDoc, getDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDinwdzN-Y-P0BlCqPvj6y1Inc6dhvssKU",
@@ -247,9 +249,13 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// ── DEVICE ID ──
 function getDeviceId() {
   let id = localStorage.getItem('_did');
-  if (!id) { id = 'dev_' + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('_did', id); }
+  if (!id) {
+    id = 'dev_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+    localStorage.setItem('_did', id);
+  }
   return id;
 }
 const DEVICE_ID = getDeviceId();
@@ -261,19 +267,26 @@ const TOTAL_CIRCUMFERENCE = 339.29;
 function getGuestKey() { return `guest_${new Date().toDateString()}_${DEVICE_ID}`; }
 function getGuestSecondsUsed() { return parseInt(localStorage.getItem(getGuestKey()) || '0', 10); }
 function setGuestSecondsUsed(s) { localStorage.setItem(getGuestKey(), String(s)); }
-function formatTime(s) { const m=Math.floor(s/60),sec=s%60; return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`; }
+function formatTime(s) {
+  const m = Math.floor(s / 60), sec = s % 60;
+  return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
 
+// Update progress bar di panel guest
 function updateGuestPanel() {
   const used = getGuestSecondsUsed();
   const left = Math.max(0, GUEST_DURATION - used);
   document.getElementById('guestTimeLeft').textContent = formatTime(left) + ' tersisa';
-  document.getElementById('guestProgressFill').style.width = ((left/GUEST_DURATION)*100) + '%';
+  document.getElementById('guestProgressFill').style.width = ((left / GUEST_DURATION) * 100) + '%';
 }
 updateGuestPanel();
 
 window.startGuest = function() {
   const used = getGuestSecondsUsed();
-  if (used >= GUEST_DURATION) { document.getElementById('expiredOverlay').classList.add('show'); return; }
+  if (used >= GUEST_DURATION) {
+    document.getElementById('expiredOverlay').classList.add('show');
+    return;
+  }
   document.getElementById('timerOverlay').classList.add('show');
   startTimerCountdown(GUEST_DURATION - used);
 };
@@ -292,7 +305,7 @@ function startTimerCountdown(leftSecs) {
       return;
     }
     num.textContent = formatTime(secs);
-    ring.style.strokeDashoffset = TOTAL_CIRCUMFERENCE - (secs/GUEST_DURATION)*TOTAL_CIRCUMFERENCE;
+    ring.style.strokeDashoffset = TOTAL_CIRCUMFERENCE - (secs / GUEST_DURATION) * TOTAL_CIRCUMFERENCE;
     setGuestSecondsUsed(GUEST_DURATION - secs);
     secs--;
   }
@@ -306,7 +319,7 @@ window.closeTimer = function() {
   window.location.href = 'index.html';
 };
 
-// ── LOGIN (FIXED) ──
+// ── LOGIN (dengan pengecekan disabled) ──
 window.doLogin = async function() {
   const email = document.getElementById('email').value.trim();
   const pass = document.getElementById('password').value;
@@ -315,12 +328,16 @@ window.doLogin = async function() {
   const deviceWarn = document.getElementById('deviceWarn');
   const notActivatedWarn = document.getElementById('notActivatedWarn');
 
-  // Reset semua warning
+  // Reset semua pesan error
   errEl.style.display = 'none';
   deviceWarn.style.display = 'none';
   notActivatedWarn.style.display = 'none';
 
-  if (!email || !pass) { errEl.textContent = 'Email dan password tidak boleh kosong.'; errEl.style.display = 'block'; return; }
+  if (!email || !pass) {
+    errEl.textContent = 'Email dan password tidak boleh kosong.';
+    errEl.style.display = 'block';
+    return;
+  }
 
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>Memproses...';
@@ -329,22 +346,32 @@ window.doLogin = async function() {
     const cred = await signInWithEmailAndPassword(auth, email, pass);
     const uid = cred.user.uid;
 
-    // Cek dokumen Firestore
     const userRef = doc(db, 'users', uid);
     const snap = await getDoc(userRef);
 
-    // ── KUNCI 1: Dokumen WAJIB ada (dibuat admin duluan)
+    // ── CEK 1: Dokumen Firestore wajib ada (dibuat admin)
     if (!snap.exists()) {
       await signOut(auth);
       btn.disabled = false;
       btn.innerHTML = 'Masuk ログイン';
+      notActivatedWarn.innerHTML = '❌ <strong>Akun belum diaktivasi.</strong><br>Hubungi admin untuk mengaktifkan akunmu terlebih dahulu.';
       notActivatedWarn.style.display = 'block';
       return;
     }
 
     const data = snap.data();
 
-    // ── KUNCI 2: Cek device lock
+    // ── CEK 2: Apakah akun dinonaktifkan admin
+    if (data.disabled === true) {
+      await signOut(auth);
+      btn.disabled = false;
+      btn.innerHTML = 'Masuk ログイン';
+      notActivatedWarn.innerHTML = '🚫 <strong>Akun dinonaktifkan oleh admin.</strong><br>Hubungi admin untuk informasi lebih lanjut.';
+      notActivatedWarn.style.display = 'block';
+      return;
+    }
+
+    // ── CEK 3: Device lock — sudah dipakai di HP lain?
     if (data.deviceId && data.deviceId !== DEVICE_ID) {
       await signOut(auth);
       btn.disabled = false;
@@ -353,7 +380,7 @@ window.doLogin = async function() {
       return;
     }
 
-    // ── Kalau deviceId belum ada (login pertama kali) → daftarkan device ini
+    // ── Login pertama: daftarkan device ini
     if (!data.deviceId) {
       await setDoc(userRef, {
         deviceId: DEVICE_ID,
@@ -370,18 +397,26 @@ window.doLogin = async function() {
     btn.disabled = false;
     btn.innerHTML = 'Masuk ログイン';
     let msg = 'Login gagal. Coba lagi.';
-    if (e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found' || e.code === 'auth/invalid-credential') msg = 'Email atau password salah.';
-    else if (e.code === 'auth/too-many-requests') msg = 'Terlalu banyak percobaan. Tunggu sebentar.';
-    else if (e.code === 'auth/network-request-failed') msg = 'Tidak ada koneksi internet.';
+    if (e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found' || e.code === 'auth/invalid-credential') {
+      msg = 'Email atau password salah.';
+    } else if (e.code === 'auth/too-many-requests') {
+      msg = 'Terlalu banyak percobaan. Tunggu sebentar.';
+    } else if (e.code === 'auth/network-request-failed') {
+      msg = 'Tidak ada koneksi internet.';
+    }
     errEl.textContent = msg;
     errEl.style.display = 'block';
   }
 };
 
+// Enter key support
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && document.querySelector('.panel.active').id === 'panelLogin') doLogin();
+  if (e.key === 'Enter' && document.querySelector('.panel.active').id === 'panelLogin') {
+    doLogin();
+  }
 });
 
+// Kalau sudah login, langsung redirect
 onAuthStateChanged(auth, (user) => {
   if (user) window.location.href = 'index.html';
 });
@@ -389,10 +424,10 @@ onAuthStateChanged(auth, (user) => {
 
 <script>
 window.switchTab = function(tab) {
-  ['login','guest'].forEach(p => {
+  ['login', 'guest'].forEach(p => {
     const cap = p.charAt(0).toUpperCase() + p.slice(1);
-    document.getElementById('tab'+cap).classList.toggle('active', p===tab);
-    document.getElementById('panel'+cap).classList.toggle('active', p===tab);
+    document.getElementById('tab' + cap).classList.toggle('active', p === tab);
+    document.getElementById('panel' + cap).classList.toggle('active', p === tab);
   });
 };
 </script>
