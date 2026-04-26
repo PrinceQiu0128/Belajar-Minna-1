@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Minna no Nihongo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #c0392b;
+            --red-dark: #922b21;
+            --red-light: #e74c3c;
+            --ink: #1a1a2e;
+            --paper: #fdf8f2;
+            --gold: #d4a843;
+            --muted: #7a6e65;
+            --border: rgba(192, 57, 43, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background decorative circles */
+        .bg-decor {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .bg-decor::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(192,57,43,0.18) 0%, transparent 70%);
+            top: -150px; left: -150px;
+            animation: pulse 6s ease-in-out infinite;
+        }
+        .bg-decor::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212,168,67,0.10) 0%, transparent 70%);
+            bottom: -100px; right: -100px;
+            animation: pulse 8s ease-in-out infinite reverse;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.08); opacity: 0.7; }
+        }
+
+        /* Japanese kanji watermark */
+        .kanji-bg {
+            position: fixed;
+            font-family: 'Noto Serif JP', serif;
+            font-size: 320px;
+            color: rgba(255,255,255,0.025);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            user-select: none;
+            line-height: 1;
+            letter-spacing: -10px;
+        }
+
+        /* Card */
+        .card-wrap {
+            position: relative;
+            z-index: 10;
+            animation: slideUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-card {
+            background: var(--paper);
+            border-radius: 24px;
+            width: 380px;
+            max-width: 95vw;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        /* Red header band */
+        .card-header {
+            background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 60%, var(--red-light) 100%);
+            padding: 2rem 2rem 1.8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .card-header::before {
+            content: '日';
+            position: absolute;
+            font-family: 'Noto Serif JP', serif;
+            font-size: 120px;
+            color: rgba(255,255,255,0.08);
+            right: -15px; top: -15px;
+            line-height: 1;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .header-badge span { font-size: 10px; }
+
+        .title-jp {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: 700;
+            display: block;
+            line-height: 1.2;
+            margin-bottom: 0.3rem;
+        }
+        .title-sub {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Ganbarimashou strip */
+        .ganbare-strip {
+            background: var(--gold);
+            padding: 0.55rem 1rem;
+            text-align: center;
+            font-family: 'Noto Serif JP', serif;
+            font-size: 0.85rem;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .ganbare-strip em {
+            font-style: normal;
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.8);
+            margin-left: 6px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* Body */
+        .card-body {
+            padding: 2rem 2rem 1.5rem;
+        }
+
+        .field-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            margin-top: 14px;
+            display: block;
+        }
+        .field-label:first-child { margin-top: 0; }
+
+        input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            background: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+        input::placeholder { color: #c5bfba; }
+        input:focus {
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, var(--red-dark), var(--red));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            cursor: pointer;
+            margin-top: 1.4rem;
+            letter-spacing: 0.5px;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+        button::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0);
+            transition: background 0.2s;
+        }
+        button:hover::after { background: rgba(255,255,255,0.08); }
+        button:active { transform: scale(0.98); }
+
+        /* Info section */
+        .info-box {
+            margin-top: 1.4rem;
+            background: linear-gradient(135deg, #fff8f0, #fff3ea);
+            border: 1px solid rgba(192,57,43,0.12);
+            border-left: 3px solid var(--red);
+            border-radius: 10px;
+            padding: 0.9rem 1rem;
+        }
+        .info-box .info-title {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--red-dark);
+            margin-bottom: 0.35rem;
+        }
+        .info-box p {
+            font-size: 0.82rem;
+            color: #5a4e46;
+            line-height: 1.55;
+        }
+        .info-box .wa-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 0.5rem;
+            background: #25d366;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .info-box .wa-link:hover { opacity: 0.88; }
+        .wa-icon {
+            width: 14px; height: 14px;
+            fill: #fff;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .card-footer {
+            text-align: center;
+            padding: 1rem 2rem 1.5rem;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        .card-footer p {
+            font-size: 0.72rem;
+            color: #bbb;
+            letter-spacing: 0.5px;
+        }
+        .card-footer span {
+            font-family: 'Noto Serif JP', serif;
+            color: var(--red);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-decor"></div>
+    <div class="kanji-bg">語</div>
+
+    <div class="card-wrap">
+        <div class="login-card">
+
+            <!-- Header -->
+            <div class="card-header">
+                <div class="header-badge">
+                    <span>⛩</span> Minna no Nihongo
+                </div>
+                <span class="title-jp">みんなの日本語</span>
+                <div class="title-sub">Buku 1 · Materi Digital</div>
+            </div>
+
+            <!-- Ganbarimashou strip -->
+            <div class="ganbare-strip">
+                がんばりましょう！<em>— Ayo semangat belajar!</em>
+            </div>
+
+            <!-- Form -->
+            <div class="card-body">
+                <label class="field-label">Email Pembeli</label>
+                <input type="email" id="email" placeholder="contoh@email.com">
+
+                <label class="field-label">Password</label>
+                <input type="password" id="password" placeholder="••••••••">
+
+                <button id="btnLogin">
+                    ログイン &nbsp;— Masuk Sekarang
+                </button>
+
+                <!-- Info box -->
+                <div class="info-box">
+                    <div class="info-title">📚 Belum punya akses?</div>
+                    <p>Untuk membuka materi buku <strong>Minna no Nihongo 1</strong>, silakan hubungi admin kami:</p>
+                    <a class="wa-link" href="https://wa.me/6283141814509" target="_blank">
+                        <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.121 1.532 5.857L.057 23.882l6.19-1.623A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.946 0-3.773-.525-5.337-1.438l-.383-.226-3.675.964.981-3.584-.249-.402A9.952 9.952 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+                        </svg>
+                        0831 - 4181 - 4509
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="card-footer">
+                <p>© 2024 Minna no Nihongo &nbsp;·&nbsp; <span>日本語を楽しもう</span></p>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDinwdzN-Y-P0BlCqPvj6y1Inc6dhvssKU",
+            authDomain: "jualan-web-50d9e.firebaseapp.com",
+            projectId: "jualan-web-50d9e",
+            storageBucket: "jualan-web-50d9e.firebasestorage.app",
+            messagingSenderId: "1021060785335",
+            appId: "1:1021060785335:web:45622074c33c9ccceb9932"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        document.getElementById('btnLogin').onclick = () => {
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+            signInWithEmailAndPassword(auth, email, pass)
+                .then(() => { window.location.href = "index.html"; })
+                .catch(() => { alert("Gagal: Email atau Password salah!"); });
+        };
+    </script>
+</body>
+</html>
