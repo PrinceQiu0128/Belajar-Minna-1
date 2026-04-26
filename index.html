@@ -142,6 +142,8 @@
   mark{background:rgba(245,158,11,0.3);color:inherit;border-radius:2px;padding:0 1px;}
   .empty-state{text-align:center;padding:2.5rem 1rem;color:var(--text3);font-size:0.9rem;}
   .empty-state .big{font-family:'Noto Serif JP',serif;font-size:2.5rem;display:block;opacity:0.2;margin-bottom:0.5rem;}
+  .nav-link{display:flex;align-items:center;gap:5px;padding:5px 11px;border:1px solid var(--border);background:var(--bg3);border-radius:8px;font-size:0.72rem;font-weight:600;color:var(--text3);text-decoration:none;transition:all 0.2s;white-space:nowrap;flex-shrink:0;}
+.nav-link:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
   footer{text-align:center;padding:1.2rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;color:var(--text4);border-top:1px solid var(--border);}
 </style>
 </head>
@@ -161,6 +163,7 @@
     <input type="text" id="search" placeholder="Cari...">
   </div>
   <span class="count-chip" id="count">—</span>
+  <a class="nav-link" href="bunpou.html">文 Bunpou</a>
   <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
 </nav>
 
