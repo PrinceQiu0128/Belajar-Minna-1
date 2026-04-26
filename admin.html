@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel | みんなの日本語</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0d0f14;--surface:#151820;--surface2:#1c2030;--border:#2a2f42;
+  --text:#e8eaf2;--text2:#8b91a8;--text3:#555c76;
+  --accent:#6366f1;--accent2:#f43f5e;--green:#22c55e;--amber:#f59e0b;--red:#ef4444;
+  --font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;font-size:14px;}
+
+/* AUTH GATE */
+.auth-gate{
+  position:fixed;inset:0;background:var(--bg);z-index:999;
+  display:flex;align-items:center;justify-content:center;padding:20px;
+}
+.auth-box{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:32px;width:100%;max-width:380px;text-align:center;
+}
+.auth-logo{
+  font-family:'Noto Serif JP',serif;font-size:2rem;
+  background:linear-gradient(135deg,#6366f1,#f43f5e);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:4px;
+}
+.auth-sub{font-size:12px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:28px;}
+.auth-input{
+  width:100%;padding:11px 14px;background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;font-family:var(--font);font-size:13px;color:var(--text);
+  outline:none;margin-bottom:10px;transition:border-color .2s;
+}
+.auth-input:focus{border-color:var(--accent);}
+.auth-btn{
+  width:100%;padding:12px;background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  border:none;border-radius:10px;font-family:var(--font);font-size:13px;font-weight:600;
+  color:#fff;cursor:pointer;transition:opacity .2s;
+}
+.auth-btn:hover{opacity:.9;}
+.auth-err{font-size:12px;color:var(--red);margin-top:8px;display:none;}
+
+/* LAYOUT */
+.app{display:none;flex-direction:column;min-height:100vh;}
+.topbar{
+  background:var(--surface);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 24px;height:52px;gap:12px;
+  position:sticky;top:0;z-index:100;
+}
+.topbar-brand{
+  font-family:'Noto Serif JP',serif;font-size:.85rem;font-weight:700;
+  background:linear-gradient(135deg,#6366f1,#f43f5e);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  flex-shrink:0;
+}
+.topbar-chip{
+  font-family:var(--mono);font-size:10px;background:rgba(99,102,241,.15);
+  border:1px solid rgba(99,102,241,.3);color:#a5b4fc;
+  padding:2px 8px;border-radius:4px;flex-shrink:0;letter-spacing:.5px;
+}
+.topbar-spacer{flex:1;}
+.topbar-logout{
+  font-size:12px;color:var(--text3);background:transparent;border:none;
+  cursor:pointer;font-family:var(--font);padding:6px 10px;border-radius:6px;
+  transition:background .2s,color .2s;
+}
+.topbar-logout:hover{background:var(--surface2);color:var(--text);}
+
+.content{max-width:960px;margin:0 auto;padding:24px 20px 60px;}
+
+/* STATS ROW */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px;}
+.stat-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:16px;
+}
+.stat-label{font-size:11px;color:var(--text3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px;}
+.stat-val{font-size:26px;font-weight:600;font-family:var(--mono);}
+.stat-val.c-accent{color:var(--accent);}
+.stat-val.c-green{color:var(--green);}
+.stat-val.c-amber{color:var(--amber);}
+.stat-val.c-red{color:var(--red);}
+
+/* SECTION */
+.section{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:16px;overflow:hidden;}
+.section-head{
+  display:flex;align-items:center;gap:10px;padding:14px 18px;
+  border-bottom:1px solid var(--border);
+}
+.section-title{font-size:13px;font-weight:600;color:var(--text);}
+.section-count{font-family:var(--mono);font-size:11px;color:var(--text3);background:var(--surface2);padding:2px 8px;border-radius:10px;border:1px solid var(--border);}
+.section-spacer{flex:1;}
+
+/* FORM — ADD USER */
+.add-form{padding:16px 18px;display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;}
+@media(max-width:580px){.add-form{grid-template-columns:1fr;}}
+.form-group{display:flex;flex-direction:column;gap:5px;}
+.form-label{font-size:11px;color:var(--text3);letter-spacing:.6px;text-transform:uppercase;}
+.form-input{
+  padding:9px 12px;background:var(--surface2);border:1px solid var(--border);
+  border-radius:8px;font-family:var(--font);font-size:13px;color:var(--text);
+  outline:none;transition:border-color .2s;
+}
+.form-input:focus{border-color:var(--accent);}
+.btn{
+  padding:9px 16px;border:none;border-radius:8px;font-family:var(--font);
+  font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;
+}
+.btn-accent{background:var(--accent);color:#fff;}
+.btn-accent:hover{background:#5055d8;}
+.btn-danger{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.25);}
+.btn-danger:hover{background:rgba(239,68,68,.25);}
+.btn-warn{background:rgba(245,158,11,.12);color:var(--amber);border:1px solid rgba(245,158,11,.25);}
+.btn-warn:hover{background:rgba(245,158,11,.22);}
+.btn-ghost{background:var(--surface2);color:var(--text2);border:1px solid var(--border);}
+.btn-ghost:hover{background:var(--border);}
+.btn:disabled{opacity:.45;cursor:not-allowed;}
+.add-err{font-size:12px;color:var(--red);padding:0 18px 12px;display:none;}
+
+/* USER TABLE */
+.user-list{padding:0;}
+.user-row{
+  display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;
+  padding:12px 18px;border-bottom:1px solid var(--border);transition:background .1s;
+}
+.user-row:last-child{border-bottom:none;}
+.user-row:hover{background:rgba(255,255,255,.02);}
+.user-info{}
+.user-email{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px;}
+.user-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.badge{
+  font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:4px;
+  letter-spacing:.3px;
+}
+.badge-locked{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2);}
+.badge-free{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.2);}
+.badge-device{background:rgba(99,102,241,.1);color:#a5b4fc;border:1px solid rgba(99,102,241,.2);}
+.badge-never{background:var(--surface2);color:var(--text3);border:1px solid var(--border);}
+.user-actions{display:flex;gap:6px;flex-shrink:0;}
+.device-id{
+  font-family:var(--mono);font-size:10px;color:var(--text3);
+  max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
+/* TOAST */
+.toast-wrap{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;}
+.toast{
+  background:var(--surface2);border:1px solid var(--border);border-radius:10px;
+  padding:10px 16px;font-size:13px;color:var(--text);
+  animation:slideIn .2s ease;min-width:220px;
+}
+.toast.ok{border-color:rgba(34,197,94,.4);color:var(--green);}
+.toast.err{border-color:rgba(239,68,68,.4);color:var(--red);}
+@keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.empty-state{text-align:center;padding:32px;color:var(--text3);font-size:13px;}
+.spinner-inline{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:5px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* SEARCH */
+.search-wrap{padding:12px 18px;border-bottom:1px solid var(--border);}
+.search-input{
+  width:100%;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);
+  border-radius:8px;font-family:var(--font);font-size:13px;color:var(--text);outline:none;
+  transition:border-color .2s;
+}
+.search-input:focus{border-color:var(--accent);}
+.search-input::placeholder{color:var(--text3);}
+</style>
+</head>
+<body>
+
+<!-- AUTH GATE -->
+<div class="auth-gate" id="authGate">
+  <div class="auth-box">
+    <div class="auth-logo">管理</div>
+    <div class="auth-sub">Admin Panel · みんなの日本語</div>
+    <input type="email" id="adminEmail" class="auth-input" placeholder="Email admin">
+    <input type="password" id="adminPass" class="auth-input" placeholder="Password">
+    <button class="auth-btn" onclick="adminLogin()">Masuk sebagai Admin</button>
+    <div class="auth-err" id="authErr"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+  <div class="topbar">
+    <span class="topbar-brand">みんなの日本語</span>
+    <span class="topbar-chip">ADMIN PANEL</span>
+    <div class="topbar-spacer"></div>
+    <span id="adminEmailDisplay" style="font-size:12px;color:var(--text3);margin-right:8px;"></span>
+    <button class="topbar-logout" onclick="doLogout()">Logout</button>
+  </div>
+
+  <div class="content">
+    <!-- STATS -->
+    <div class="stats" id="statsRow">
+      <div class="stat-card"><div class="stat-label">Total User</div><div class="stat-val c-accent" id="statTotal">—</div></div>
+      <div class="stat-card"><div class="stat-label">Terkunci Device</div><div class="stat-val c-red" id="statLocked">—</div></div>
+      <div class="stat-card"><div class="stat-label">Belum Login</div><div class="stat-val c-amber" id="statNever">—</div></div>
+      <div class="stat-card"><div class="stat-label">Bebas (Free)</div><div class="stat-val c-green" id="statFree">—</div></div>
+    </div>
+
+    <!-- ADD USER -->
+    <div class="section">
+      <div class="section-head">
+        <span class="section-title">Tambah User Baru</span>
+      </div>
+      <div class="add-form">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" id="newEmail" class="form-input" placeholder="user@gmail.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" id="newPass" class="form-input" placeholder="Min 6 karakter">
+        </div>
+        <button class="btn btn-accent" onclick="addUser()">+ Tambah</button>
+      </div>
+      <div class="add-err" id="addErr"></div>
+    </div>
+
+    <!-- USER LIST -->
+    <div class="section">
+      <div class="section-head">
+        <span class="section-title">Daftar User</span>
+        <span class="section-count" id="userCount">0 user</span>
+        <div class="section-spacer"></div>
+        <button class="btn btn-ghost" onclick="loadUsers()" style="font-size:11px;padding:6px 12px;">↻ Refresh</button>
+      </div>
+      <div class="search-wrap">
+        <input type="text" id="searchInput" class="search-input" placeholder="Cari email..." oninput="filterUsers()">
+      </div>
+      <div class="user-list" id="userList">
+        <div class="empty-state">Memuat data…</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import {
+  getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged,
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import {
+  getFirestore, collection, doc, getDoc, setDoc, getDocs,
+  deleteDoc, updateDoc, deleteField, serverTimestamp, query, orderBy
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDinwdzN-Y-P0BlCqPvj6y1Inc6dhvssKU",
+  authDomain: "jualan-web-50d9e.firebaseapp.com",
+  projectId: "jualan-web-50d9e",
+  storageBucket: "jualan-web-50d9e.firebasestorage.app",
+  messagingSenderId: "1021060785335",
+  appId: "1:1021060785335:web:45622074c33c9ccceb9932"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// ── ADMIN WHITELIST (email yang boleh akses panel ini)
+const ADMIN_EMAILS = ['rendiahmad4551@gmail.com']; // ganti sesuai email admin kamu
+
+let allUsers = [];
+
+// ── AUTH ──
+window.adminLogin = async function() {
+  const email = document.getElementById('adminEmail').value.trim();
+  const pass = document.getElementById('adminPass').value;
+  const errEl = document.getElementById('authErr');
+  errEl.style.display = 'none';
+
+  if (!ADMIN_EMAILS.includes(email)) {
+    errEl.textContent = 'Email ini tidak memiliki akses admin.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+  } catch(e) {
+    errEl.textContent = 'Login gagal: ' + (e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential' ? 'Email/password salah.' : e.message);
+    errEl.style.display = 'block';
+  }
+};
+
+window.doLogout = async function() {
+  await signOut(auth);
+};
+
+onAuthStateChanged(auth, (user) => {
+  if (user && ADMIN_EMAILS.includes(user.email)) {
+    document.getElementById('authGate').style.display = 'none';
+    document.getElementById('app').style.display = 'flex';
+    document.getElementById('adminEmailDisplay').textContent = user.email;
+    loadUsers();
+  } else {
+    document.getElementById('authGate').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+    if (user) signOut(auth); // logged in but not admin
+  }
+});
+
+// ── LOAD USERS ──
+window.loadUsers = async function() {
+  document.getElementById('userList').innerHTML = '<div class="empty-state">Memuat…</div>';
+  try {
+    const snap = await getDocs(collection(db, 'users'));
+    allUsers = [];
+    snap.forEach(d => allUsers.push({ uid: d.id, ...d.data() }));
+    allUsers.sort((a,b) => (a.email||'').localeCompare(b.email||''));
+    renderUsers(allUsers);
+    updateStats(allUsers);
+  } catch(e) {
+    toast('Gagal memuat: ' + e.message, 'err');
+  }
+};
+
+function updateStats(users) {
+  document.getElementById('statTotal').textContent = users.length;
+  document.getElementById('statLocked').textContent = users.filter(u => u.deviceId).length;
+  document.getElementById('statNever').textContent = users.filter(u => !u.lastLogin).length;
+  document.getElementById('statFree').textContent = users.filter(u => !u.deviceId).length;
+}
+
+function renderUsers(users) {
+  const el = document.getElementById('userList');
+  document.getElementById('userCount').textContent = users.length + ' user';
+  if (!users.length) { el.innerHTML = '<div class="empty-state">Tidak ada user.</div>'; return; }
+  el.innerHTML = users.map(u => {
+    const hasDevice = !!u.deviceId;
+    const shortDevice = u.deviceId ? u.deviceId.substring(0,20)+'…' : null;
+    const lastLogin = u.lastLogin?.toDate ? u.lastLogin.toDate().toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}) : null;
+    return `<div class="user-row" id="row-${u.uid}">
+      <div class="user-info">
+        <div class="user-email">${u.email || '<span style="color:var(--text3)">—</span>'}</div>
+        <div class="user-meta">
+          ${hasDevice
+            ? `<span class="badge badge-locked">🔒 Device Terkunci</span><span class="device-id" title="${u.deviceId}">${shortDevice}</span>`
+            : `<span class="badge badge-free">✓ Bebas</span>`
+          }
+          ${lastLogin
+            ? `<span style="font-size:11px;color:var(--text3);">Login: ${lastLogin}</span>`
+            : `<span class="badge badge-never">Belum pernah login</span>`
+          }
+        </div>
+      </div>
+      <div class="user-actions">
+        ${hasDevice
+          ? `<button class="btn btn-warn" onclick="resetDevice('${u.uid}')">Reset Device</button>`
+          : ''
+        }
+        <button class="btn btn-danger" onclick="deleteUser('${u.uid}','${u.email||''}')">Hapus</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── FILTER ──
+window.filterUsers = function() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  renderUsers(q ? allUsers.filter(u => (u.email||'').toLowerCase().includes(q)) : allUsers);
+};
+
+// ── ADD USER ──
+window.addUser = async function() {
+  const email = document.getElementById('newEmail').value.trim();
+  const pass = document.getElementById('newPass').value;
+  const errEl = document.getElementById('addErr');
+  errEl.style.display = 'none';
+
+  if (!email || !pass) { errEl.textContent = 'Email dan password wajib diisi.'; errEl.style.display = 'block'; return; }
+  if (pass.length < 6) { errEl.textContent = 'Password minimal 6 karakter.'; errEl.style.display = 'block'; return; }
+
+  try {
+    // Buat akun Firebase Auth
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    const uid = cred.user.uid;
+
+    // Buat dokumen Firestore (TANPA deviceId — user harus login duluan baru terkunci)
+    await setDoc(doc(db, 'users', uid), {
+      email: email,
+      createdAt: serverTimestamp(),
+      deviceId: null,
+      lastLogin: null,
+    });
+
+    toast('User ' + email + ' berhasil ditambahkan!', 'ok');
+    document.getElementById('newEmail').value = '';
+    document.getElementById('newPass').value = '';
+    loadUsers();
+  } catch(e) {
+    let msg = e.message;
+    if (e.code === 'auth/email-already-in-use') msg = 'Email sudah terdaftar.';
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+  }
+};
+
+// ── RESET DEVICE ──
+window.resetDevice = async function(uid) {
+  if (!confirm('Reset device lock untuk user ini? Mereka bisa login dari device manapun setelah ini (lalu terkunci ke device baru).')) return;
+  try {
+    await updateDoc(doc(db, 'users', uid), { deviceId: deleteField() });
+    toast('Device berhasil direset.', 'ok');
+    loadUsers();
+  } catch(e) {
+    toast('Gagal reset: ' + e.message, 'err');
+  }
+};
+
+// ── DELETE USER ──
+window.deleteUser = async function(uid, email) {
+  if (!confirm(`Hapus user "${email}"?\nIni HANYA menghapus data Firestore. Hapus dari Firebase Auth secara manual di console Firebase jika perlu.`)) return;
+  try {
+    await deleteDoc(doc(db, 'users', uid));
+    toast('User dihapus dari database.', 'ok');
+    loadUsers();
+  } catch(e) {
+    toast('Gagal hapus: ' + e.message, 'err');
+  }
+};
+
+// ── TOAST ──
+window.toast = function(msg, type='') {
+  const wrap = document.getElementById('toastWrap');
+  const el = document.createElement('div');
+  el.className = 'toast ' + type;
+  el.textContent = msg;
+  wrap.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+};
+</script>
+</body>
+</html>
