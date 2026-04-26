@@ -1535,26 +1535,178 @@ function render(){
 render();
 </script>
 <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyDinwdzN-Y-P0BlCqPvj6y1Inc6dhvssKU",
-        authDomain: "jualan-web-50d9e.firebaseapp.com",
-        projectId: "jualan-web-50d9e",
-        storageBucket: "jualan-web-50d9e.firebasestorage.app",
-        messagingSenderId: "1021060785335",
-        appId: "1:1021060785335:web:45622074c33c9ccceb9932"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    onAuthStateChanged(auth, (user) => {
-        if (!user) {
-            window.location.href = "login.html";
-        }
-    });
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+ 
+const firebaseConfig = {
+  apiKey: "AIzaSyDinwdzN-Y-P0BlCqPvj6y1Inc6dhvssKU",
+  authDomain: "jualan-web-50d9e.firebaseapp.com",
+  projectId: "jualan-web-50d9e",
+  storageBucket: "jualan-web-50d9e.firebasestorage.app",
+  messagingSenderId: "1021060785335",
+  appId: "1:1021060785335:web:45622074c33c9ccceb9932"
+};
+ 
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+ 
+// ── DEVICE ID ──
+function getDeviceId() {
+  let id = localStorage.getItem('_did');
+  if (!id) {
+    id = 'dev_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+    localStorage.setItem('_did', id);
+  }
+  return id;
+}
+const DEVICE_ID = getDeviceId();
+ 
+// ── GUEST MODE CHECK ──
+const GUEST_DURATION = 10 * 60;
+ 
+function getGuestKey() {
+  const today = new Date().toDateString();
+  return `guest_${today}_${DEVICE_ID}`;
+}
+function getGuestSecondsUsed() {
+  return parseInt(localStorage.getItem(getGuestKey()) || '0', 10);
+}
+function setGuestSecondsUsed(s) {
+  localStorage.setItem(getGuestKey(), String(s));
+}
+function formatTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
+ 
+// Inject floating timer bar (untuk guest mode)
+function injectGuestBar(leftSecs) {
+  // Create floating timer bar
+  const bar = document.createElement('div');
+  bar.id = 'guestTimerBar';
+  bar.style.cssText = `
+    position:fixed;bottom:0;left:0;right:0;z-index:9999;
+    background:linear-gradient(135deg,rgba(139,92,246,0.95),rgba(232,55,110,0.95));
+    backdrop-filter:blur(10px);padding:10px 16px;
+    display:flex;align-items:center;justify-content:space-between;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    box-shadow:0 -2px 20px rgba(0,0,0,0.3);
+  `;
+  bar.innerHTML = `
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="font-size:16px;">⏱</span>
+      <div>
+        <div style="font-size:0.68rem;color:rgba(255,255,255,0.7);letter-spacing:1px;text-transform:uppercase;">Mode Tamu</div>
+        <div style="font-size:0.78rem;color:#fff;font-weight:600;" id="guestBarTime">${formatTime(leftSecs)} tersisa</div>
+      </div>
+    </div>
+    <a href="https://wa.me/6283141814509?text=Mau%20beli%20key%20Minna%20no%20Nihongo"
+       target="_blank"
+       style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);
+              color:#fff;font-size:0.72rem;font-weight:600;padding:6px 12px;
+              border-radius:20px;text-decoration:none;white-space:nowrap;">
+      Beli Key →
+    </a>
+  `;
+  document.body.appendChild(bar);
+ 
+  // Add padding to bottom so content not hidden behind bar
+  document.body.style.paddingBottom = '64px';
+ 
+  // Start countdown
+  let secs = leftSecs;
+  const timeEl = document.getElementById('guestBarTime');
+  const tick = () => {
+    if (secs <= 0) {
+      clearInterval(iv);
+      setGuestSecondsUsed(GUEST_DURATION);
+      showExpiredOverlay();
+      return;
+    }
+    timeEl.textContent = formatTime(secs) + ' tersisa';
+    setGuestSecondsUsed(GUEST_DURATION - secs);
+    secs--;
+  };
+  tick();
+  const iv = setInterval(tick, 1000);
+}
+ 
+function showExpiredOverlay() {
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `
+    position:fixed;inset:0;z-index:99999;
+    background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:center;padding:20px;
+  `;
+  overlay.innerHTML = `
+    <div style="background:#12121e;border:1px solid rgba(255,255,255,0.12);
+                border-radius:24px;padding:28px 24px;max-width:340px;width:100%;text-align:center;
+                font-family:'Plus Jakarta Sans',sans-serif;color:#fff;">
+      <div style="font-size:40px;margin-bottom:12px;">⏰</div>
+      <div style="font-size:1.1rem;font-weight:700;margin-bottom:6px;">Waktu Habis!</div>
+      <div style="font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:20px;">
+        Kuota tamu harianmu sudah habis.<br>
+        Kembali besok atau beli key untuk akses penuh!
+      </div>
+      <a href="https://wa.me/6283141814509?text=Mau%20beli%20key%20Minna%20no%20Nihongo"
+         target="_blank"
+         style="display:block;padding:13px;border-radius:12px;margin-bottom:10px;
+                background:linear-gradient(135deg,#8b5cf6,#e8376e);
+                color:#fff;font-weight:600;font-size:0.88rem;text-decoration:none;">
+        Beli Key Premium →
+      </a>
+      <button onclick="window.location.href='login.html'"
+              style="width:100%;padding:12px;border:1px solid rgba(255,255,255,0.18);
+                     border-radius:12px;background:rgba(255,255,255,0.05);
+                     color:rgba(255,255,255,0.7);font-size:0.85rem;cursor:pointer;font-family:inherit;">
+        Kembali ke Halaman Login
+      </button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+ 
+// ── AUTH STATE ──
+onAuthStateChanged(auth, async (user) => {
+  // GUEST MODE
+  if (!user) {
+    const isGuest = sessionStorage.getItem('guestMode') === '1';
+    if (!isGuest) {
+      window.location.href = 'login.html';
+      return;
+    }
+    // Guest — check time remaining
+    const used = getGuestSecondsUsed();
+    const left = GUEST_DURATION - used;
+    if (left <= 0) {
+      showExpiredOverlay();
+    } else {
+      injectGuestBar(left);
+    }
+    return;
+  }
+ 
+  // LOGGED IN — verify device
+  try {
+    const userRef = doc(db, 'users', user.uid);
+    const snap = await getDoc(userRef);
+    if (snap.exists()) {
+      const data = snap.data();
+      if (data.deviceId && data.deviceId !== DEVICE_ID) {
+        // Wrong device — kick out
+        await signOut(auth);
+        sessionStorage.removeItem('guestMode');
+        alert('Akun ini sudah digunakan di perangkat lain. Hubungi admin jika ada masalah.');
+        window.location.href = 'login.html';
+      }
+    }
+  } catch(e) {
+    console.warn('Device check failed:', e);
+  }
+});
 </script>
 </body>
 </html>
