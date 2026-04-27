@@ -1693,6 +1693,19 @@ onAuthStateChanged(auth, async (user) => {
   const userRef = doc(db, 'users', user.uid);
   const localToken = localStorage.getItem('sessionToken_' + user.uid);
 
+  // ✅ Cek token langsung saat pertama load (bukan cuma nunggu perubahan snapshot)
+  const initialSnap = await getDoc(userRef);
+  if (initialSnap.exists()) {
+    const initialData = initialSnap.data();
+    if (initialData.sessionToken && initialData.sessionToken !== localToken) {
+      await signOut(auth);
+      localStorage.removeItem('sessionToken_' + user.uid);
+      alert('Sesi kamu berakhir karena akun ini login di perangkat lain.');
+      window.location.href = 'login.html';
+      return;
+    }
+  }
+
   const unsubSession = onSnapshot(userRef, async (snap) => {
     if (!snap.exists()) return;
     const data = snap.data();
