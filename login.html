@@ -119,16 +119,16 @@ body{
   <div class="modal">
     <div class="modal-badge">⏱ Mode Tamu Aktif</div>
     <div class="modal-jp">無料体験</div>
-    <div class="modal-en">Free Trial — 10 Minutes</div>
+    <div class="modal-en">Free Trial — 5 Minutes</div>
     <div class="timer-ring-wrap">
       <svg width="120" height="120" viewBox="0 0 120 120">
         <defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#e8376e"/></linearGradient></defs>
         <circle class="timer-ring-bg" cx="60" cy="60" r="54"/>
         <circle class="timer-ring-fg" id="timerRing" cx="60" cy="60" r="54" stroke-dasharray="339.29" stroke-dashoffset="0"/>
       </svg>
-      <div class="timer-text"><div class="timer-num" id="timerNum">10:00</div><div class="timer-sub">TERSISA</div></div>
+      <div class="timer-text"><div class="timer-num" id="timerNum">05:00</div><div class="timer-sub">TERSISA</div></div>
     </div>
-    <div class="modal-desc">Kamu sedang dalam <strong style="color:#fff">Mode Tamu</strong>.<br>Akses gratis 10 menit per hari per perangkat.<br>Beli key untuk akses penuh &amp; tidak terbatas!</div>
+    <div class="modal-desc">Kamu sedang dalam <strong style="color:#fff">Mode Tamu</strong>.<br>Akses gratis <strong style="color:#fff">5 menit</strong> per hari per perangkat.<br>Beli key untuk akses penuh &amp; tidak terbatas!</div>
     <button class="modal-cta" onclick="closeTimer()">Mulai Belajar →</button>
   </div>
 </div>
@@ -170,12 +170,10 @@ body{
 
       <!-- LOGIN PANEL -->
       <div class="panel active" id="panelLogin">
-        <!-- Warn: device lain -->
         <div class="warn-box" id="deviceWarn">
           ⚠️ <strong>Akun ini sudah aktif di perangkat lain.</strong><br>
           Satu akun hanya bisa dipakai di 1 perangkat. Hubungi admin untuk reset.
         </div>
-        <!-- Warn: belum diaktivasi / dinonaktifkan -->
         <div class="warn-box" id="notActivatedWarn">
           ❌ <strong>Akun belum diaktivasi.</strong><br>
           Hubungi admin untuk mengaktifkan akunmu terlebih dahulu.
@@ -204,13 +202,13 @@ body{
       <div class="panel" id="panelGuest">
         <div class="guest-box">
           <div class="guest-title"><span class="guest-dot"></span>Mode Tamu · Free Preview</div>
-          <div class="guest-desc">Coba akses materi gratis <strong style="color:rgba(255,255,255,0.7)">10 menit sehari</strong>.<br>Satu perangkat = satu kuota harian.</div>
+          <div class="guest-desc">Coba akses materi gratis <strong style="color:rgba(255,255,255,0.7)">5 menit sehari</strong>.<br>Satu perangkat = satu kuota harian.</div>
           <div class="guest-progress-wrap">
-            <div class="guest-progress-label"><span>Kuota Harian</span><span id="guestTimeLeft">10:00 tersisa</span></div>
+            <div class="guest-progress-label"><span>Kuota Harian</span><span id="guestTimeLeft">05:00 tersisa</span></div>
             <div class="guest-progress-bar"><div class="guest-progress-fill" id="guestProgressFill" style="width:100%"></div></div>
           </div>
         </div>
-        <button class="btn-primary" id="btnGuest" onclick="startGuest()">Mulai Gratis 10 Menit →</button>
+        <button class="btn-primary" id="btnGuest" onclick="startGuest()">Mulai Gratis 5 Menit →</button>
         <button class="btn-ghost" onclick="switchTab('login')">Punya Key? Login Premium</button>
         <div class="info-box" style="margin-top:14px;">
           <div class="info-box-title">🎌 Unlock Full Access</div>
@@ -233,8 +231,13 @@ import {
   getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import {
-  getFirestore, doc, setDoc, getDoc, serverTimestamp
+  getFirestore, doc, setDoc, getDoc, serverTimestamp,
+  ref, set, onDisconnect, onValue, remove
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import {
+  getDatabase, ref as dbRef, set as dbSet,
+  onDisconnect as dbOnDisconnect, serverTimestamp as dbServerTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDinwdzN-Y-P0BlCqPvj6y1Inc6dhvssKU",
@@ -242,12 +245,14 @@ const firebaseConfig = {
   projectId: "jualan-web-50d9e",
   storageBucket: "jualan-web-50d9e.firebasestorage.app",
   messagingSenderId: "1021060785335",
-  appId: "1:1021060785335:web:45622074c33c9ccceb9932"
+  appId: "1:1021060785335:web:45622074c33c9ccceb9932",
+  databaseURL: "https://jualan-web-50d9e-default-rtdb.firebaseio.com"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const rtdb = getDatabase(app);
 
 // ── DEVICE ID ──
 function getDeviceId() {
@@ -260,8 +265,25 @@ function getDeviceId() {
 }
 const DEVICE_ID = getDeviceId();
 
+// ── PRESENCE: catat user aktif di Realtime Database ──
+function registerPresence(uid, email, type) {
+  const presenceRef = dbRef(rtdb, `presence/${uid}`);
+  const data = {
+    uid,
+    email: email || 'Guest',
+    type, // 'premium' atau 'guest'
+    deviceId: DEVICE_ID,
+    online: true,
+    lastSeen: dbServerTimestamp()
+  };
+  dbSet(presenceRef, data);
+  // Otomatis hapus saat disconnect
+  dbOnDisconnect(presenceRef).remove();
+}
+
 // ── GUEST ──
-const GUEST_DURATION = 10 * 60;
+// DIUBAH: 5 menit (300 detik)
+const GUEST_DURATION = 5 * 60;
 const TOTAL_CIRCUMFERENCE = 339.29;
 
 function getGuestKey() { return `guest_${new Date().toDateString()}_${DEVICE_ID}`; }
@@ -272,7 +294,6 @@ function formatTime(s) {
   return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
 }
 
-// Update progress bar di panel guest
 function updateGuestPanel() {
   const used = getGuestSecondsUsed();
   const left = Math.max(0, GUEST_DURATION - used);
@@ -288,6 +309,9 @@ window.startGuest = function() {
     return;
   }
   document.getElementById('timerOverlay').classList.add('show');
+  // Daftarkan presence guest
+  const guestUid = 'guest_' + DEVICE_ID;
+  registerPresence(guestUid, 'Tamu', 'guest');
   startTimerCountdown(GUEST_DURATION - used);
 };
 
@@ -319,7 +343,7 @@ window.closeTimer = function() {
   window.location.href = 'index.html';
 };
 
-// ── LOGIN (dengan pengecekan disabled) ──
+// ── LOGIN ──
 window.doLogin = async function() {
   const email = document.getElementById('email').value.trim();
   const pass = document.getElementById('password').value;
@@ -328,7 +352,6 @@ window.doLogin = async function() {
   const deviceWarn = document.getElementById('deviceWarn');
   const notActivatedWarn = document.getElementById('notActivatedWarn');
 
-  // Reset semua pesan error
   errEl.style.display = 'none';
   deviceWarn.style.display = 'none';
   notActivatedWarn.style.display = 'none';
@@ -349,7 +372,6 @@ window.doLogin = async function() {
     const userRef = doc(db, 'users', uid);
     const snap = await getDoc(userRef);
 
-    // ── CEK 1: Dokumen Firestore wajib ada (dibuat admin)
     if (!snap.exists()) {
       await signOut(auth);
       btn.disabled = false;
@@ -361,7 +383,6 @@ window.doLogin = async function() {
 
     const data = snap.data();
 
-    // ── CEK 2: Apakah akun dinonaktifkan admin
     if (data.disabled === true) {
       await signOut(auth);
       btn.disabled = false;
@@ -371,7 +392,7 @@ window.doLogin = async function() {
       return;
     }
 
-    // ── CEK 3: Device lock — sudah dipakai di HP lain?
+    // ── CEK DEVICE LOCK ──
     if (data.deviceId && data.deviceId !== DEVICE_ID) {
       await signOut(auth);
       btn.disabled = false;
@@ -380,16 +401,18 @@ window.doLogin = async function() {
       return;
     }
 
-    // ── Login pertama: daftarkan device ini
+    // Daftarkan device pertama kali
     if (!data.deviceId) {
       await setDoc(userRef, {
         deviceId: DEVICE_ID,
         lastLogin: serverTimestamp(),
       }, { merge: true });
     } else {
-      // Update lastLogin saja
       await setDoc(userRef, { lastLogin: serverTimestamp() }, { merge: true });
     }
+
+    // Daftarkan presence premium
+    registerPresence(uid, email, 'premium');
 
     window.location.href = 'index.html';
 
@@ -409,14 +432,12 @@ window.doLogin = async function() {
   }
 };
 
-// Enter key support
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && document.querySelector('.panel.active').id === 'panelLogin') {
     doLogin();
   }
 });
 
-// Kalau sudah login, langsung redirect
 onAuthStateChanged(auth, (user) => {
   if (user) window.location.href = 'index.html';
 });
