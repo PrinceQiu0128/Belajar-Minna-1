@@ -226,11 +226,11 @@ tr:hover td{background:var(--bg3);}
         <div class="stat-val" id="statTotal">—</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">Device Terkunci</div>
+        <div class="stat-label">Sesi Aktif</div>
         <div class="stat-val green" id="statLocked">—</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">Belum Login</div>
+        <div class="stat-label">Tidak Aktif</div>
         <div class="stat-val amber" id="statUnused">—</div>
       </div>
       <div class="stat-card">
@@ -408,8 +408,8 @@ window.loadUsers = async function() {
 
 function updateStats(users) {
   document.getElementById('statTotal').textContent = users.length;
-  document.getElementById('statLocked').textContent = users.filter(u => u.deviceId && !u.disabled).length;
-  document.getElementById('statUnused').textContent = users.filter(u => !u.deviceId && !u.disabled).length;
+  document.getElementById('statLocked').textContent = users.filter(u => u.sessionToken && !u.disabled).length;
+  document.getElementById('statUnused').textContent = users.filter(u => !u.sessionToken && !u.disabled).length;
   document.getElementById('statDeleted').textContent = users.filter(u => u.disabled).length;
 }
 
@@ -421,6 +421,7 @@ function renderUsers(users) {
   }
   tbody.innerHTML = users.map((u, i) => {
     const isDisabled = u.disabled === true;
+    const hasSession = u.sessionToken && u.sessionToken.length > 0 && !isDisabled;
     const hasDevice = u.deviceId && u.deviceId.length > 0 && !isDisabled;
     const shortDevice = (u.deviceId && u.deviceId.length > 0)
       ? u.deviceId.substring(0, 16) + '...' : '—';
@@ -429,8 +430,10 @@ function renderUsers(users) {
     let statusBadge;
     if (isDisabled) {
       statusBadge = `<span class="status-badge badge-deleted">🚫 Nonaktif</span>`;
+    } else if (hasSession) {
+      statusBadge = `<span class="status-badge badge-active">🟢 Sesi Aktif</span>`;
     } else if (hasDevice) {
-      statusBadge = `<span class="status-badge badge-locked">🔒 Terkunci</span>`;
+      statusBadge = `<span class="status-badge badge-locked">🔒 Device Terkunci</span>`;
     } else {
       statusBadge = `<span class="status-badge badge-none">Belum Login</span>`;
     }
@@ -461,7 +464,7 @@ function renderUsers(users) {
       <td style="color:var(--text3);font-family:'JetBrains Mono',monospace;font-size:0.65rem;">${String(i+1).padStart(2,'0')}</td>
       <td class="td-email">${u.email || '—'}</td>
       <td class="td-uid" title="${u.uid}">${shortUid}</td>
-      <td class="td-device ${u.deviceId && !isDisabled ? 'device-active' : 'device-none'}" title="${u.deviceId || ''}">${shortDevice}</td>
+      <td class="td-device ${hasDevice ? 'device-active' : 'device-none'}" title="${u.deviceId || ''}">${shortDevice}</td>
       <td>${statusBadge}</td>
       <td style="font-size:0.72rem;color:var(--text2);">${lastLogin}</td>
       <td><div class="action-row">${actions}</div></td>
@@ -557,7 +560,7 @@ window.confirmReset = function(uid, email) {
   document.getElementById('modalConfirmBtn').className = 'modal-confirm blue';
   document.getElementById('modalConfirmBtn').textContent = 'Ya, Reset';
   pendingAction = async () => {
-    await setDoc(doc(db, 'users', uid), { deviceId: '' }, { merge: true });
+    await setDoc(doc(db, 'users', uid), { deviceId: '', sessionToken: '' }, { merge: true });
     toast('Device berhasil di-reset untuk ' + email, 'success');
     await loadUsers();
   };
@@ -598,6 +601,7 @@ window.confirmRestore = function(uid, email) {
     await setDoc(doc(db, 'users', uid), {
       disabled: false,
       deviceId: '',
+      sessionToken: '',
     }, { merge: true });
     toast('User ' + email + ' berhasil diaktifkan kembali.', 'success');
     await loadUsers();
