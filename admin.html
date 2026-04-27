@@ -59,8 +59,16 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);overflow-x:hid
 .logout-btn{padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;font-weight:600;color:var(--text2);cursor:pointer;transition:all 0.2s;}
 .logout-btn:hover{border-color:var(--red);color:var(--red);}
 
+/* ACTION BAR */
+.action-bar{display:flex;gap:10px;flex-wrap:wrap;padding:16px 24px 0;}
+.action-bar-btn{padding:9px 18px;border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:7px;border:1px solid;}
+.btn-reset-all{background:rgba(245,158,11,0.12);border-color:rgba(245,158,11,0.35);color:var(--amber);}
+.btn-reset-all:hover{background:rgba(245,158,11,0.2);}
+.btn-kick-all{background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--red);}
+.btn-kick-all:hover{background:rgba(239,68,68,0.2);}
+
 /* NOTICE BOX */
-.notice-box{background:rgba(245,158,11,0.08);border:1px solid var(--amber-border);border-radius:12px;padding:12px 16px;margin:20px 24px 0;font-size:0.78rem;color:var(--amber);line-height:1.6;}
+.notice-box{background:rgba(245,158,11,0.08);border:1px solid var(--amber-border);border-radius:12px;padding:12px 16px;margin:16px 24px 0;font-size:0.78rem;color:var(--amber);line-height:1.6;}
 .notice-box strong{color:#fbbf24;}
 
 /* MAIN */
@@ -182,6 +190,7 @@ tr:hover td{background:var(--bg3);}
 .modal-confirm:hover{opacity:0.85;}
 .modal-confirm.blue{background:var(--accent);}
 .modal-confirm.green{background:var(--green);}
+.modal-confirm.amber{background:var(--amber);}
 .modal-confirm:disabled{opacity:0.5;cursor:not-allowed;}
 </style>
 </head>
@@ -228,9 +237,19 @@ tr:hover td{background:var(--bg3);}
     <button class="logout-btn" onclick="doLogout()">Keluar</button>
   </div>
 
+  <!-- ✅ TOMBOL RESET & KICK -->
+  <div class="action-bar">
+    <button class="action-bar-btn btn-reset-all" onclick="confirmResetAllDevices()">
+      🔓 Reset Semua Device
+    </button>
+    <button class="action-bar-btn btn-kick-all" onclick="confirmKickAllPresence()">
+      ⚡ Kick Semua User Aktif
+    </button>
+  </div>
+
   <div class="notice-box">
     ℹ️ <strong>Catatan Penting:</strong>
-    Tambah user menggunakan Firebase REST API — sesi admin <strong>tidak akan ter-logout</strong>. 
+    Tambah user menggunakan Firebase REST API — sesi admin <strong>tidak akan ter-logout</strong>.
     Hapus user akan menonaktifkan akun (flag Firestore) dan mereset device, sehingga user tidak bisa login lagi.
     Untuk menghapus permanen dari Firebase Auth, lakukan manual di <strong>Firebase Console → Authentication</strong>.
   </div>
@@ -437,15 +456,9 @@ function listenActiveUsers() {
     Object.values(data).forEach(u => {
       if (u && u.online) onlineUsers[u.uid] = u;
     });
-
-    // Update stat
     const count = Object.keys(onlineUsers).length;
     document.getElementById('statOnline').textContent = count;
-
-    // Render active users grid
     renderActiveUsers(Object.values(onlineUsers));
-
-    // Re-render table to show online badges
     renderUsers(allUsers);
   });
 }
@@ -456,7 +469,6 @@ function renderActiveUsers(users) {
     grid.innerHTML = '<div class="no-active">Tidak ada pengguna aktif saat ini.</div>';
     return;
   }
-  // Sort: premium dulu, terus guest
   const sorted = [...users].sort((a, b) => {
     if (a.type === 'premium' && b.type !== 'premium') return -1;
     if (a.type !== 'premium' && b.type === 'premium') return 1;
@@ -496,8 +508,8 @@ window.loadUsers = async function() {
 
 function updateStats(users) {
   document.getElementById('statTotal').textContent = users.length;
-  document.getElementById('statLocked').textContent = users.filter(u => u.deviceId && !u.disabled).length;
-  document.getElementById('statUnused').textContent = users.filter(u => !u.deviceId && !u.disabled).length;
+  document.getElementById('statLocked').textContent = users.filter(u => u.deviceId && u.deviceId !== '' && !u.disabled).length;
+  document.getElementById('statUnused').textContent = users.filter(u => (!u.deviceId || u.deviceId === '') && !u.disabled).length;
   document.getElementById('statDeleted').textContent = users.filter(u => u.disabled).length;
 }
 
@@ -513,8 +525,6 @@ function renderUsers(users) {
     const shortDevice = (u.deviceId && u.deviceId.length > 0)
       ? u.deviceId.substring(0, 16) + '...' : '—';
     const shortUid = u.uid.substring(0, 12) + '...';
-
-    // Cek apakah user ini sedang online
     const isOnline = !!onlineUsers[u.uid];
 
     let statusBadge;
@@ -638,7 +648,7 @@ function showFormMsg(text, success) {
   setTimeout(() => { el.style.display = 'none'; }, 5000);
 }
 
-// ── RESET DEVICE ──
+// ── RESET DEVICE (per user) ──
 window.confirmReset = function(uid, email) {
   document.getElementById('modalIcon').textContent = '🔓';
   document.getElementById('modalTitle').textContent = 'Reset Device?';
@@ -648,9 +658,46 @@ window.confirmReset = function(uid, email) {
   document.getElementById('modalConfirmBtn').textContent = 'Ya, Reset';
   pendingAction = async () => {
     await setDoc(doc(db, 'users', uid), { deviceId: '' }, { merge: true });
-    // Hapus presence jika ada
     await dbRemove(dbRef(rtdb, `presence/${uid}`));
     toast('Device berhasil di-reset untuk ' + email, 'success');
+    await loadUsers();
+  };
+  document.getElementById('confirmModal').classList.add('show');
+};
+
+// ── RESET SEMUA DEVICE ──
+window.confirmResetAllDevices = function() {
+  const lockedUsers = allUsers.filter(u => !u.disabled && u.deviceId && u.deviceId !== '');
+  document.getElementById('modalIcon').textContent = '🔓';
+  document.getElementById('modalTitle').textContent = 'Reset Semua Device?';
+  document.getElementById('modalDesc').textContent =
+    `${lockedUsers.length} user terkunci akan di-reset semua devicenya.\n\nMereka bisa login dari HP manapun setelah ini.`;
+  document.getElementById('modalConfirmBtn').className = 'modal-confirm amber';
+  document.getElementById('modalConfirmBtn').textContent = 'Ya, Reset Semua';
+  pendingAction = async () => {
+    const promises = lockedUsers.map(u =>
+      setDoc(doc(db, 'users', u.uid), { deviceId: '' }, { merge: true })
+    );
+    await Promise.all(promises);
+    await dbRemove(dbRef(rtdb, 'presence'));
+    toast(`✅ ${lockedUsers.length} device berhasil di-reset semua.`, 'success');
+    await loadUsers();
+  };
+  document.getElementById('confirmModal').classList.add('show');
+};
+
+// ── KICK SEMUA USER AKTIF ──
+window.confirmKickAllPresence = function() {
+  const onlineCount = Object.keys(onlineUsers).length;
+  document.getElementById('modalIcon').textContent = '⚡';
+  document.getElementById('modalTitle').textContent = 'Kick Semua User Aktif?';
+  document.getElementById('modalDesc').textContent =
+    `${onlineCount} user sedang online akan di-kick.\n\nDevice lock TIDAK direset — mereka hanya dikeluarkan dari sesi aktif saat ini.`;
+  document.getElementById('modalConfirmBtn').className = 'modal-confirm';
+  document.getElementById('modalConfirmBtn').textContent = 'Ya, Kick Semua';
+  pendingAction = async () => {
+    await dbRemove(dbRef(rtdb, 'presence'));
+    toast('⚡ Semua user aktif berhasil di-kick.', 'warn');
     await loadUsers();
   };
   document.getElementById('confirmModal').classList.add('show');
@@ -669,7 +716,6 @@ window.confirmDisable = function(uid, email) {
       disabled: true,
       deviceId: '',
     }, { merge: true });
-    // Hapus presence jika ada
     await dbRemove(dbRef(rtdb, `presence/${uid}`));
     toast('User ' + email + ' dinonaktifkan.', 'warn');
     await loadUsers();
