@@ -1539,32 +1539,18 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
  
-<!-- ✅ TAMBAHAN BARU: import Realtime Database -->
-import {
-  getDatabase,
-  ref as dbRef,
-  set as dbSet,
-  onDisconnect as dbOnDisconnect,
-  serverTimestamp as dbServerTimestamp
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
- 
 const firebaseConfig = {
   apiKey: "AIzaSyDinwdzN-Y-P0BlCqPvj6y1Inc6dhvssKU",
   authDomain: "jualan-web-50d9e.firebaseapp.com",
   projectId: "jualan-web-50d9e",
   storageBucket: "jualan-web-50d9e.firebasestorage.app",
   messagingSenderId: "1021060785335",
-  appId: "1:1021060785335:web:45622074c33c9ccceb9932",
-  <!-- ✅ TAMBAHAN BARU: databaseURL -->
-  databaseURL: "https://jualan-web-50d9e-default-rtdb.firebaseio.com"
+  appId: "1:1021060785335:web:45622074c33c9ccceb9932"
 };
  
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
- 
-<!-- ✅ TAMBAHAN BARU: inisialisasi Realtime Database -->
-const rtdb = getDatabase(app);
  
 // ── DEVICE ID ──
 function getDeviceId() {
@@ -1577,24 +1563,8 @@ function getDeviceId() {
 }
 const DEVICE_ID = getDeviceId();
  
-// ✅ TAMBAHAN BARU: fungsi registerPresence
-function registerPresence(uid, email, type) {
-  const presenceRef = dbRef(rtdb, 'presence/' + uid);
-  dbSet(presenceRef, {
-    uid: uid,
-    email: email || 'Unknown',
-    type: type,        // 'premium' atau 'guest'
-    deviceId: DEVICE_ID,
-    online: true,
-    lastSeen: dbServerTimestamp()
-  });
-  // Otomatis hapus dari database saat user tutup tab / disconnect
-  dbOnDisconnect(presenceRef).remove();
-}
- 
 // ── GUEST MODE CHECK ──
-// ✅ DIUBAH dari 10 * 60 menjadi 5 * 60
-const GUEST_DURATION = 5 * 60;
+const GUEST_DURATION = 10 * 60;
  
 function getGuestKey() {
   const today = new Date().toDateString();
@@ -1614,6 +1584,7 @@ function formatTime(s) {
  
 // Inject floating timer bar (untuk guest mode)
 function injectGuestBar(leftSecs) {
+  // Create floating timer bar
   const bar = document.createElement('div');
   bar.id = 'guestTimerBar';
   bar.style.cssText = `
@@ -1641,8 +1612,11 @@ function injectGuestBar(leftSecs) {
     </a>
   `;
   document.body.appendChild(bar);
+ 
+  // Add padding to bottom so content not hidden behind bar
   document.body.style.paddingBottom = '64px';
  
+  // Start countdown
   let secs = leftSecs;
   const timeEl = document.getElementById('guestBarTime');
   const tick = () => {
@@ -1704,11 +1678,7 @@ onAuthStateChanged(auth, async (user) => {
       window.location.href = 'login.html';
       return;
     }
- 
-    // ✅ TAMBAHAN BARU: daftarkan guest ke presence
-    const guestUid = 'guest_' + DEVICE_ID;
-    registerPresence(guestUid, 'Tamu', 'guest');
- 
+    // Guest — check time remaining
     const used = getGuestSecondsUsed();
     const left = GUEST_DURATION - used;
     if (left <= 0) {
@@ -1726,14 +1696,12 @@ onAuthStateChanged(auth, async (user) => {
     if (snap.exists()) {
       const data = snap.data();
       if (data.deviceId && data.deviceId !== DEVICE_ID) {
+        // Wrong device — kick out
         await signOut(auth);
         sessionStorage.removeItem('guestMode');
         alert('Akun ini sudah digunakan di perangkat lain. Hubungi admin jika ada masalah.');
         window.location.href = 'login.html';
-        return;
       }
-      // ✅ TAMBAHAN BARU: daftarkan premium user ke presence
-      registerPresence(user.uid, user.email, 'premium');
     }
   } catch(e) {
     console.warn('Device check failed:', e);
