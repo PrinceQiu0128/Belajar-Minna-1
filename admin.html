@@ -408,8 +408,9 @@ window.loadUsers = async function() {
 
 function updateStats(users) {
   document.getElementById('statTotal').textContent = users.length;
-  document.getElementById('statLocked').textContent = users.filter(u => u.sessionToken && !u.disabled).length;
-  document.getElementById('statUnused').textContent = users.filter(u => !u.sessionToken && !u.disabled).length;
+  const hasToken = u => u.sessionToken && u.sessionToken.length > 0;
+  document.getElementById('statLocked').textContent = users.filter(u => hasToken(u) && !u.disabled).length;
+  document.getElementById('statUnused').textContent = users.filter(u => !hasToken(u) && !u.disabled).length;
   document.getElementById('statDeleted').textContent = users.filter(u => u.disabled).length;
 }
 
@@ -560,7 +561,7 @@ window.confirmReset = function(uid, email) {
   document.getElementById('modalConfirmBtn').className = 'modal-confirm blue';
   document.getElementById('modalConfirmBtn').textContent = 'Ya, Reset';
   pendingAction = async () => {
-    await setDoc(doc(db, 'users', uid), { deviceId: '', sessionToken: '' }, { merge: true });
+    await setDoc(doc(db, 'users', uid), { deviceId: null, sessionToken: null }, { merge: true });
     toast('Device berhasil di-reset untuk ' + email, 'success');
     await loadUsers();
   };
@@ -581,7 +582,8 @@ window.confirmDisable = function(uid, email) {
     // tapi untuk benar-benar memblokir: tambah pengecekan 'disabled' di login.html
     await setDoc(doc(db, 'users', uid), {
       disabled: true,
-      deviceId: '', // reset device juga
+      deviceId: null,
+      sessionToken: null,
     }, { merge: true });
     toast('User ' + email + ' dinonaktifkan.', 'warn');
     await loadUsers();
@@ -600,8 +602,8 @@ window.confirmRestore = function(uid, email) {
   pendingAction = async () => {
     await setDoc(doc(db, 'users', uid), {
       disabled: false,
-      deviceId: '',
-      sessionToken: '',
+      deviceId: null,
+      sessionToken: null,
     }, { merge: true });
     toast('User ' + email + ' berhasil diaktifkan kembali.', 'success');
     await loadUsers();
