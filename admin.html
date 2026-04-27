@@ -74,6 +74,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);overflow-x:hid
 .stat-val.green{color:var(--green);}
 .stat-val.amber{color:var(--amber);}
 .stat-val.red{color:var(--red);}
+.stat-val.blue{color:#60a5fa;}
 
 /* SECTION */
 .section{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:20px;}
@@ -96,8 +97,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);overflow-x:hid
 .form-msg{padding:0 20px 16px;font-size:0.78rem;display:none;}
 .form-msg.success{color:var(--green);}
 .form-msg.error{color:var(--red);}
-
-/* HELPER NOTE */
 .form-note{padding:0 20px 16px;font-size:0.72rem;color:var(--text3);line-height:1.6;}
 .form-note strong{color:var(--amber);}
 
@@ -125,6 +124,7 @@ tr:hover td{background:var(--bg3);}
 .badge-locked{background:var(--amber-bg);border:1px solid var(--amber-border);color:var(--amber);}
 .badge-none{background:var(--bg3);border:1px solid var(--border);color:var(--text3);}
 .badge-deleted{background:var(--red-bg);border:1px solid var(--red-border);color:var(--red);}
+.badge-online{background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.4);color:#4ade80;}
 .action-row{display:flex;gap:6px;flex-wrap:wrap;}
 .act-btn{padding:5px 10px;border-radius:6px;font-size:0.68rem;font-weight:600;cursor:pointer;border:1px solid;transition:all 0.15s;font-family:'Plus Jakarta Sans',sans-serif;white-space:nowrap;}
 .act-reset{background:var(--amber-bg);border-color:var(--amber-border);color:var(--amber);}
@@ -140,6 +140,24 @@ tr:hover td{background:var(--bg3);}
 .loading-row td{text-align:center;color:var(--text3);padding:36px;}
 .spinner{display:inline-block;width:18px;height:18px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:8px;}
 @keyframes spin{to{transform:rotate(360deg);}}
+
+/* ACTIVE USERS PANEL */
+.active-users-grid{padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;}
+.active-user-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;transition:border-color 0.2s;}
+.active-user-card.premium{border-color:rgba(59,130,246,0.3);}
+.active-user-card.guest{border-color:rgba(139,92,246,0.3);}
+.au-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;animation:pulse 2s infinite;}
+.au-dot.premium{background:#3b82f6;}
+.au-dot.guest{background:#8b5cf6;}
+.au-info{flex:1;min-width:0;}
+.au-email{font-size:0.75rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.au-type{font-size:0.62rem;color:var(--text3);margin-top:2px;font-family:'JetBrains Mono',monospace;}
+.au-badge{font-size:0.58rem;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:4px;flex-shrink:0;}
+.au-badge.premium{background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.3);}
+.au-badge.guest{background:rgba(139,92,246,0.15);color:#a78bfa;border:1px solid rgba(139,92,246,0.3);}
+.no-active{padding:36px;text-align:center;color:var(--text3);font-size:0.82rem;}
+.live-indicator{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--green);}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite;}
 
 /* TOAST */
 .toast-wrap{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;}
@@ -210,7 +228,6 @@ tr:hover td{background:var(--bg3);}
     <button class="logout-btn" onclick="doLogout()">Keluar</button>
   </div>
 
-  <!-- NOTICE PENTING -->
   <div class="notice-box">
     ℹ️ <strong>Catatan Penting:</strong>
     Tambah user menggunakan Firebase REST API — sesi admin <strong>tidak akan ter-logout</strong>. 
@@ -237,6 +254,24 @@ tr:hover td{background:var(--bg3);}
         <div class="stat-label">Dinonaktifkan</div>
         <div class="stat-val red" id="statDeleted">—</div>
       </div>
+      <div class="stat-card">
+        <div class="stat-label">🟢 Aktif Sekarang</div>
+        <div class="stat-val blue" id="statOnline">0</div>
+      </div>
+    </div>
+
+    <!-- REALTIME ACTIVE USERS -->
+    <div class="section">
+      <div class="sec-head">
+        <span class="sec-title">🟢 Pengguna Aktif Saat Ini</span>
+        <div class="live-indicator" style="margin-left:auto">
+          <span class="live-dot"></span>
+          <span>LIVE</span>
+        </div>
+      </div>
+      <div class="active-users-grid" id="activeUsersGrid">
+        <div class="no-active">Memuat data aktif...</div>
+      </div>
     </div>
 
     <!-- ADD USER -->
@@ -258,7 +293,6 @@ tr:hover td{background:var(--bg3);}
       </div>
       <div class="form-note">
         ⚡ Menggunakan <strong>Firebase REST API</strong> — sesi admin aman, tidak akan ter-logout.
-        Setelah berhasil, user langsung muncul di tabel dan bisa login.
       </div>
       <div class="form-msg" id="formMsg"></div>
     </div>
@@ -282,12 +316,13 @@ tr:hover td{background:var(--bg3);}
               <th>UID</th>
               <th>Device ID</th>
               <th>Status</th>
+              <th>Online</th>
               <th>Last Login</th>
               <th>Aksi</th>
             </tr>
           </thead>
           <tbody id="userTableBody">
-            <tr class="loading-row"><td colspan="7"><span class="spinner"></span>Memuat data...</td></tr>
+            <tr class="loading-row"><td colspan="8"><span class="spinner"></span>Memuat data...</td></tr>
           </tbody>
         </table>
       </div>
@@ -308,7 +343,6 @@ tr:hover td{background:var(--bg3);}
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script type="module">
@@ -321,6 +355,9 @@ import {
   getFirestore, collection, doc, getDocs, setDoc, deleteDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import {
+  getDatabase, ref as dbRef, onValue, remove as dbRemove
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDinwdzN-Y-P0BlCqPvj6y1Inc6dhvssKU",
@@ -328,21 +365,21 @@ const firebaseConfig = {
   projectId: "jualan-web-50d9e",
   storageBucket: "jualan-web-50d9e.firebasestorage.app",
   messagingSenderId: "1021060785335",
-  appId: "1:1021060785335:web:45622074c33c9ccceb9932"
+  appId: "1:1021060785335:web:45622074c33c9ccceb9932",
+  databaseURL: "https://jualan-web-50d9e-default-rtdb.firebaseio.com"
 };
 
-// ══ GANTI SESUAI AKUN ADMIN KAMU ══
 const ADMIN_EMAIL = "adminrendi@gmail.com";
-// API Key Firebase (sama dengan di atas)
 const FIREBASE_API_KEY = "AIzaSyDinwdzN-Y-P0BlCqPvj6y1Inc6dhvssKU";
-// ════════════════════════════════════
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const rtdb = getDatabase(app);
 
 let allUsers = [];
 let pendingAction = null;
+let onlineUsers = {};
 
 // ── AUTH CHECK ──
 onAuthStateChanged(auth, user => {
@@ -350,6 +387,7 @@ onAuthStateChanged(auth, user => {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     loadUsers();
+    listenActiveUsers();
   } else if (user) {
     signOut(auth);
     showLoginErr('Akun ini bukan admin.');
@@ -390,10 +428,60 @@ window.doLogout = function() {
   });
 };
 
+// ── LISTEN ACTIVE USERS (REALTIME) ──
+function listenActiveUsers() {
+  const presenceRef = dbRef(rtdb, 'presence');
+  onValue(presenceRef, (snapshot) => {
+    onlineUsers = {};
+    const data = snapshot.val() || {};
+    Object.values(data).forEach(u => {
+      if (u && u.online) onlineUsers[u.uid] = u;
+    });
+
+    // Update stat
+    const count = Object.keys(onlineUsers).length;
+    document.getElementById('statOnline').textContent = count;
+
+    // Render active users grid
+    renderActiveUsers(Object.values(onlineUsers));
+
+    // Re-render table to show online badges
+    renderUsers(allUsers);
+  });
+}
+
+function renderActiveUsers(users) {
+  const grid = document.getElementById('activeUsersGrid');
+  if (!users.length) {
+    grid.innerHTML = '<div class="no-active">Tidak ada pengguna aktif saat ini.</div>';
+    return;
+  }
+  // Sort: premium dulu, terus guest
+  const sorted = [...users].sort((a, b) => {
+    if (a.type === 'premium' && b.type !== 'premium') return -1;
+    if (a.type !== 'premium' && b.type === 'premium') return 1;
+    return 0;
+  });
+  grid.innerHTML = sorted.map(u => {
+    const isGuest = u.type === 'guest';
+    const email = u.email || 'Tamu';
+    const displayEmail = isGuest ? 'Pengguna Tamu' : email;
+    const typeLabel = isGuest ? 'GUEST' : 'PREMIUM';
+    return `<div class="active-user-card ${u.type}">
+      <span class="au-dot ${u.type}"></span>
+      <div class="au-info">
+        <div class="au-email">${displayEmail}</div>
+        <div class="au-type">${isGuest ? 'Akses Gratis 5 menit' : 'Akun Premium'}</div>
+      </div>
+      <span class="au-badge ${u.type}">${typeLabel}</span>
+    </div>`;
+  }).join('');
+}
+
 // ── LOAD USERS ──
 window.loadUsers = async function() {
   document.getElementById('userTableBody').innerHTML =
-    `<tr class="loading-row"><td colspan="7"><span class="spinner"></span>Memuat data...</td></tr>`;
+    `<tr class="loading-row"><td colspan="8"><span class="spinner"></span>Memuat data...</td></tr>`;
   try {
     const snap = await getDocs(collection(db, 'users'));
     allUsers = [];
@@ -416,7 +504,7 @@ function updateStats(users) {
 function renderUsers(users) {
   const tbody = document.getElementById('userTableBody');
   if (!users.length) {
-    tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state"><span class="empty-jp">無し</span>Belum ada user.</div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="8"><div class="empty-state"><span class="empty-jp">無し</span>Belum ada user.</div></td></tr>`;
     return;
   }
   tbody.innerHTML = users.map((u, i) => {
@@ -425,6 +513,9 @@ function renderUsers(users) {
     const shortDevice = (u.deviceId && u.deviceId.length > 0)
       ? u.deviceId.substring(0, 16) + '...' : '—';
     const shortUid = u.uid.substring(0, 12) + '...';
+
+    // Cek apakah user ini sedang online
+    const isOnline = !!onlineUsers[u.uid];
 
     let statusBadge;
     if (isDisabled) {
@@ -435,21 +526,22 @@ function renderUsers(users) {
       statusBadge = `<span class="status-badge badge-none">Belum Login</span>`;
     }
 
+    const onlineBadge = isOnline
+      ? `<span class="status-badge badge-online">🟢 Online</span>`
+      : `<span style="font-size:0.65rem;color:var(--text4)">—</span>`;
+
     const lastLogin = u.lastLogin
       ? new Date(u.lastLogin.seconds * 1000).toLocaleDateString('id-ID',
           {day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})
       : '—';
 
-    // Aksi berdasarkan status
     let actions = '';
     if (isDisabled) {
-      // User nonaktif: bisa restore atau hapus permanen dari Firestore
       actions = `
         <button class="act-btn act-restore" onclick="confirmRestore('${u.uid}','${u.email || u.uid}')">Aktifkan</button>
         <button class="act-btn act-delete" onclick="confirmDeletePermanent('${u.uid}','${u.email || u.uid}')">Hapus Firestore</button>
       `;
     } else {
-      // User aktif
       actions = `
         ${hasDevice ? `<button class="act-btn act-reset" onclick="confirmReset('${u.uid}','${u.email || u.uid}')">Reset Device</button>` : ''}
         <button class="act-btn act-delete" onclick="confirmDisable('${u.uid}','${u.email || u.uid}')">Nonaktifkan</button>
@@ -463,6 +555,7 @@ function renderUsers(users) {
       <td class="td-uid" title="${u.uid}">${shortUid}</td>
       <td class="td-device ${u.deviceId && !isDisabled ? 'device-active' : 'device-none'}" title="${u.deviceId || ''}">${shortDevice}</td>
       <td>${statusBadge}</td>
+      <td>${onlineBadge}</td>
       <td style="font-size:0.72rem;color:var(--text2);">${lastLogin}</td>
       <td><div class="action-row">${actions}</div></td>
     </tr>`;
@@ -479,7 +572,7 @@ window.filterUsers = function() {
   renderUsers(filtered);
 };
 
-// ── ADD USER via REST API (sesi admin aman!) ──
+// ── ADD USER ──
 window.addUser = async function() {
   const email = document.getElementById('newEmail').value.trim();
   const pass = document.getElementById('newPass').value;
@@ -493,7 +586,6 @@ window.addUser = async function() {
   btn.disabled = true; btn.textContent = 'Memproses...';
 
   try {
-    // ✅ Pakai REST API — admin TIDAK ter-logout!
     const res = await fetch(
       `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_API_KEY}`,
       {
@@ -516,8 +608,6 @@ window.addUser = async function() {
     }
 
     const uid = data.localId;
-
-    // Simpan ke Firestore
     await setDoc(doc(db, 'users', uid), {
       email: email,
       deviceId: '',
@@ -553,33 +643,34 @@ window.confirmReset = function(uid, email) {
   document.getElementById('modalIcon').textContent = '🔓';
   document.getElementById('modalTitle').textContent = 'Reset Device?';
   document.getElementById('modalDesc').textContent =
-    `User: ${email}\n\nDevice akan di-reset. User bisa login dari HP baru dan device baru akan terkunci otomatis.`;
+    `User: ${email}\n\nDevice akan di-reset. User bisa login dari HP baru.`;
   document.getElementById('modalConfirmBtn').className = 'modal-confirm blue';
   document.getElementById('modalConfirmBtn').textContent = 'Ya, Reset';
   pendingAction = async () => {
     await setDoc(doc(db, 'users', uid), { deviceId: '' }, { merge: true });
+    // Hapus presence jika ada
+    await dbRemove(dbRef(rtdb, `presence/${uid}`));
     toast('Device berhasil di-reset untuk ' + email, 'success');
     await loadUsers();
   };
   document.getElementById('confirmModal').classList.add('show');
 };
 
-// ── NONAKTIFKAN USER (bukan hapus permanen) ──
+// ── NONAKTIFKAN USER ──
 window.confirmDisable = function(uid, email) {
   document.getElementById('modalIcon').textContent = '🚫';
   document.getElementById('modalTitle').textContent = 'Nonaktifkan User?';
   document.getElementById('modalDesc').textContent =
-    `User: ${email}\n\nUser akan diblokir dan tidak bisa login.\nDevice juga akan di-reset.\n\nUntuk hapus permanen dari Firebase Auth, lakukan manual di Firebase Console.`;
+    `User: ${email}\n\nUser akan diblokir dan tidak bisa login.\nDevice juga akan di-reset.`;
   document.getElementById('modalConfirmBtn').className = 'modal-confirm';
   document.getElementById('modalConfirmBtn').textContent = 'Ya, Nonaktifkan';
   pendingAction = async () => {
-    // Set flag disabled + reset device di Firestore
-    // Login.html sudah mengecek flag ini via device check,
-    // tapi untuk benar-benar memblokir: tambah pengecekan 'disabled' di login.html
     await setDoc(doc(db, 'users', uid), {
       disabled: true,
-      deviceId: '', // reset device juga
+      deviceId: '',
     }, { merge: true });
+    // Hapus presence jika ada
+    await dbRemove(dbRef(rtdb, `presence/${uid}`));
     toast('User ' + email + ' dinonaktifkan.', 'warn');
     await loadUsers();
   };
@@ -605,16 +696,17 @@ window.confirmRestore = function(uid, email) {
   document.getElementById('confirmModal').classList.add('show');
 };
 
-// ── HAPUS DOKUMEN FIRESTORE SAJA ──
+// ── HAPUS DOKUMEN FIRESTORE ──
 window.confirmDeletePermanent = function(uid, email) {
   document.getElementById('modalIcon').textContent = '🗑️';
   document.getElementById('modalTitle').textContent = 'Hapus dari Firestore?';
   document.getElementById('modalDesc').textContent =
-    `User: ${email}\n\nData Firestore akan dihapus permanen.\nAkun Firebase Auth masih ada — hapus manual di Firebase Console jika perlu.`;
+    `User: ${email}\n\nData Firestore akan dihapus permanen.\nAkun Firebase Auth masih ada — hapus manual di Console.`;
   document.getElementById('modalConfirmBtn').className = 'modal-confirm';
   document.getElementById('modalConfirmBtn').textContent = 'Ya, Hapus Firestore';
   pendingAction = async () => {
     await deleteDoc(doc(db, 'users', uid));
+    await dbRemove(dbRef(rtdb, `presence/${uid}`));
     toast('Data Firestore ' + email + ' dihapus.', 'info');
     await loadUsers();
   };
@@ -646,7 +738,6 @@ function toast(msg, type='info') {
   setTimeout(() => el.remove(), 4000);
 }
 
-// Enter login
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && document.getElementById('loginScreen').style.display !== 'none') {
     doAdminLogin();
